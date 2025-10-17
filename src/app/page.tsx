@@ -16,7 +16,8 @@ export default function Home() {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-300 hover:text-white transition">Features</a>
               <a href="#how-it-works" className="text-gray-300 hover:text-white transition">How It Works</a>
-              <a href="#about" className="text-gray-300 hover:text-white transition">About</a>
+              <Link href="/generate" className="text-gray-300 hover:text-white transition">Generate</Link>
+              <Link href="/analyze" className="text-gray-300 hover:text-white transition">Analyze</Link>
               <Link
                 href="/generate"
                 className="px-6 py-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all"
@@ -39,11 +40,11 @@ export default function Home() {
 
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
               <span className="block text-white mb-2">Legal Documents</span>
-              <span className="gradient-text animate-gradient">Generated Instantly</span>
+              <span className="gradient-text animate-gradient">Made Simple with AI</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Generate professional legal documents in seconds with AI. Contracts, NDAs, Leases, Wills, and Court Petitions in <span className="text-indigo-400 font-semibold">Uzbek</span> and <span className="text-purple-400 font-semibold">Russian</span>.
+              Generate professional legal documents or analyze existing ones in seconds with AI. Contracts, NDAs, Leases, Wills, and Court Petitions in <span className="text-indigo-400 font-semibold">Uzbek</span> and <span className="text-purple-400 font-semibold">Russian</span>.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -51,14 +52,14 @@ export default function Home() {
                 href="/generate"
                 className="px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all hover:scale-105 animate-pulse-glow"
               >
-                Generate Document Now →
+                Generate Document →
               </Link>
-              <a
-                href="#how-it-works"
-                className="px-8 py-4 bg-white/10 text-white rounded-full text-lg font-semibold hover:bg-white/20 transition-all backdrop-blur-sm border border-white/20"
+              <Link
+                href="/analyze"
+                className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-green-500/50 transition-all hover:scale-105"
               >
-                See How It Works
-              </a>
+                Analyze Document →
+              </Link>
             </div>
 
             {/* Stats */}
@@ -94,9 +95,20 @@ export default function Home() {
                 <div className="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
                   <span className="text-3xl">📄</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4">Multiple Document Types</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">Document Generation</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Generate contracts, NDAs, lease agreements, wills, court petitions, and more. All tailored to Uzbekistan's legal context.
+                  Generate contracts, NDAs, lease agreements, wills, court petitions, and more with live PDF preview. All tailored to Uzbekistan&apos;s legal context.
+                </p>
+              </div>
+
+              {/* Feature 1b - Document Analysis */}
+              <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all hover:scale-105 hover:shadow-xl hover:shadow-green-500/20">
+                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
+                  <span className="text-3xl">🔍</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">Document Analysis</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  Upload and analyze existing documents to extract key insights, identify risks, and get AI-powered recommendations with sentiment analysis.
                 </p>
               </div>
 
@@ -172,7 +184,7 @@ export default function Home() {
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold text-white mb-3">Choose Document Type</h3>
                   <p className="text-gray-300 text-lg leading-relaxed">
-                    Select from contracts, NDAs, lease agreements, wills, or court petitions. Each type is tailored for Uzbekistan's legal system.
+                    Select from contracts, NDAs, lease agreements, wills, or court petitions. Each type is tailored for Uzbekistan&apos;s legal system.
                   </p>
                 </div>
               </div>

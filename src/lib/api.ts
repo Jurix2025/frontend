@@ -88,3 +88,52 @@ export function formatDocumentType(type: string): string {
   };
   return typeMap[type] || type;
 }
+
+// Document Analysis Types
+export interface Insight {
+  text: string;
+  sentiment: 'positive' | 'neutral' | 'negative' | 'warning';
+  category?: string;
+}
+
+export interface AnalysisResult {
+  summary: string;
+  insights: Insight[];
+}
+
+export interface AnalyzeDocumentResponse {
+  success: boolean;
+  result?: AnalysisResult;
+  error?: string;
+}
+
+/**
+ * Analyze a legal document via the backend (OpenAI API)
+ */
+export async function analyzeDocument(file: File): Promise<AnalyzeDocumentResponse> {
+  try {
+    const formData = new FormData();
+    formData.append('document', file);
+
+    const response = await fetch(`${API_BASE_URL}/api/analyze`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return {
+      success: true,
+      result: data,
+    };
+  } catch (error) {
+    console.error('API Error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
+}

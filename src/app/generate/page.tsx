@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { PDFPreview } from '@/components/PDFPreview';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { PDFTemplate } from '@/components/PDFTemplate';
 
 type DocumentType = 'lease' | 'nda' | 'contract' | 'will' | 'petition' | null;
 type Language = 'uzbek' | 'russian';
@@ -47,21 +50,7 @@ const documentTypes = [
 export default function GeneratePage() {
   const [selectedDoc, setSelectedDoc] = useState<DocumentType>(null);
   const [language, setLanguage] = useState<Language>('uzbek');
-  const [isGenerating, setIsGenerating] = useState(false);
   const [formData, setFormData] = useState<Record<string, string>>({});
-
-  const handleGenerate = async () => {
-    setIsGenerating(true);
-
-    // TODO: Make API call to Django backend
-    // For now, simulate generation
-    await new Promise(resolve => setTimeout(resolve, 3000));
-
-    // Mock PDF download
-    alert(`Document generated!\n\nType: ${selectedDoc}\nLanguage: ${language}\n\nIn production, this would download the PDF.`);
-
-    setIsGenerating(false);
-  };
 
   const renderForm = () => {
     if (!selectedDoc) return null;
@@ -361,12 +350,14 @@ export default function GeneratePage() {
               </div>
               <span className="text-2xl font-bold text-white">Jurix</span>
             </Link>
-            <Link
-              href="/"
-              className="text-gray-300 hover:text-white transition"
-            >
-              ← Back to Home
-            </Link>
+            <div className="flex items-center gap-6">
+              <Link href="/analyze" className="text-gray-300 hover:text-white transition">
+                Analyze
+              </Link>
+              <Link href="/" className="text-gray-300 hover:text-white transition">
+                Home
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -413,7 +404,7 @@ export default function GeneratePage() {
               </div>
             </>
           ) : (
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-[1600px] mx-auto">
               <button
                 onClick={() => setSelectedDoc(null)}
                 className="text-gray-300 hover:text-white transition mb-8 flex items-center gap-2"
@@ -421,47 +412,57 @@ export default function GeneratePage() {
                 ← Back to Document Types
               </button>
 
-              <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 mb-8">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${documentTypes.find(d => d.id === selectedDoc)?.gradient} rounded-2xl flex items-center justify-center`}>
-                    <span className="text-4xl">{documentTypes.find(d => d.id === selectedDoc)?.icon}</span>
+              {/* Header */}
+              <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 mb-6">
+                <div className="flex items-center gap-4">
+                  <div className={`w-14 h-14 bg-gradient-to-br ${documentTypes.find(d => d.id === selectedDoc)?.gradient} rounded-2xl flex items-center justify-center`}>
+                    <span className="text-3xl">{documentTypes.find(d => d.id === selectedDoc)?.icon}</span>
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-white">{documentTypes.find(d => d.id === selectedDoc)?.title}</h2>
-                    <p className="text-gray-300">{documentTypes.find(d => d.id === selectedDoc)?.description}</p>
+                    <h2 className="text-2xl font-bold text-white">{documentTypes.find(d => d.id === selectedDoc)?.title}</h2>
+                    <p className="text-gray-300 text-sm">{documentTypes.find(d => d.id === selectedDoc)?.description}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Split View: PDF Preview (Left) + Form (Right) */}
+              <div className="grid lg:grid-cols-2 gap-6 mb-6">
+                {/* Left: PDF Preview */}
+                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
+                  <div className="mb-4 flex items-center justify-between">
+                    <h3 className="text-xl font-bold text-white">Live Preview</h3>
+                    {Object.values(formData).some(v => v && v.trim() !== '') && (
+                      <PDFDownloadLink
+                        document={
+                          <PDFTemplate
+                            documentType={selectedDoc || ''}
+                            language={language}
+                            formData={formData}
+                          />
+                        }
+                        fileName={`${selectedDoc}_${new Date().toISOString().split('T')[0]}.pdf`}
+                        className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all text-sm"
+                      >
+                        {({ loading }) => (loading ? 'Preparing...' : 'Download PDF')}
+                      </PDFDownloadLink>
+                    )}
+                  </div>
+                  <div className="bg-gray-50 rounded-lg" style={{ height: '800px' }}>
+                    <PDFPreview
+                      documentType={selectedDoc || ''}
+                      language={language}
+                      formData={formData}
+                    />
                   </div>
                 </div>
 
-                <form onSubmit={(e) => { e.preventDefault(); handleGenerate(); }}>
-                  {renderForm()}
-
-                  <div className="mt-8 flex gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setSelectedDoc(null)}
-                      className="flex-1 py-4 px-6 bg-white/10 text-white rounded-xl font-semibold hover:bg-white/20 transition-all"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      disabled={isGenerating}
-                      className="flex-1 py-4 px-6 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isGenerating ? (
-                        <span className="flex items-center justify-center gap-2">
-                          <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          Generating Document...
-                        </span>
-                      ) : (
-                        'Generate Document →'
-                      )}
-                    </button>
-                  </div>
-                </form>
+                {/* Right: Form */}
+                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
+                  <h3 className="text-xl font-bold text-white mb-6">Document Details</h3>
+                  <form onSubmit={(e) => { e.preventDefault(); }} className="h-[800px] overflow-y-auto pr-2">
+                    {renderForm()}
+                  </form>
+                </div>
               </div>
 
               {/* AI Notice */}
@@ -471,7 +472,7 @@ export default function GeneratePage() {
                   <div>
                     <h4 className="text-blue-300 font-semibold mb-1">AI-Generated Content</h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      This document is generated by AI and must be labeled as such according to Uzbekistan's AI regulations. It should be reviewed by a legal professional before use.
+                      This document is generated by AI and must be labeled as such according to Uzbekistan&apos;s AI regulations. It should be reviewed by a legal professional before use.
                     </p>
                   </div>
                 </div>
