@@ -200,6 +200,8 @@ export default function GeneratePage() {
   const renderForm = () => {
     if (!selectedDoc) return null;
 
+    const selectedDocType = documentTypes.find(d => d.id === selectedDoc);
+
     // Language selector
     const languageSelector = (
       <div className="mb-6">
@@ -235,7 +237,7 @@ export default function GeneratePage() {
       return (
         <div className="space-y-6">
           {languageSelector}
-          <div className="text-center py-12 text-gray-300">Loading template...</div>
+          <div className="text-center py-12 text-gray-600">Loading template...</div>
         </div>
       );
     }
@@ -244,7 +246,7 @@ export default function GeneratePage() {
       return (
         <div className="space-y-6">
           {languageSelector}
-          <div className="text-center py-12 text-gray-300">
+          <div className="text-center py-12 text-gray-600">
             Template not yet available for this document type.
           </div>
         </div>
@@ -253,6 +255,19 @@ export default function GeneratePage() {
 
     return (
       <div className="space-y-8">
+        {/* Document Type Info (Non-editable) */}
+        <div className="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 bg-gradient-to-br ${selectedDocType?.gradient} rounded-lg flex items-center justify-center`}>
+              <span className="text-2xl">{selectedDocType?.icon}</span>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-gray-500">Document Type</p>
+              <p className="text-base font-bold text-gray-900">{selectedDocType?.title}</p>
+            </div>
+          </div>
+        </div>
+
         {languageSelector}
 
         {/* User Prompt Area */}
@@ -278,17 +293,15 @@ export default function GeneratePage() {
               type="button"
               onClick={generateAllSections}
               disabled={isGenerating || !userPrompt.trim()}
-              className="mt-4 w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-xl font-bold text-lg transition-all shadow-lg disabled:shadow-none flex items-center justify-center gap-2"
+              className="mt-4 w-full py-2 px-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-semibold text-sm transition-all shadow-md disabled:shadow-none flex items-center justify-center gap-2"
             >
               {isGenerating ? (
                 <>
                   <span className="animate-spin">⟳</span>
-                  Generating All Sections...
+                  Generating...
                 </>
               ) : (
-                <>
-                  ✨ Generate All Sections
-                </>
+                'Generate All Sections'
               )}
             </button>
           </div>
@@ -338,22 +351,33 @@ export default function GeneratePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-lg border-b border-white/20">
+      <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-indigo-600 to-purple-600 border-b border-purple-500/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center gap-8 h-16">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
                 <span className="text-2xl font-bold text-white">⚖️</span>
               </div>
               <span className="text-2xl font-bold text-white">Jurix</span>
             </Link>
             <div className="flex items-center gap-6">
-              <Link href="/analyze" className="text-white hover:text-purple-300 transition font-semibold">
+              {selectedDoc && (
+                <button
+                  onClick={() => setSelectedDoc(null)}
+                  className="text-white hover:text-purple-200 transition font-semibold"
+                >
+                  ← Document Types
+                </button>
+              )}
+              <Link href="/generate" className="text-white hover:text-purple-200 transition font-semibold">
+                Generate
+              </Link>
+              <Link href="/analyze" className="text-white hover:text-purple-200 transition font-semibold">
                 Analyze
               </Link>
-              <Link href="/" className="text-white hover:text-purple-300 transition font-semibold">
+              <Link href="/" className="text-white hover:text-purple-200 transition font-semibold">
                 Home
               </Link>
             </div>
@@ -361,8 +385,8 @@ export default function GeneratePage() {
         </div>
       </nav>
 
-      <main className="pt-32 pb-20 px-4">
-        <div className="max-w-7xl mx-auto">
+      <main className="pt-16 h-screen overflow-y-auto">
+        <div className="max-w-7xl mx-auto px-4 py-16">
           {!selectedDoc ? (
             <>
               <div className="text-center mb-16">
@@ -402,87 +426,55 @@ export default function GeneratePage() {
                 </div>
               </div>
             </>
-          ) : (
-            <div className="max-w-[1600px] mx-auto">
-              <button
-                onClick={() => setSelectedDoc(null)}
-                className="text-white hover:text-purple-300 transition mb-8 flex items-center gap-2 font-semibold"
-              >
-                ← Back to Document Types
-              </button>
-
-              {/* Header */}
-              <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 mb-6">
-                <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${documentTypes.find(d => d.id === selectedDoc)?.gradient} rounded-2xl flex items-center justify-center`}>
-                    <span className="text-3xl">{documentTypes.find(d => d.id === selectedDoc)?.icon}</span>
-                  </div>
-                  <div>
-                    <h2 className="text-2xl font-bold text-white">{documentTypes.find(d => d.id === selectedDoc)?.title}</h2>
-                    <p className="text-gray-300 text-sm">{documentTypes.find(d => d.id === selectedDoc)?.description}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Split View: Form (Left) + Template Preview (Right) */}
-              <div className="grid lg:grid-cols-2 gap-6 mb-6">
-                {/* Left: Form */}
-                <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Document Details</h3>
-                  <form onSubmit={(e) => { e.preventDefault(); }} className="h-[900px] overflow-y-auto pr-2 scrollbar-thin">
-                    {renderForm()}
-                  </form>
-                </div>
-
-                {/* Right: Template Preview */}
-                <div className="bg-white rounded-2xl shadow-xl p-4 border border-gray-200">
-                  <div className="mb-3 flex items-center justify-between px-4">
-                    <h3 className="text-2xl font-bold text-gray-900">Live Preview</h3>
-                  </div>
-                  <div className="bg-gray-300 rounded-xl shadow-inner mx-4" style={{ height: '900px' }}>
-                    {template ? (
-                      <TemplatePreview
-                        templateHtml={template.templateHtml}
-                        formData={getMergedTemplateData()}
-                        language={language}
-                      />
-                    ) : isLoadingTemplate ? (
-                      <div className="flex items-center justify-center h-full text-gray-600 font-semibold">
-                        Loading template...
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-gray-600 font-semibold">
-                        Template not available
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* AI Notice */}
-              <div className="bg-blue-500/10 border border-blue-500/30 rounded-2xl p-6 backdrop-blur-sm">
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl flex-shrink-0">🤖</span>
-                  <div>
-                    <h4 className="text-blue-300 font-semibold mb-1">AI-Generated Content</h4>
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      This document is generated by AI and must be labeled as such according to Uzbekistan&apos;s AI regulations. It should be reviewed by a legal professional before use.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          ) : null}
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-12 px-4">
-        <div className="max-w-7xl mx-auto text-center text-gray-400">
-          <p className="mb-2">🤖 Generated with AI • Made for Uzbekistan</p>
-          <p className="text-sm">© 2024 Jurix. All rights reserved.</p>
+      {/* Full-screen Split View for Editor */}
+      {selectedDoc && (
+        <div className="bg-white border-b border-gray-200 overflow-hidden" style={{ height: 'calc(100vh - 64px)', marginTop: '64px', position: 'fixed', top: 0, left: 0, right: 0 }}>
+          {/* Aligned Headers */}
+          <div className="grid lg:grid-cols-2 border-b border-gray-200">
+            <div className="px-8 py-6 border-r border-gray-200">
+              <h3 className="text-2xl font-bold text-gray-900">Document Details</h3>
+            </div>
+            <div className="px-8 py-6">
+              <h3 className="text-2xl font-bold text-gray-900">Live Preview</h3>
+            </div>
+          </div>
+
+          {/* Scrollable Content Areas */}
+          <div className="grid lg:grid-cols-2" style={{ height: 'calc(100vh - 170px)' }}>
+            {/* Left: Form Content */}
+            <div className="border-r border-gray-200 overflow-y-auto px-8 py-6">
+              <form onSubmit={(e) => { e.preventDefault(); }}>
+                {renderForm()}
+              </form>
+            </div>
+
+            {/* Right: Preview Content */}
+            <div className="overflow-hidden flex flex-col">
+              <div className="flex-1 bg-gray-300 m-6 rounded-xl shadow-inner overflow-hidden">
+                {template ? (
+                  <TemplatePreview
+                    templateHtml={template.templateHtml}
+                    formData={getMergedTemplateData()}
+                    language={language}
+                  />
+                ) : isLoadingTemplate ? (
+                  <div className="flex items-center justify-center h-full text-gray-600 font-semibold">
+                    Loading template...
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center h-full text-gray-600 font-semibold">
+                    Template not available
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
-      </footer>
+      )}
     </div>
   );
 }
