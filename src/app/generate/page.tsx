@@ -435,16 +435,16 @@ export default function GeneratePage() {
         <div className="bg-white border-b border-gray-200 overflow-hidden" style={{ height: 'calc(100vh - 64px)', marginTop: '64px', position: 'fixed', top: 0, left: 0, right: 0 }}>
           {/* Aligned Headers */}
           <div className="grid lg:grid-cols-2 border-b border-gray-200">
-            <div className="px-8 py-6 border-r border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900">Document Details</h3>
+            <div className="px-8 py-4 border-r border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900">Document Details</h3>
             </div>
-            <div className="px-8 py-6">
-              <h3 className="text-2xl font-bold text-gray-900">Live Preview</h3>
+            <div className="px-8 py-4">
+              <h3 className="text-lg font-bold text-gray-900">Live Preview</h3>
             </div>
           </div>
 
           {/* Scrollable Content Areas */}
-          <div className="grid lg:grid-cols-2" style={{ height: 'calc(100vh - 170px)' }}>
+          <div className="grid lg:grid-cols-2" style={{ height: 'calc(100vh - 130px)' }}>
             {/* Left: Form Content */}
             <div className="border-r border-gray-200 overflow-y-auto px-8 py-6">
               <form onSubmit={(e) => { e.preventDefault(); }}>
