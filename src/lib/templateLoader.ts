@@ -26,12 +26,28 @@ export interface TemplateField {
   options?: FieldOption[];
 }
 
+export interface AISection {
+  id: string;
+  label: {
+    uzbek: string;
+    russian: string;
+  };
+  section_number: string;
+  description: {
+    uzbek: string;
+    russian: string;
+  };
+  prompt_guidance: string;
+  required?: boolean;
+}
+
 export interface TemplateSchema {
   name: string;
   name_en: string;
   category: string;
   languages: string[];
   fields: TemplateField[];
+  ai_sections?: AISection[];
 }
 
 export interface DocumentTemplate {

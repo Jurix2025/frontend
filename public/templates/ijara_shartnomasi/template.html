@@ -129,170 +129,40 @@
             </p>
         </section>
 
+        <!-- AI-Generated Section: Rights and Obligations -->
+        {{#if ai_section_rights_obligations}}
         <section class="article">
-            <h2 class="article-title">
-                {{#if_uzbek}}3. TOMONLARNING HUQUQ VA MAJBURIYATLARI{{/if_uzbek}}
-                {{#if_russian}}3. ПРАВА И ОБЯЗАННОСТИ СТОРОН{{/if_russian}}
-            </h2>
-            <p class="article-content">
-                <strong>3.1.</strong>
-                {{#if_uzbek}}Ijaraga beruvchi majburiyatlari:{{/if_uzbek}}
-                {{#if_russian}}Обязанности Арендодателя:{{/if_russian}}
-            </p>
-            <ul class="obligations-list">
-                <li>
-                    {{#if_uzbek}}
-                    Ko'chmas mulkni foydalanishga yaroqli holatda Ijarachiga topshirish;
-                    {{/if_uzbek}}
-                    {{#if_russian}}
-                    Передать объект Арендатору в состоянии, пригодном для использования;
-                    {{/if_russian}}
-                </li>
-                <li>
-                    {{#if_uzbek}}
-                    Ijarachining ob'ektdan tinch foydalanishini ta'minlash;
-                    {{/if_uzbek}}
-                    {{#if_russian}}
-                    Обеспечить Арендатору спокойное пользование объектом;
-                    {{/if_russian}}
-                </li>
-                <li>
-                    {{#if_uzbek}}
-                    Binoning asosiy tuzilmalarini ta'mirlash.
-                    {{/if_uzbek}}
-                    {{#if_russian}}
-                    Производить ремонт основных конструкций здания.
-                    {{/if_russian}}
-                </li>
-            </ul>
-
-            <p class="article-content">
-                <strong>3.2.</strong>
-                {{#if_uzbek}}Ijarachi majburiyatlari:{{/if_uzbek}}
-                {{#if_russian}}Обязанности Арендатора:{{/if_russian}}
-            </p>
-            <ul class="obligations-list">
-                <li>
-                    {{#if_uzbek}}
-                    Ijara haqini o'z vaqtida to'lash;
-                    {{/if_uzbek}}
-                    {{#if_russian}}
-                    Своевременно вносить арендную плату;
-                    {{/if_russian}}
-                </li>
-                <li>
-                    {{#if_uzbek}}
-                    Mulkdan maqsadga muvofiq foydalanish va uni saqlash;
-                    {{/if_uzbek}}
-                    {{#if_russian}}
-                    Использовать имущество по назначению и содержать его в сохранности;
-                    {{/if_russian}}
-                </li>
-                <li>
-                    {{#if_uzbek}}
-                    Joriy ta'mirni amalga oshirish;
-                    {{/if_uzbek}}
-                    {{#if_russian}}
-                    Производить текущий ремонт;
-                    {{/if_russian}}
-                </li>
-                <li>
-                    {{#if_uzbek}}
-                    Shartnoma tugashi bilan ob'ektni dastlabki holatida qaytarish.
-                    {{/if_uzbek}}
-                    {{#if_russian}}
-                    Вернуть объект в первоначальном состоянии по окончании договора.
-                    {{/if_russian}}
-                </li>
-            </ul>
-        </section>
-
-        <section class="article">
-            <h2 class="article-title">
-                {{#if_uzbek}}4. JAVOBGARLIK{{/if_uzbek}}
-                {{#if_russian}}4. ОТВЕТСТВЕННОСТЬ{{/if_russian}}
-            </h2>
-            <p class="article-content">
-                <strong>4.1.</strong>
-                {{#if_uzbek}}
-                Ijara haqini o'z vaqtida to'lamagan taqdirda, Ijarachi har kechiktirilgan kun uchun
-                ijara haqining 0.1% miqdorida jarima to'laydi.
-                {{/if_uzbek}}
-                {{#if_russian}}
-                В случае несвоевременной оплаты арендной платы Арендатор уплачивает пеню
-                в размере 0.1% от суммы аренды за каждый день просрочки.
-                {{/if_russian}}
-            </p>
-            <p class="article-content">
-                <strong>4.2.</strong>
-                {{#if_uzbek}}
-                Ob'ektga yetkazilgan zarar uchun Ijarachi to'liq javobgarlikni o'z zimmasiga oladi.
-                {{/if_uzbek}}
-                {{#if_russian}}
-                Арендатор несет полную ответственность за причиненный объекту ущерб.
-                {{/if_russian}}
-            </p>
-        </section>
-
-        <section class="article">
-            <h2 class="article-title">
-                {{#if_uzbek}}5. SHARTNOMANI BEKOR QILISH{{/if_uzbek}}
-                {{#if_russian}}5. РАСТОРЖЕНИЕ ДОГОВОРА{{/if_russian}}
-            </h2>
-            <p class="article-content">
-                <strong>5.1.</strong>
-                {{#if_uzbek}}
-                Shartnoma tomonlarning kelishuviga ko'ra istalgan vaqtda bekor qilinishi mumkin.
-                {{/if_uzbek}}
-                {{#if_russian}}
-                Договор может быть расторгнут в любое время по соглашению сторон.
-                {{/if_russian}}
-            </p>
-            <p class="article-content">
-                <strong>5.2.</strong>
-                {{#if_uzbek}}
-                Bir tomonlama bekor qilish 30 kunlik oldindan ogohlantirish bilan amalga oshiriladi.
-                {{/if_uzbek}}
-                {{#if_russian}}
-                Одностороннее расторжение осуществляется с уведомлением за 30 дней.
-                {{/if_russian}}
-            </p>
-        </section>
-
-        {{#if additional_terms}}
-        <section class="article">
-            <h2 class="article-title">
-                {{#if_uzbek}}6. QO'SHIMCHA SHARTLAR{{/if_uzbek}}
-                {{#if_russian}}6. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ{{/if_russian}}
-            </h2>
-            <p class="article-content">{{additional_terms}}</p>
+            {{{ai_section_rights_obligations}}}
         </section>
         {{/if}}
 
+        <!-- AI-Generated Section: Liability -->
+        {{#if ai_section_liability}}
         <section class="article">
-            <h2 class="article-title">
-                {{#if_uzbek}}7. YAKUNIY QOIDALAR{{/if_uzbek}}
-                {{#if_russian}}7. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
-            </h2>
-            <p class="article-content">
-                <strong>7.1.</strong>
-                {{#if_uzbek}}
-                Ushbu shartnoma 2 nusxada, har bir tomon uchun bittadan tuzildi.
-                {{/if_uzbek}}
-                {{#if_russian}}
-                Настоящий договор составлен в 2 экземплярах, по одному для каждой стороны.
-                {{/if_russian}}
-            </p>
-            <p class="article-content">
-                <strong>7.2.</strong>
-                {{#if_uzbek}}
-                Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.
-                {{/if_uzbek}}
-                {{#if_russian}}
-                Все вопросы, не урегулированные настоящим договором, разрешаются в соответствии с законодательством Республики Узбекистан.
-                {{/if_russian}}
-            </p>
+            {{{ai_section_liability}}}
         </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Termination -->
+        {{#if ai_section_termination}}
+        <section class="article">
+            {{{ai_section_termination}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Additional Terms -->
+        {{#if ai_section_additional}}
+        <section class="article">
+            {{{ai_section_additional}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Final Provisions -->
+        {{#if ai_section_final}}
+        <section class="article">
+            {{{ai_section_final}}}
+        </section>
+        {{/if}}
 
         <section class="signatures">
             <h2 class="signatures-title">

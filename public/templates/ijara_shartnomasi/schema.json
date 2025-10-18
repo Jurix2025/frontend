@@ -182,15 +182,74 @@
       },
       "type": "boolean",
       "required": true
+    }
+  ],
+  "ai_sections": [
+    {
+      "id": "ai_section_rights_obligations",
+      "label": {
+        "uzbek": "Tomonlarning huquq va majburiyatlari",
+        "russian": "Права и обязанности сторон"
+      },
+      "section_number": "3",
+      "description": {
+        "uzbek": "Ijaraga beruvchi va ijarachining huquq va majburiyatlari",
+        "russian": "Права и обязанности арендодателя и арендатора"
+      },
+      "prompt_guidance": "Generate detailed rights and obligations for both landlord and tenant in a lease agreement"
     },
     {
-      "id": "additional_terms",
+      "id": "ai_section_liability",
+      "label": {
+        "uzbek": "Javobgarlik",
+        "russian": "Ответственность"
+      },
+      "section_number": "4",
+      "description": {
+        "uzbek": "Shartnoma shartlarini buzganligi uchun javobgarlik",
+        "russian": "Ответственность за нарушение условий договора"
+      },
+      "prompt_guidance": "Generate liability clauses and penalties for breach of contract"
+    },
+    {
+      "id": "ai_section_termination",
+      "label": {
+        "uzbek": "Shartnomani bekor qilish",
+        "russian": "Расторжение договора"
+      },
+      "section_number": "5",
+      "description": {
+        "uzbek": "Shartnomani bekor qilish shartlari va tartibi",
+        "russian": "Условия и порядок расторжения договора"
+      },
+      "prompt_guidance": "Generate contract termination conditions and procedures"
+    },
+    {
+      "id": "ai_section_additional",
       "label": {
         "uzbek": "Qo'shimcha shartlar",
         "russian": "Дополнительные условия"
       },
-      "type": "textarea",
+      "section_number": "6",
+      "description": {
+        "uzbek": "Qo'shimcha shartlar va kelishuvlar",
+        "russian": "Дополнительные условия и соглашения"
+      },
+      "prompt_guidance": "Generate any additional terms and conditions based on user requirements",
       "required": false
+    },
+    {
+      "id": "ai_section_final",
+      "label": {
+        "uzbek": "Yakuniy qoidalar",
+        "russian": "Заключительные положения"
+      },
+      "section_number": "7",
+      "description": {
+        "uzbek": "Yakuniy qoidalar va shartnoma tuzilishi",
+        "russian": "Заключительные положения и составление договора"
+      },
+      "prompt_guidance": "Generate final provisions including number of copies, governing law, dispute resolution, etc."
     }
   ]
 }

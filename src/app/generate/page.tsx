@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { DynamicForm } from '@/components/DynamicForm';
 import { TemplatePreview } from '@/components/TemplatePreview';
+import { AISectionEditor } from '@/components/AISectionEditor';
 import { loadTemplate, DocumentTemplate } from '@/lib/templateLoader';
 
 type DocumentType = 'lease' | 'nda' | 'contract' | 'will' | 'petition' | null;
@@ -60,6 +61,12 @@ export default function GeneratePage() {
   const [template, setTemplate] = useState<DocumentTemplate | null>(null);
   const [isLoadingTemplate, setIsLoadingTemplate] = useState(false);
 
+  // AI-related state
+  const [userPrompt, setUserPrompt] = useState('');
+  const [aiSectionContent, setAiSectionContent] = useState<Record<string, string>>({});
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generatingSection, setGeneratingSection] = useState<string | null>(null);
+
   // Load template when document type is selected
   useEffect(() => {
     if (selectedDoc) {
@@ -75,12 +82,13 @@ export default function GeneratePage() {
           })
           .finally(() => setIsLoadingTemplate(false));
       } else {
-        // No template available for this document type yet
         setTemplate(null);
       }
     } else {
       setTemplate(null);
       setFormData({});
+      setAiSectionContent({});
+      setUserPrompt('');
     }
   }, [selectedDoc]);
 
@@ -91,10 +99,108 @@ export default function GeneratePage() {
     }));
   };
 
+  const handleAISectionChange = (sectionId: string, content: string) => {
+    setAiSectionContent((prev) => ({
+      ...prev,
+      [sectionId]: content,
+    }));
+  };
+
+  const generateAllSections = async () => {
+    if (!template?.schema.ai_sections || !userPrompt.trim()) {
+      alert('Please enter a description of what you want in the document');
+      return;
+    }
+
+    setIsGenerating(true);
+    try {
+      const response = await fetch('/api/generate-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userPrompt,
+          language,
+          documentType: selectedDoc,
+          formData,
+          aiSections: template.schema.ai_sections,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate content');
+      }
+
+      const data = await response.json();
+
+      // Update AI section content
+      const newContent: Record<string, string> = {};
+      template.schema.ai_sections.forEach((section) => {
+        if (data.sections[section.id]) {
+          newContent[section.id] = data.sections[section.id].content;
+        }
+      });
+
+      setAiSectionContent(newContent);
+    } catch (error) {
+      console.error('Error generating content:', error);
+      alert('Failed to generate content. Please try again.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const regenerateSection = async (sectionId: string) => {
+    if (!template?.schema.ai_sections) return;
+
+    const section = template.schema.ai_sections.find((s) => s.id === sectionId);
+    if (!section) return;
+
+    setGeneratingSection(sectionId);
+    try {
+      const response = await fetch('/api/generate-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userPrompt: userPrompt || section.prompt_guidance,
+          language,
+          documentType: selectedDoc,
+          formData,
+          aiSections: [section],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to regenerate section');
+      }
+
+      const data = await response.json();
+
+      if (data.sections[sectionId]) {
+        setAiSectionContent((prev) => ({
+          ...prev,
+          [sectionId]: data.sections[sectionId].content,
+        }));
+      }
+    } catch (error) {
+      console.error('Error regenerating section:', error);
+      alert('Failed to regenerate section. Please try again.');
+    } finally {
+      setGeneratingSection(null);
+    }
+  };
+
+  // Merge AI content with form data for template preview
+  const getMergedTemplateData = () => {
+    return {
+      ...formData,
+      ...aiSectionContent,
+    };
+  };
+
   const renderForm = () => {
     if (!selectedDoc) return null;
 
-    // Language selector - always shown
+    // Language selector
     const languageSelector = (
       <div className="mb-6">
         <label className="block text-white font-semibold mb-2">Document Language</label>
@@ -125,11 +231,75 @@ export default function GeneratePage() {
       </div>
     );
 
-    // If template is loaded, use DynamicForm
-    if (template) {
+    if (isLoadingTemplate) {
       return (
         <div className="space-y-6">
           {languageSelector}
+          <div className="text-center py-12 text-gray-300">Loading template...</div>
+        </div>
+      );
+    }
+
+    if (!template) {
+      return (
+        <div className="space-y-6">
+          {languageSelector}
+          <div className="text-center py-12 text-gray-300">
+            Template not yet available for this document type.
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="space-y-8">
+        {languageSelector}
+
+        {/* User Prompt Area */}
+        {template.schema.ai_sections && template.schema.ai_sections.length > 0 && (
+          <div className="border-2 border-purple-500/30 rounded-xl p-6 bg-purple-500/10">
+            <label className="block text-white font-semibold mb-3 text-lg">
+              ✨ Describe Your Requirements
+            </label>
+            <p className="text-gray-300 text-sm mb-4">
+              Describe specific details, clauses, or requirements you want in this document.
+              AI will generate professional legal content based on your description.
+            </p>
+            <textarea
+              value={userPrompt}
+              onChange={(e) => setUserPrompt(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              rows={4}
+              placeholder={language === 'uzbek'
+                ? "Masalan: Ijarachi har oyning 5-kunidan kechiktirmay to'lashi kerak. Mulkka zarar yetkazilsa, to'liq o'rnini qoplashi shart..."
+                : "Например: Арендатор должен платить не позднее 5 числа каждого месяца. При причинении ущерба имуществу обязан полностью возместить..."}
+            />
+            <button
+              type="button"
+              onClick={generateAllSections}
+              disabled={isGenerating || !userPrompt.trim()}
+              className="mt-4 w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-700 text-white rounded-lg font-semibold transition-all shadow-lg disabled:shadow-none flex items-center justify-center gap-2"
+            >
+              {isGenerating ? (
+                <>
+                  <span className="animate-spin">⟳</span>
+                  Generating All Sections...
+                </>
+              ) : (
+                <>
+                  ✨ Generate All Sections
+                </>
+              )}
+            </button>
+          </div>
+        )}
+
+        {/* Divider */}
+        <div className="border-t border-white/20 my-6"></div>
+
+        {/* Required Fields Section */}
+        <div>
+          <h4 className="text-white font-semibold mb-4 text-lg">📋 Required Information</h4>
           <DynamicForm
             fields={template.schema.fields}
             language={language}
@@ -137,28 +307,32 @@ export default function GeneratePage() {
             onFieldChange={handleFieldChange}
           />
         </div>
-      );
-    }
 
-    // If template is loading, show loading state
-    if (isLoadingTemplate) {
-      return (
-        <div className="space-y-6">
-          {languageSelector}
-          <div className="text-center py-12 text-gray-300">
-            Loading template...
-          </div>
-        </div>
-      );
-    }
-
-    // If no template available, show message
-    return (
-      <div className="space-y-6">
-        {languageSelector}
-        <div className="text-center py-12 text-gray-300">
-          Template not yet available for this document type.
-        </div>
+        {/* AI Sections */}
+        {template.schema.ai_sections && template.schema.ai_sections.length > 0 && (
+          <>
+            <div className="border-t border-white/20 my-6"></div>
+            <div>
+              <h4 className="text-white font-semibold mb-4 text-lg">🤖 AI-Generated Sections</h4>
+              <p className="text-gray-400 text-sm mb-6">
+                These sections will be generated by AI. You can regenerate or manually edit each section.
+              </p>
+              <div className="space-y-4">
+                {template.schema.ai_sections.map((section) => (
+                  <AISectionEditor
+                    key={section.id}
+                    section={section}
+                    language={language}
+                    content={aiSectionContent[section.id] || ''}
+                    onContentChange={handleAISectionChange}
+                    onRegenerate={regenerateSection}
+                    isGenerating={generatingSection === section.id}
+                  />
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     );
   };
@@ -261,7 +435,7 @@ export default function GeneratePage() {
                     {template ? (
                       <TemplatePreview
                         templateHtml={template.templateHtml}
-                        formData={formData}
+                        formData={getMergedTemplateData()}
                         language={language}
                       />
                     ) : isLoadingTemplate ? (
