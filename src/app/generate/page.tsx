@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { DynamicForm } from '@/components/DynamicForm';
-import { TemplatePreview } from '@/components/TemplatePreview';
+import { TemplatePreview, TemplatePreviewRef } from '@/components/TemplatePreview';
 import { AISectionEditor } from '@/components/AISectionEditor';
 import { loadTemplate, DocumentTemplate } from '@/lib/templateLoader';
 
@@ -61,6 +61,10 @@ export default function GeneratePage() {
   const [aiSectionContent, setAiSectionContent] = useState<Record<string, string>>({});
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatingSection, setGeneratingSection] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
+
+  // Ref for template preview
+  const templatePreviewRef = useRef<TemplatePreviewRef>(null);
 
   // Load template when document type is selected
   useEffect(() => {
@@ -202,6 +206,21 @@ export default function GeneratePage() {
     };
     console.log('Merged template data:', merged);
     return merged;
+  };
+
+  // Handle PDF export
+  const handleExportPDF = async () => {
+    if (!templatePreviewRef.current) return;
+
+    setIsExporting(true);
+    try {
+      await templatePreviewRef.current.exportToPDF();
+    } catch (error) {
+      console.error('Error exporting PDF:', error);
+      alert('Failed to export PDF. Please try again.');
+    } finally {
+      setIsExporting(false);
+    }
   };
 
   const renderForm = () => {
@@ -445,8 +464,24 @@ export default function GeneratePage() {
             <div className="px-8 py-4 border-r border-gray-200">
               <h3 className="text-lg font-bold text-gray-900">Document Details</h3>
             </div>
-            <div className="px-8 py-4">
+            <div className="px-8 py-4 flex items-center justify-between">
               <h3 className="text-lg font-bold text-gray-900">Live Preview</h3>
+              <button
+                onClick={handleExportPDF}
+                disabled={isExporting || !template}
+                className="px-4 py-2 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-semibold text-sm transition-all shadow-md flex items-center gap-2"
+              >
+                {isExporting ? (
+                  <>
+                    <span className="animate-spin">⟳</span>
+                    Exporting...
+                  </>
+                ) : (
+                  <>
+                    📄 Export PDF
+                  </>
+                )}
+              </button>
             </div>
           </div>
 
@@ -464,6 +499,7 @@ export default function GeneratePage() {
               <div className="flex-1 bg-gray-300 m-6 rounded-xl shadow-inner overflow-hidden">
                 {template ? (
                   <TemplatePreview
+                    ref={templatePreviewRef}
                     templateHtml={template.templateHtml}
                     formData={getMergedTemplateData()}
                     language={language}
