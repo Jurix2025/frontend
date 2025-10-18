@@ -14,16 +14,10 @@ interface GenerateContentRequest {
   }>;
 }
 
-interface SectionContent {
-  heading: string;
-  content: string;
-  bulletPoints: string[];
-}
-
 export async function POST(request: NextRequest) {
   try {
     const body: GenerateContentRequest = await request.json();
-    const { userPrompt, language, documentType, formData, aiSections } = body;
+    const { userPrompt, language, formData, aiSections } = body;
 
     // Get OpenAI API key from environment
     const openaiApiKey = process.env.OPENAI_API_KEY;

@@ -20,11 +20,11 @@ export const TemplatePreview = forwardRef<TemplatePreviewRef, TemplatePreviewPro
 
     useEffect(() => {
       // Register custom Handlebars helpers for language conditionals
-      Handlebars.registerHelper('if_uzbek', function(this: any, options: any) {
+      Handlebars.registerHelper('if_uzbek', function(this: unknown, options: Handlebars.HelperOptions) {
         return language === 'uzbek' ? options.fn(this) : options.inverse(this);
       });
 
-      Handlebars.registerHelper('if_russian', function(this: any, options: any) {
+      Handlebars.registerHelper('if_russian', function(this: unknown, options: Handlebars.HelperOptions) {
         return language === 'russian' ? options.fn(this) : options.inverse(this);
       });
 

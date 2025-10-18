@@ -88,7 +88,7 @@ export async function loadTemplate(templateId: string): Promise<DocumentTemplate
           `<style>${templateCss}</style>`
         );
       }
-    } catch (error) {
+    } catch {
       console.warn('CSS file not found for template, continuing without it');
     }
 

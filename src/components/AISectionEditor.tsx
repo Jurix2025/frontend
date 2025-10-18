@@ -91,7 +91,7 @@ export function AISectionEditor({
           <div className="text-center py-8 text-gray-600 border-2 border-dashed border-purple-300 rounded-lg bg-white/50">
             <p className="mb-2 font-bold text-lg">📝 No content generated yet</p>
             <p className="text-base font-medium">
-              Click "Generate All Sections" or "Regenerate" to create content
+              Click &ldquo;Generate All Sections&rdquo; or &ldquo;Regenerate&rdquo; to create content
             </p>
           </div>
         )}
