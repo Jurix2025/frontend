@@ -353,11 +353,11 @@ export default function GeneratePage() {
   return (
     <div className="h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-indigo-600 to-purple-600 border-b border-purple-500/50">
+      <nav className="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-lg border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-8 h-16">
+          <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-2xl font-bold text-white">⚖️</span>
               </div>
               <span className="text-2xl font-bold text-white">Jurix</span>
@@ -366,18 +366,18 @@ export default function GeneratePage() {
               {selectedDoc && (
                 <button
                   onClick={() => setSelectedDoc(null)}
-                  className="text-white hover:text-purple-200 transition font-semibold"
+                  className="text-white hover:text-purple-300 transition font-semibold"
                 >
                   ← Document Types
                 </button>
               )}
-              <Link href="/generate" className="text-white hover:text-purple-200 transition font-semibold">
+              <Link href="/generate" className="text-white hover:text-purple-300 transition font-semibold">
                 Generate
               </Link>
-              <Link href="/analyze" className="text-white hover:text-purple-200 transition font-semibold">
+              <Link href="/analyze" className="text-white hover:text-purple-300 transition font-semibold">
                 Analyze
               </Link>
-              <Link href="/" className="text-white hover:text-purple-200 transition font-semibold">
+              <Link href="/" className="text-white hover:text-purple-300 transition font-semibold">
                 Home
               </Link>
             </div>

@@ -107,6 +107,20 @@ export default function AnalyzePage() {
     }
   };
 
+  const getSentimentColorReadable = (sentiment: string) => {
+    switch (sentiment) {
+      case 'positive':
+        return 'bg-green-50 border-green-300';
+      case 'negative':
+        return 'bg-red-50 border-red-300';
+      case 'warning':
+        return 'bg-yellow-50 border-yellow-300';
+      case 'neutral':
+      default:
+        return 'bg-blue-50 border-blue-300';
+    }
+  };
+
   const getSentimentIcon = (sentiment: string) => {
     switch (sentiment) {
       case 'positive':
@@ -288,23 +302,23 @@ export default function AnalyzePage() {
             {/* Right: Analysis Results */}
             <div>
               {analysisResult ? (
-                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-white mb-6">Analysis Results</h2>
+                <div className="bg-white rounded-2xl p-8 shadow-xl">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Analysis Results</h2>
 
                   {/* Summary */}
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold text-white mb-3">Summary</h3>
-                    <p className="text-gray-300 leading-relaxed">{analysisResult.summary}</p>
+                  <div className="mb-8 bg-gray-50 rounded-xl p-6 border border-gray-200">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Summary</h3>
+                    <p className="text-gray-900 leading-relaxed font-medium">{analysisResult.summary}</p>
                   </div>
 
                   {/* Key Insights */}
                   <div>
-                    <h3 className="text-lg font-semibold text-white mb-4">Key Insights</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Key Insights</h3>
                     <div className="space-y-4">
                       {analysisResult.insights.map((insight, index) => (
                         <div
                           key={index}
-                          className={`border rounded-xl p-4 ${getSentimentColor(insight.sentiment)}`}
+                          className={`border-2 rounded-xl p-5 ${getSentimentColorReadable(insight.sentiment)}`}
                         >
                           <div className="flex items-start gap-3">
                             <span className="text-2xl flex-shrink-0">
@@ -312,11 +326,11 @@ export default function AnalyzePage() {
                             </span>
                             <div className="flex-1">
                               {insight.category && (
-                                <span className="inline-block px-2 py-1 rounded-md bg-white/10 text-xs font-semibold mb-2">
+                                <span className="inline-block px-3 py-1 rounded-lg bg-gray-900/10 text-xs font-bold mb-2 text-gray-900">
                                   {insight.category}
                                 </span>
                               )}
-                              <p className="text-sm leading-relaxed">{insight.text}</p>
+                              <p className="text-base leading-relaxed font-semibold text-gray-900">{insight.text}</p>
                             </div>
                           </div>
                         </div>
@@ -331,7 +345,7 @@ export default function AnalyzePage() {
                         setAnalysisResult(null);
                         setUploadedFile(null);
                       }}
-                      className="flex-1 py-3 px-6 bg-white/10 text-white rounded-xl font-semibold hover:bg-white/20 transition-all"
+                      className="flex-1 py-3 px-6 bg-gray-200 text-gray-900 rounded-xl font-semibold hover:bg-gray-300 transition-all border-2 border-gray-300"
                     >
                       Analyze Another
                     </button>
