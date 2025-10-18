@@ -14,15 +14,15 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
     const label = field.label[language];
     const value = formData[field.id] || '';
 
-    const baseInputClass = "w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500";
+    const baseInputClass = "w-full px-4 py-3 rounded-lg bg-white border-2 border-gray-300 text-gray-900 font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500";
 
     switch (field.type) {
       case 'text':
         return (
           <div key={field.id}>
-            <label className="block text-white font-semibold mb-2">
+            <label className="block text-gray-900 font-bold mb-2 text-base">
               {label}
-              {field.required && <span className="text-red-400 ml-1">*</span>}
+              {field.required && <span className="text-red-600 ml-1">*</span>}
             </label>
             <input
               type="text"
@@ -41,9 +41,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'number':
         return (
           <div key={field.id}>
-            <label className="block text-white font-semibold mb-2">
+            <label className="block text-gray-900 font-bold mb-2 text-base">
               {label}
-              {field.required && <span className="text-red-400 ml-1">*</span>}
+              {field.required && <span className="text-red-600 ml-1">*</span>}
             </label>
             <input
               type="number"
@@ -61,9 +61,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'date':
         return (
           <div key={field.id}>
-            <label className="block text-white font-semibold mb-2">
+            <label className="block text-gray-900 font-bold mb-2 text-base">
               {label}
-              {field.required && <span className="text-red-400 ml-1">*</span>}
+              {field.required && <span className="text-red-600 ml-1">*</span>}
             </label>
             <input
               type="date"
@@ -78,9 +78,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'select':
         return (
           <div key={field.id}>
-            <label className="block text-white font-semibold mb-2">
+            <label className="block text-gray-900 font-bold mb-2 text-base">
               {label}
-              {field.required && <span className="text-red-400 ml-1">*</span>}
+              {field.required && <span className="text-red-600 ml-1">*</span>}
             </label>
             <select
               className={baseInputClass}
@@ -101,9 +101,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'textarea':
         return (
           <div key={field.id}>
-            <label className="block text-white font-semibold mb-2">
+            <label className="block text-gray-900 font-bold mb-2 text-base">
               {label}
-              {field.required && <span className="text-red-400 ml-1">*</span>}
+              {field.required && <span className="text-red-600 ml-1">*</span>}
             </label>
             <textarea
               className={baseInputClass}
@@ -120,17 +120,17 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
       case 'boolean':
         return (
-          <div key={field.id} className="flex items-center gap-3">
+          <div key={field.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-300">
             <input
               type="checkbox"
               id={field.id}
-              className="w-5 h-5 rounded border-white/20 bg-white/10 text-purple-500 focus:ring-2 focus:ring-purple-500"
+              className="w-6 h-6 rounded border-gray-400 bg-white text-purple-600 focus:ring-2 focus:ring-purple-500"
               checked={!!value}
               onChange={(e) => onFieldChange(field.id, e.target.checked)}
             />
-            <label htmlFor={field.id} className="text-white font-semibold">
+            <label htmlFor={field.id} className="text-gray-900 font-bold text-base">
               {label}
-              {field.required && <span className="text-red-400 ml-1">*</span>}
+              {field.required && <span className="text-red-600 ml-1">*</span>}
             </label>
           </div>
         );

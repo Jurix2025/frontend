@@ -203,29 +203,29 @@ export default function GeneratePage() {
     // Language selector
     const languageSelector = (
       <div className="mb-6">
-        <label className="block text-white font-semibold mb-2">Document Language</label>
-        <div className="flex gap-4">
+        <label className="block text-gray-900 font-bold mb-3 text-lg">Document Language</label>
+        <div className="flex gap-3">
           <button
             type="button"
             onClick={() => setLanguage('uzbek')}
-            className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all ${
+            className={`flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition-all ${
               language === 'uzbek'
-                ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
-                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
             }`}
           >
-            🇺🇿 Uzbek
+            Uzbek
           </button>
           <button
             type="button"
             onClick={() => setLanguage('russian')}
-            className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all ${
+            className={`flex-1 py-2 px-4 rounded-lg font-semibold text-sm transition-all ${
               language === 'russian'
-                ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
-                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-300'
             }`}
           >
-            🇷🇺 Russian
+            Russian
           </button>
         </div>
       </div>
@@ -257,18 +257,18 @@ export default function GeneratePage() {
 
         {/* User Prompt Area */}
         {template.schema.ai_sections && template.schema.ai_sections.length > 0 && (
-          <div className="border-2 border-purple-500/30 rounded-xl p-6 bg-purple-500/10">
-            <label className="block text-white font-semibold mb-3 text-lg">
+          <div className="border-2 border-purple-400 rounded-xl p-6 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
+            <label className="block text-gray-900 font-bold mb-3 text-xl">
               ✨ Describe Your Requirements
             </label>
-            <p className="text-gray-300 text-sm mb-4">
+            <p className="text-gray-700 font-medium text-sm mb-4">
               Describe specific details, clauses, or requirements you want in this document.
               AI will generate professional legal content based on your description.
             </p>
             <textarea
               value={userPrompt}
               onChange={(e) => setUserPrompt(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 rounded-lg bg-white border-2 border-gray-300 text-gray-900 font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
               rows={4}
               placeholder={language === 'uzbek'
                 ? "Masalan: Ijarachi har oyning 5-kunidan kechiktirmay to'lashi kerak. Mulkka zarar yetkazilsa, to'liq o'rnini qoplashi shart..."
@@ -278,7 +278,7 @@ export default function GeneratePage() {
               type="button"
               onClick={generateAllSections}
               disabled={isGenerating || !userPrompt.trim()}
-              className="mt-4 w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-700 text-white rounded-lg font-semibold transition-all shadow-lg disabled:shadow-none flex items-center justify-center gap-2"
+              className="mt-4 w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-xl font-bold text-lg transition-all shadow-lg disabled:shadow-none flex items-center justify-center gap-2"
             >
               {isGenerating ? (
                 <>
@@ -295,11 +295,11 @@ export default function GeneratePage() {
         )}
 
         {/* Divider */}
-        <div className="border-t border-white/20 my-6"></div>
+        <div className="border-t-2 border-gray-300 my-6"></div>
 
         {/* Required Fields Section */}
         <div>
-          <h4 className="text-white font-semibold mb-4 text-lg">📋 Required Information</h4>
+          <h4 className="text-gray-900 font-bold mb-4 text-xl">📋 Required Information</h4>
           <DynamicForm
             fields={template.schema.fields}
             language={language}
@@ -311,10 +311,10 @@ export default function GeneratePage() {
         {/* AI Sections */}
         {template.schema.ai_sections && template.schema.ai_sections.length > 0 && (
           <>
-            <div className="border-t border-white/20 my-6"></div>
+            <div className="border-t-2 border-gray-300 my-6"></div>
             <div>
-              <h4 className="text-white font-semibold mb-4 text-lg">🤖 AI-Generated Sections</h4>
-              <p className="text-gray-400 text-sm mb-6">
+              <h4 className="text-gray-900 font-bold mb-4 text-xl">🤖 AI-Generated Sections</h4>
+              <p className="text-gray-700 font-medium text-sm mb-6">
                 These sections will be generated by AI. You can regenerate or manually edit each section.
               </p>
               <div className="space-y-4">
@@ -340,7 +340,7 @@ export default function GeneratePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-lg border-b border-white/10">
+      <nav className="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-lg border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center space-x-2">
@@ -350,10 +350,10 @@ export default function GeneratePage() {
               <span className="text-2xl font-bold text-white">Jurix</span>
             </Link>
             <div className="flex items-center gap-6">
-              <Link href="/analyze" className="text-gray-300 hover:text-white transition">
+              <Link href="/analyze" className="text-white hover:text-purple-300 transition font-semibold">
                 Analyze
               </Link>
-              <Link href="/" className="text-gray-300 hover:text-white transition">
+              <Link href="/" className="text-white hover:text-purple-300 transition font-semibold">
                 Home
               </Link>
             </div>
@@ -406,7 +406,7 @@ export default function GeneratePage() {
             <div className="max-w-[1600px] mx-auto">
               <button
                 onClick={() => setSelectedDoc(null)}
-                className="text-gray-300 hover:text-white transition mb-8 flex items-center gap-2"
+                className="text-white hover:text-purple-300 transition mb-8 flex items-center gap-2 font-semibold"
               >
                 ← Back to Document Types
               </button>
@@ -424,14 +424,22 @@ export default function GeneratePage() {
                 </div>
               </div>
 
-              {/* Split View: Template Preview (Left) + Form (Right) */}
+              {/* Split View: Form (Left) + Template Preview (Right) */}
               <div className="grid lg:grid-cols-2 gap-6 mb-6">
-                {/* Left: Template Preview */}
-                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-                  <div className="mb-4 flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-white">Live Preview</h3>
+                {/* Left: Form */}
+                <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Document Details</h3>
+                  <form onSubmit={(e) => { e.preventDefault(); }} className="h-[900px] overflow-y-auto pr-2 scrollbar-thin">
+                    {renderForm()}
+                  </form>
+                </div>
+
+                {/* Right: Template Preview */}
+                <div className="bg-white rounded-2xl shadow-xl p-4 border border-gray-200">
+                  <div className="mb-3 flex items-center justify-between px-4">
+                    <h3 className="text-2xl font-bold text-gray-900">Live Preview</h3>
                   </div>
-                  <div className="bg-gray-50 rounded-lg" style={{ height: '800px' }}>
+                  <div className="bg-gray-300 rounded-xl shadow-inner mx-4" style={{ height: '900px' }}>
                     {template ? (
                       <TemplatePreview
                         templateHtml={template.templateHtml}
@@ -439,23 +447,15 @@ export default function GeneratePage() {
                         language={language}
                       />
                     ) : isLoadingTemplate ? (
-                      <div className="flex items-center justify-center h-full text-gray-500">
+                      <div className="flex items-center justify-center h-full text-gray-600 font-semibold">
                         Loading template...
                       </div>
                     ) : (
-                      <div className="flex items-center justify-center h-full text-gray-500">
+                      <div className="flex items-center justify-center h-full text-gray-600 font-semibold">
                         Template not available
                       </div>
                     )}
                   </div>
-                </div>
-
-                {/* Right: Form */}
-                <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
-                  <h3 className="text-xl font-bold text-white mb-6">Document Details</h3>
-                  <form onSubmit={(e) => { e.preventDefault(); }} className="h-[800px] overflow-y-auto pr-2">
-                    {renderForm()}
-                  </form>
                 </div>
               </div>
 

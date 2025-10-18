@@ -124,7 +124,7 @@ export default function AnalyzePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-lg border-b border-white/10">
+      <nav className="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-lg border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center space-x-2">
@@ -134,13 +134,13 @@ export default function AnalyzePage() {
               <span className="text-2xl font-bold text-white">Jurix</span>
             </Link>
             <div className="flex items-center gap-6">
-              <Link href="/generate" className="text-gray-300 hover:text-white transition">
+              <Link href="/generate" className="text-white hover:text-purple-300 transition font-semibold">
                 Generate
               </Link>
               <Link href="/analyze" className="text-white font-semibold">
                 Analyze
               </Link>
-              <Link href="/" className="text-gray-300 hover:text-white transition">
+              <Link href="/" className="text-white hover:text-purple-300 transition font-semibold">
                 Home
               </Link>
             </div>
