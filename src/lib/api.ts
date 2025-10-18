@@ -101,14 +101,48 @@ export interface AnalysisResult {
   insights: Insight[];
 }
 
+// New Document Upload Types (for /upload endpoint)
+export interface DocumentInfo {
+  id: number;
+  file_name: string;
+  upload_timestamp: string;
+}
+
+export interface LegalCompliance {
+  status: string;
+  details: string;
+}
+
+export interface DocumentAnalysis {
+  summary: string;
+  parties: string[];
+  key_terms: string[];
+  risks: string[];
+  recommendations: string[];
+  legal_compliance: LegalCompliance;
+}
+
+export interface UploadDocumentResponse {
+  document: DocumentInfo;
+  analysis: DocumentAnalysis;
+}
+
 export interface AnalyzeDocumentResponse {
   success: boolean;
   result?: AnalysisResult;
   error?: string;
 }
 
+// New response type for upload endpoint
+export interface UploadAnalyzeDocumentResponse {
+  success: boolean;
+  data?: UploadDocumentResponse;
+  error?: string;
+}
+
 /**
  * Analyze a legal document via the backend (OpenAI API)
+ * @deprecated Use uploadAndAnalyzeDocument instead
  */
 export async function analyzeDocument(file: File): Promise<AnalyzeDocumentResponse> {
   try {
@@ -128,6 +162,48 @@ export async function analyzeDocument(file: File): Promise<AnalyzeDocumentRespon
     return {
       success: true,
       result: data,
+    };
+  } catch (error) {
+    console.error('API Error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
+    };
+  }
+}
+
+/**
+ * Upload and analyze a document via the backend /upload endpoint
+ * @param file - The file to upload and analyze
+ * @param language - Optional language code (e.g., 'uz', 'ru', 'en')
+ */
+export async function uploadAndAnalyzeDocument(
+  file: File,
+  language?: string
+): Promise<UploadAnalyzeDocumentResponse> {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const headers: HeadersInit = {};
+    if (language) {
+      headers['X-Language'] = language;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/upload`, {
+      method: 'POST',
+      headers,
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    }
+
+    const data: UploadDocumentResponse = await response.json();
+    return {
+      success: true,
+      data,
     };
   } catch (error) {
     console.error('API Error:', error);

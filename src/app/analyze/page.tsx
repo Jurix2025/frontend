@@ -3,22 +3,13 @@
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useDropzone } from 'react-dropzone';
-
-interface Insight {
-  text: string;
-  sentiment: 'positive' | 'neutral' | 'negative' | 'warning';
-  category?: string;
-}
-
-interface AnalysisResult {
-  summary: string;
-  insights: Insight[];
-}
+import { uploadAndAnalyzeDocument, UploadDocumentResponse } from '@/lib/api';
 
 export default function AnalyzePage() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<AnalysisResult | null>(null);
+  const [analysisResult, setAnalysisResult] = useState<UploadDocumentResponse | null>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('uz');
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
@@ -45,95 +36,21 @@ export default function AnalyzePage() {
     setIsAnalyzing(true);
 
     try {
-      // TODO: Implement actual API call to backend
-      // For now, simulate API call
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      const response = await uploadAndAnalyzeDocument(uploadedFile, selectedLanguage);
 
-      // Mock analysis result
-      setAnalysisResult({
-        summary: 'This is a lease agreement between two parties for a residential property in Tashkent. The contract duration is 12 months with a monthly rent of 5,000,000 UZS. The agreement includes standard clauses for maintenance, utilities, and early termination penalties.',
-        insights: [
-          {
-            text: 'Early termination penalty of 3 months rent is significantly higher than standard market practice',
-            sentiment: 'negative',
-            category: 'Financial Risk',
-          },
-          {
-            text: 'Maintenance responsibilities are clearly defined between landlord and tenant',
-            sentiment: 'positive',
-            category: 'Clarity',
-          },
-          {
-            text: 'Contract includes a renewal option with rent increase capped at 10%',
-            sentiment: 'positive',
-            category: 'Favorable Terms',
-          },
-          {
-            text: 'Missing clause about dispute resolution mechanism',
-            sentiment: 'warning',
-            category: 'Legal Gap',
-          },
-          {
-            text: 'Landlord reserves right to enter property with only 24 hours notice',
-            sentiment: 'warning',
-            category: 'Privacy Concern',
-          },
-          {
-            text: 'Security deposit amount (2 months rent) is within legal limits',
-            sentiment: 'neutral',
-            category: 'Standard Practice',
-          },
-        ],
-      });
+      if (response.success && response.data) {
+        setAnalysisResult(response.data);
+      } else {
+        throw new Error(response.error || 'Analysis failed');
+      }
     } catch (error) {
       console.error('Analysis failed:', error);
-      alert('Analysis failed. Please try again.');
+      alert(error instanceof Error ? error.message : 'Analysis failed. Please try again.');
     } finally {
       setIsAnalyzing(false);
     }
   };
 
-  const getSentimentColor = (sentiment: string) => {
-    switch (sentiment) {
-      case 'positive':
-        return 'bg-green-500/10 border-green-500/30 text-green-300';
-      case 'negative':
-        return 'bg-red-500/10 border-red-500/30 text-red-300';
-      case 'warning':
-        return 'bg-yellow-500/10 border-yellow-500/30 text-yellow-300';
-      case 'neutral':
-      default:
-        return 'bg-blue-500/10 border-blue-500/30 text-blue-300';
-    }
-  };
-
-  const getSentimentColorReadable = (sentiment: string) => {
-    switch (sentiment) {
-      case 'positive':
-        return 'bg-green-50 border-green-300';
-      case 'negative':
-        return 'bg-red-50 border-red-300';
-      case 'warning':
-        return 'bg-yellow-50 border-yellow-300';
-      case 'neutral':
-      default:
-        return 'bg-blue-50 border-blue-300';
-    }
-  };
-
-  const getSentimentIcon = (sentiment: string) => {
-    switch (sentiment) {
-      case 'positive':
-        return '✅';
-      case 'negative':
-        return '❌';
-      case 'warning':
-        return '⚠️';
-      case 'neutral':
-      default:
-        return 'ℹ️';
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -216,6 +133,20 @@ export default function AnalyzePage() {
                     )}
                     <p className="text-gray-500 text-sm">Supports PDF, DOC, DOCX, TXT (max 10MB)</p>
                   </div>
+                </div>
+
+                {/* Language Selection */}
+                <div className="mt-6 bg-white/10 border border-white/20 rounded-xl p-4">
+                  <label className="block text-white font-semibold mb-3">Analysis Language</label>
+                  <select
+                    value={selectedLanguage}
+                    onChange={(e) => setSelectedLanguage(e.target.value)}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  >
+                    <option value="uz">Uzbek (O&apos;zbek)</option>
+                    <option value="ru">Russian (Русский)</option>
+                    <option value="en">English</option>
+                  </select>
                 </div>
 
                 {/* Uploaded File Info */}
@@ -302,39 +233,113 @@ export default function AnalyzePage() {
             {/* Right: Analysis Results */}
             <div>
               {analysisResult ? (
-                <div className="bg-white rounded-2xl p-8 shadow-xl">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Analysis Results</h2>
-
-                  {/* Summary */}
-                  <div className="mb-8 bg-gray-50 rounded-xl p-6 border border-gray-200">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Summary</h3>
-                    <p className="text-gray-900 leading-relaxed font-medium">{analysisResult.summary}</p>
+                <div className="bg-white rounded-2xl p-8 shadow-xl space-y-6">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-2xl font-bold text-gray-900">Analysis Results</h2>
+                    <div className="text-xs text-gray-500">
+                      ID: {analysisResult.document.id}
+                    </div>
                   </div>
 
-                  {/* Key Insights */}
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Key Insights</h3>
-                    <div className="space-y-4">
-                      {analysisResult.insights.map((insight, index) => (
-                        <div
-                          key={index}
-                          className={`border-2 rounded-xl p-5 ${getSentimentColorReadable(insight.sentiment)}`}
-                        >
-                          <div className="flex items-start gap-3">
-                            <span className="text-2xl flex-shrink-0">
-                              {getSentimentIcon(insight.sentiment)}
-                            </span>
-                            <div className="flex-1">
-                              {insight.category && (
-                                <span className="inline-block px-3 py-1 rounded-lg bg-gray-900/10 text-xs font-bold mb-2 text-gray-900">
-                                  {insight.category}
-                                </span>
-                              )}
-                              <p className="text-base leading-relaxed font-semibold text-gray-900">{insight.text}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                  {/* Document Info */}
+                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                      <span className="font-semibold">File:</span> {analysisResult.document.file_name}
+                      <span className="mx-2">•</span>
+                      <span className="font-semibold">Uploaded:</span> {new Date(analysisResult.document.upload_timestamp).toLocaleString()}
+                    </div>
+                  </div>
+
+                  {/* Summary */}
+                  <div className="bg-blue-50 rounded-xl p-6 border-2 border-blue-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <span>📋</span> Summary
+                    </h3>
+                    <p className="text-gray-900 leading-relaxed font-medium">{analysisResult.analysis.summary}</p>
+                  </div>
+
+                  {/* Parties */}
+                  {analysisResult.analysis.parties.length > 0 && (
+                    <div className="bg-purple-50 rounded-xl p-6 border-2 border-purple-200">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <span>👥</span> Parties Involved
+                      </h3>
+                      <ul className="space-y-2">
+                        {analysisResult.analysis.parties.map((party, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-purple-600 font-bold">•</span>
+                            <span className="text-gray-900 font-medium">{party}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Key Terms */}
+                  {analysisResult.analysis.key_terms.length > 0 && (
+                    <div className="bg-green-50 rounded-xl p-6 border-2 border-green-200">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <span>✅</span> Key Terms
+                      </h3>
+                      <ul className="space-y-2">
+                        {analysisResult.analysis.key_terms.map((term, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-green-600 font-bold">•</span>
+                            <span className="text-gray-900 font-medium">{term}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Risks */}
+                  {analysisResult.analysis.risks.length > 0 && (
+                    <div className="bg-red-50 rounded-xl p-6 border-2 border-red-200">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <span>⚠️</span> Identified Risks
+                      </h3>
+                      <ul className="space-y-2">
+                        {analysisResult.analysis.risks.map((risk, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-red-600 font-bold">•</span>
+                            <span className="text-gray-900 font-medium">{risk}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Recommendations */}
+                  {analysisResult.analysis.recommendations.length > 0 && (
+                    <div className="bg-yellow-50 rounded-xl p-6 border-2 border-yellow-200">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <span>💡</span> Recommendations
+                      </h3>
+                      <ul className="space-y-2">
+                        {analysisResult.analysis.recommendations.map((rec, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="text-yellow-600 font-bold">•</span>
+                            <span className="text-gray-900 font-medium">{rec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Legal Compliance */}
+                  <div className={`rounded-xl p-6 border-2 ${
+                    analysisResult.analysis.legal_compliance.status.toLowerCase().includes('ok')
+                      ? 'bg-green-50 border-green-200'
+                      : 'bg-orange-50 border-orange-200'
+                  }`}>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <span>⚖️</span> Legal Compliance
+                    </h3>
+                    <div className="space-y-2">
+                      <p className="text-gray-900 font-semibold">
+                        Status: <span className="font-bold">{analysisResult.analysis.legal_compliance.status}</span>
+                      </p>
+                      <p className="text-gray-700">{analysisResult.analysis.legal_compliance.details}</p>
                     </div>
                   </div>
 

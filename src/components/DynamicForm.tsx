@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { TemplateField } from '@/lib/templateLoader';
 
 interface DynamicFormProps {
@@ -142,7 +143,7 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
   // Group fields into grid layouts where appropriate
   const renderFields = () => {
-    const elements: JSX.Element[] = [];
+    const elements: (React.JSX.Element | null)[] = [];
 
     for (let i = 0; i < fields.length; i++) {
       const field = fields[i];

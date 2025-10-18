@@ -11,7 +11,9 @@
       "Bash(dir \"src\\app\\generate\\[documentType]\" /b)",
       "Bash(dir \"src\\app\\generate\\[documentType]\")",
       "Bash(timeout /t 5)",
-      "Bash(git checkout HEAD -- src/app/generate/page.tsx)"
+      "Bash(git checkout HEAD -- src/app/generate/page.tsx)",
+      "Bash(docker-compose build)",
+      "Bash(npm run build)"
     ],
     "deny": [],
     "ask": []
