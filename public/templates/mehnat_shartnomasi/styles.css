@@ -1,0 +1,160 @@
+/* A4 Document Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+  background: #fff;
+}
+
+.document {
+  max-width: 210mm;
+  min-height: 297mm;
+  padding: 20mm 25mm;
+  margin: 0 auto;
+  background: white;
+  box-sizing: border-box;
+}
+
+.document-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #000;
+}
+
+.document-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+}
+
+.document-subtitle {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.parties {
+  margin: 25px 0;
+}
+
+.location {
+  text-align: right;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.intro-text {
+  text-align: justify;
+  margin: 20px 0;
+  line-height: 1.8;
+}
+
+.article {
+  margin: 25px 0;
+  page-break-inside: avoid;
+}
+
+.article-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 0 15px 0;
+}
+
+.article-content {
+  text-align: justify;
+  margin: 10px 0;
+  line-height: 1.8;
+}
+
+.obligations-list {
+  margin: 10px 0 10px 30px;
+  line-height: 1.8;
+}
+
+.obligations-list li {
+  margin: 8px 0;
+}
+
+.signatures {
+  margin-top: 40px;
+  page-break-inside: avoid;
+}
+
+.signatures-title {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: 30px 0 25px 0;
+  text-transform: uppercase;
+}
+
+.signature-blocks {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.signature-block {
+  flex: 1;
+}
+
+.signature-block h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.signature-block p {
+  margin: 5px 0;
+  font-size: 13px;
+}
+
+.signature-line {
+  margin-top: 40px;
+  padding-top: 10px;
+}
+
+.signature-line p {
+  border-top: 1px solid #000;
+  padding-top: 5px;
+  text-align: center;
+}
+
+.document-footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.ai-notice {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+@media print {
+  body {
+    background: none;
+  }
+  .document {
+    margin: 0;
+    padding: 15mm 20mm;
+    box-shadow: none;
+  }
+  .article {
+    page-break-inside: avoid;
+  }
+  .signatures {
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "name": "Mehnat shartnomasi",
+  "name_en": "Employment Contract",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {
+      "id": "employer_name",
+      "label": {
+        "uzbek": "Ish beruvchi (tashkilot nomi)",
+        "russian": "Работодатель (название организации)"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 200
+      }
+    },
+    {
+      "id": "employer_director",
+      "label": {
+        "uzbek": "Direktor F.I.Sh.",
+        "russian": "Ф.И.О. директора"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "employer_address",
+      "label": {
+        "uzbek": "Tashkilot manzili",
+        "russian": "Адрес организации"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "employer_inn",
+      "label": {
+        "uzbek": "INN (STIR)",
+        "russian": "ИНН"
+      },
+      "type": "text",
+      "required": false,
+      "validation": {
+        "pattern": "^[0-9]{9}$"
+      }
+    },
+    {
+      "id": "employee_name",
+      "label": {
+        "uzbek": "Xodimning F.I.Sh.",
+        "russian": "Ф.И.О. работника"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 200
+      }
+    },
+    {
+      "id": "employee_passport",
+      "label": {
+        "uzbek": "Xodimning pasport seriyasi va raqami",
+        "russian": "Серия и номер паспорта работника"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^[A-Z]{2}[0-9]{7}$"
+      }
+    },
+    {
+      "id": "employee_address",
+      "label": {
+        "uzbek": "Xodimning manzili",
+        "russian": "Адрес работника"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "position",
+      "label": {
+        "uzbek": "Lavozim nomi",
+        "russian": "Название должности"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 100
+      }
+    },
+    {
+      "id": "department",
+      "label": {
+        "uzbek": "Bo'lim",
+        "russian": "Отдел"
+      },
+      "type": "text",
+      "required": false
+    },
+    {
+      "id": "monthly_salary",
+      "label": {
+        "uzbek": "Oylik ish haqi (so'm)",
+        "russian": "Ежемесячная заработная плата (сум)"
+      },
+      "type": "number",
+      "required": true,
+      "validation": {
+        "min": 0
+      }
+    },
+    {
+      "id": "work_schedule",
+      "label": {
+        "uzbek": "Ish tartibi",
+        "russian": "График работы"
+      },
+      "type": "select",
+      "required": true,
+      "options": [
+        {
+          "value": "full_time",
+          "label": {
+            "uzbek": "To'liq ish kuni (8 soat)",
+            "russian": "Полный рабочий день (8 часов)"
+          }
+        },
+        {
+          "value": "part_time",
+          "label": {
+            "uzbek": "Qisman ish kuni",
+            "russian": "Неполный рабочий день"
+          }
+        },
+        {
+          "value": "shift",
+          "label": {
+            "uzbek": "Smenali ish",
+            "russian": "Сменная работа"
+          }
+        }
+      ]
+    },
+    {
+      "id": "probation_period",
+      "label": {
+        "uzbek": "Sinov muddati (oy)",
+        "russian": "Испытательный срок (мес.)"
+      },
+      "type": "number",
+      "required": false,
+      "validation": {
+        "min": 0,
+        "max": 6
+      }
+    },
+    {
+      "id": "start_date",
+      "label": {
+        "uzbek": "Ishga qabul qilish sanasi",
+        "russian": "Дата приема на работу"
+      },
+      "type": "date",
+      "required": true
+    },
+    {
+      "id": "contract_type",
+      "label": {
+        "uzbek": "Shartnoma turi",
+        "russian": "Тип договора"
+      },
+      "type": "select",
+      "required": true,
+      "options": [
+        {
+          "value": "indefinite",
+          "label": {
+            "uzbek": "Muddatsiz",
+            "russian": "Бессрочный"
+          }
+        },
+        {
+          "value": "fixed_term",
+          "label": {
+            "uzbek": "Muddatli",
+            "russian": "Срочный"
+          }
+        }
+      ]
+    },
+    {
+      "id": "end_date",
+      "label": {
+        "uzbek": "Shartnoma tugash sanasi (agar muddatli bo'lsa)",
+        "russian": "Дата окончания (если срочный)"
+      },
+      "type": "date",
+      "required": false
+    },
+    {
+      "id": "vacation_days",
+      "label": {
+        "uzbek": "Yillik ta'til kunlari soni",
+        "russian": "Количество дней отпуска"
+      },
+      "type": "number",
+      "required": false,
+      "validation": {
+        "min": 15,
+        "max": 56
+      }
+    }
+  ],
+  "ai_sections": [
+    {
+      "id": "ai_section_duties",
+      "label": {
+        "uzbek": "Xodimning majburiyatlari",
+        "russian": "Обязанности работника"
+      },
+      "section_number": "3",
+      "description": {
+        "uzbek": "Xodimning asosiy mehnat majburiyatlari",
+        "russian": "Основные трудовые обязанности работника"
+      },
+      "prompt_guidance": "Generate detailed job duties and responsibilities for the specified position. Be specific and comprehensive."
+    },
+    {
+      "id": "ai_section_rights",
+      "label": {
+        "uzbek": "Tomonlarning huquq va majburiyatlari",
+        "russian": "Права и обязанности сторон"
+      },
+      "section_number": "4",
+      "description": {
+        "uzbek": "Ish beruvchi va xodimning huquq va majburiyatlari",
+        "russian": "Права и обязанности работодателя и работника"
+      },
+      "prompt_guidance": "Generate comprehensive rights and obligations for both employer and employee according to Uzbekistan labor law."
+    },
+    {
+      "id": "ai_section_working_conditions",
+      "label": {
+        "uzbek": "Mehnat sharoitlari",
+        "russian": "Условия труда"
+      },
+      "section_number": "5",
+      "description": {
+        "uzbek": "Ish sharoitlari, dam olish vaqti va boshqalar",
+        "russian": "Условия работы, время отдыха и прочее"
+      },
+      "prompt_guidance": "Generate working conditions including work hours, breaks, rest periods, and workplace safety requirements."
+    },
+    {
+      "id": "ai_section_liability",
+      "label": {
+        "uzbek": "Javobgarlik",
+        "russian": "Ответственность"
+      },
+      "section_number": "6",
+      "description": {
+        "uzbek": "Shartnoma shartlarini buzganligi uchun javobgarlik",
+        "russian": "Ответственность за нарушение условий договора"
+      },
+      "prompt_guidance": "Generate liability and disciplinary clauses for contract violations by either party."
+    },
+    {
+      "id": "ai_section_termination",
+      "label": {
+        "uzbek": "Shartnomani bekor qilish",
+        "russian": "Расторжение договора"
+      },
+      "section_number": "7",
+      "description": {
+        "uzbek": "Shartnomani bekor qilish asoslari va tartibi",
+        "russian": "Основания и порядок расторжения договора"
+      },
+      "prompt_guidance": "Generate contract termination conditions and procedures according to Uzbekistan labor law, including notice periods."
+    },
+    {
+      "id": "ai_section_final",
+      "label": {
+        "uzbek": "Yakuniy qoidalar",
+        "russian": "Заключительные положения"
+      },
+      "section_number": "8",
+      "description": {
+        "uzbek": "Yakuniy qoidalar va shartnoma tuzilishi",
+        "russian": "Заключительные положения и составление договора"
+      },
+      "prompt_guidance": "Generate final provisions including changes to contract, dispute resolution, governing law, number of copies, etc."
+    }
+  ]
+}

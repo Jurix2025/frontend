@@ -111,6 +111,8 @@ export async function loadTemplate(templateId: string): Promise<DocumentTemplate
 export function getAvailableTemplates(): { id: string; name: string }[] {
   return [
     { id: 'ijara_shartnomasi', name: 'Lease Agreement' },
-    // Add more templates as they become available
+    { id: 'mehnat_shartnomasi', name: 'Employment Contract' },
+    { id: 'ariza', name: 'Application/Petition' },
+    { id: 'shikoyat', name: 'Complaint' },
   ];
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{#if_uzbek}}ARIZA{{/if_uzbek}}{{#if_russian}}ЗАЯВЛЕНИЕ{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <div class="recipient-block">
+                <p>{{recipient_organization}}</p>
+                <p>{{recipient_position}}</p>
+                <p><strong>{{recipient_name}}</strong></p>
+            </div>
+            <div class="applicant-block">
+                <p>
+                    {{#if_uzbek}}dan:{{/if_uzbek}}
+                    {{#if_russian}}от:{{/if_russian}}
+                    <strong>{{applicant_name}}</strong>
+                </p>
+                <p>
+                    {{#if_uzbek}}Manzil:{{/if_uzbek}}
+                    {{#if_russian}}Адрес:{{/if_russian}}
+                    {{applicant_address}}
+                </p>
+                {{#if applicant_phone}}
+                <p>
+                    {{#if_uzbek}}Tel:{{/if_uzbek}}
+                    {{#if_russian}}Тел:{{/if_russian}}
+                    {{applicant_phone}}
+                </p>
+                {{/if}}
+                {{#if applicant_passport}}
+                <p>
+                    {{#if_uzbek}}Pasport:{{/if_uzbek}}
+                    {{#if_russian}}Паспорт:{{/if_russian}}
+                    {{applicant_passport}}
+                </p>
+                {{/if}}
+            </div>
+        </header>
+
+        <h1 class="document-title">
+            {{#if_uzbek}}ARIZA{{/if_uzbek}}
+            {{#if_russian}}ЗАЯВЛЕНИЕ{{/if_russian}}
+        </h1>
+
+        <p class="subject-line">
+            {{#if_uzbek}}Mavzu:{{/if_uzbek}}
+            {{#if_russian}}Тема:{{/if_russian}}
+            <strong>{{application_subject}}</strong>
+        </p>
+
+        <!-- AI-Generated Section: Main Content -->
+        {{#if ai_section_main_content}}
+        <section class="article">
+            {{{ai_section_main_content}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Justification -->
+        {{#if ai_section_justification}}
+        <section class="article">
+            {{{ai_section_justification}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Request -->
+        {{#if ai_section_request}}
+        <section class="article">
+            {{{ai_section_request}}}
+        </section>
+        {{/if}}
+
+        <section class="signatures">
+            <div class="signature-block">
+                <p class="date-line">
+                    {{#if_uzbek}}Sana:{{/if_uzbek}}
+                    {{#if_russian}}Дата:{{/if_russian}}
+                    ______________
+                </p>
+                <div class="signature-line">
+                    <p>___________________ / {{applicant_name}} /</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}
+                🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.
+                {{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

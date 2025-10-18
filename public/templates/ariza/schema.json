@@ -1,0 +1,144 @@
+{
+  "name": "Ariza",
+  "name_en": "Application/Petition",
+  "category": "applications",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {
+      "id": "recipient_organization",
+      "label": {
+        "uzbek": "Ariza yuborilayotgan tashkilot",
+        "russian": "Организация получатель"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 200
+      }
+    },
+    {
+      "id": "recipient_position",
+      "label": {
+        "uzbek": "Lavozimi",
+        "russian": "Должность"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "recipient_name",
+      "label": {
+        "uzbek": "F.I.Sh.",
+        "russian": "Ф.И.О."
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 200
+      }
+    },
+    {
+      "id": "applicant_name",
+      "label": {
+        "uzbek": "Ariza beruvchining F.I.Sh.",
+        "russian": "Ф.И.О. заявителя"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 200
+      }
+    },
+    {
+      "id": "applicant_address",
+      "label": {
+        "uzbek": "Yashash manzili",
+        "russian": "Адрес проживания"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "applicant_phone",
+      "label": {
+        "uzbek": "Telefon raqami",
+        "russian": "Номер телефона"
+      },
+      "type": "text",
+      "required": false,
+      "validation": {
+        "pattern": "^\\+?[0-9]{9,15}$"
+      }
+    },
+    {
+      "id": "applicant_passport",
+      "label": {
+        "uzbek": "Pasport seriyasi va raqami",
+        "russian": "Серия и номер паспорта"
+      },
+      "type": "text",
+      "required": false,
+      "validation": {
+        "pattern": "^[A-Z]{2}[0-9]{7}$"
+      }
+    },
+    {
+      "id": "application_subject",
+      "label": {
+        "uzbek": "Ariza mavzusi",
+        "russian": "Тема заявления"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 5,
+        "maxLength": 200
+      }
+    }
+  ],
+  "ai_sections": [
+    {
+      "id": "ai_section_main_content",
+      "label": {
+        "uzbek": "Asosiy mazmun",
+        "russian": "Основное содержание"
+      },
+      "section_number": "1",
+      "description": {
+        "uzbek": "Arizaning asosiy matni va talablar",
+        "russian": "Основной текст заявления и требования"
+      },
+      "prompt_guidance": "Generate the main content of the application based on the subject and user requirements. Include clear statements, facts, and requests."
+    },
+    {
+      "id": "ai_section_justification",
+      "label": {
+        "uzbek": "Asoslash",
+        "russian": "Обоснование"
+      },
+      "section_number": "2",
+      "description": {
+        "uzbek": "So'rov yoki talabning asoslari",
+        "russian": "Основания для просьбы или требования"
+      },
+      "prompt_guidance": "Generate justification and legal grounds for the request, including relevant laws or regulations if applicable.",
+      "required": false
+    },
+    {
+      "id": "ai_section_request",
+      "label": {
+        "uzbek": "So'rov",
+        "russian": "Просьба"
+      },
+      "section_number": "3",
+      "description": {
+        "uzbek": "Aniq so'rov yoki talab",
+        "russian": "Конкретная просьба или требование"
+      },
+      "prompt_guidance": "Generate a clear and specific request or demand, formatted professionally."
+    }
+  ]
+}

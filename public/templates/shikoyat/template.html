@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{#if_uzbek}}SHIKOYAT{{/if_uzbek}}{{#if_russian}}ЖАЛОБА{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <div class="recipient-block">
+                <p>{{recipient_organization}}</p>
+                <p>{{recipient_position}}</p>
+                <p><strong>{{recipient_name}}</strong></p>
+            </div>
+            <div class="complainant-block">
+                <p>
+                    {{#if_uzbek}}dan:{{/if_uzbek}}
+                    {{#if_russian}}от:{{/if_russian}}
+                    <strong>{{complainant_name}}</strong>
+                </p>
+                <p>
+                    {{#if_uzbek}}Manzil:{{/if_uzbek}}
+                    {{#if_russian}}Адрес:{{/if_russian}}
+                    {{complainant_address}}
+                </p>
+                {{#if complainant_phone}}
+                <p>
+                    {{#if_uzbek}}Tel:{{/if_uzbek}}
+                    {{#if_russian}}Тел:{{/if_russian}}
+                    {{complainant_phone}}
+                </p>
+                {{/if}}
+                {{#if complainant_passport}}
+                <p>
+                    {{#if_uzbek}}Pasport:{{/if_uzbek}}
+                    {{#if_russian}}Паспорт:{{/if_russian}}
+                    {{complainant_passport}}
+                </p>
+                {{/if}}
+            </div>
+        </header>
+
+        <h1 class="document-title">
+            {{#if_uzbek}}SHIKOYAT{{/if_uzbek}}
+            {{#if_russian}}ЖАЛОБА{{/if_russian}}
+        </h1>
+
+        <p class="subject-line">
+            {{#if_uzbek}}Mavzu:{{/if_uzbek}}
+            {{#if_russian}}Тема:{{/if_russian}}
+            <strong>{{complaint_subject}}</strong>
+        </p>
+
+        {{#if respondent_name}}
+        <p class="respondent-line">
+            {{#if_uzbek}}Shikoyat qilinayotgan:{{/if_uzbek}}
+            {{#if_russian}}Ответчик:{{/if_russian}}
+            <strong>{{respondent_name}}</strong>
+        </p>
+        {{/if}}
+
+        {{#if incident_date}}
+        <p class="incident-date">
+            {{#if_uzbek}}Voqea sanasi:{{/if_uzbek}}
+            {{#if_russian}}Дата инцидента:{{/if_russian}}
+            <strong>{{incident_date}}</strong>
+        </p>
+        {{/if}}
+
+        <!-- AI-Generated Section: Circumstances -->
+        {{#if ai_section_circumstances}}
+        <section class="article">
+            {{{ai_section_circumstances}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Violations -->
+        {{#if ai_section_violations}}
+        <section class="article">
+            {{{ai_section_violations}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Evidence -->
+        {{#if ai_section_evidence}}
+        <section class="article">
+            {{{ai_section_evidence}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Demands -->
+        {{#if ai_section_demands}}
+        <section class="article">
+            {{{ai_section_demands}}}
+        </section>
+        {{/if}}
+
+        <section class="signatures">
+            <div class="signature-block">
+                <p class="date-line">
+                    {{#if_uzbek}}Sana:{{/if_uzbek}}
+                    {{#if_russian}}Дата:{{/if_russian}}
+                    ______________
+                </p>
+                <div class="signature-line">
+                    <p>___________________ / {{complainant_name}} /</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}
+                🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.
+                {{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

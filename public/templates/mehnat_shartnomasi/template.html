@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{#if_uzbek}}MEHNAT SHARTNOMASI{{/if_uzbek}}{{#if_russian}}ТРУДОВОЙ ДОГОВОР{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}MEHNAT SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}ТРУДОВОЙ ДОГОВОР{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{start_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{start_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">
+                {{#if_uzbek}}Toshkent shahri{{/if_uzbek}}
+                {{#if_russian}}г. Ташкент{{/if_russian}}
+            </p>
+
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Ish beruvchi» deb ataluvchi <strong>{{employer_name}}</strong>,
+                manzil: <strong>{{employer_address}}</strong>,
+                {{#if employer_inn}}INN: <strong>{{employer_inn}}</strong>,{{/if}}
+                direktori <strong>{{employer_director}}</strong> asosida harakat qilib,
+                bir tomondan va keyingi o'rinlarda «Xodim» deb ataluvchi
+                <strong>{{employee_name}}</strong>, pasport: <strong>{{employee_passport}}</strong>,
+                manzil: <strong>{{employee_address}}</strong>, ikkinchi tomondan,
+                ushbu mehnat shartnomasini quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                С одной стороны <strong>{{employer_name}}</strong>,
+                адрес: <strong>{{employer_address}}</strong>,
+                {{#if employer_inn}}ИНН: <strong>{{employer_inn}}</strong>,{{/if}}
+                в лице директора <strong>{{employer_director}}</strong>,
+                именуемое в дальнейшем «Работодатель», и с другой стороны
+                <strong>{{employee_name}}</strong>, паспорт: <strong>{{employee_passport}}</strong>,
+                адрес: <strong>{{employee_address}}</strong>, именуемый в дальнейшем «Работник»,
+                заключили настоящий трудовой договор о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong>
+                {{#if_uzbek}}
+                Ish beruvchi Xodimni <strong>{{position}}</strong> lavozimiga ishga qabul qiladi
+                {{#if department}}(<strong>{{department}}</strong> bo'limida){{/if}}.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Работодатель принимает Работника на должность <strong>{{position}}</strong>
+                {{#if department}}(в отделе <strong>{{department}}</strong>){{/if}}.
+                {{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.2.</strong>
+                {{#if_uzbek}}
+                Xodim <strong>{{start_date}}</strong> sanadan boshlab ishga kiradi.
+                {{#if probation_period}}
+                Sinov muddati <strong>{{probation_period}}</strong> oy.
+                {{/if}}
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Работник приступает к работе с <strong>{{start_date}}</strong>.
+                {{#if probation_period}}
+                Испытательный срок составляет <strong>{{probation_period}}</strong> мес.
+                {{/if}}
+                {{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.3.</strong>
+                {{#if_uzbek}}
+                Shartnoma {{contract_type}} asosda tuzilgan.
+                {{#if end_date}}
+                Shartnoma muddati: <strong>{{end_date}}</strong> gacha.
+                {{/if}}
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Договор заключен на {{contract_type}} основе.
+                {{#if end_date}}
+                Срок действия договора: до <strong>{{end_date}}</strong>.
+                {{/if}}
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. ISH HAQI VA TO'LOV TARTIBI{{/if_uzbek}}
+                {{#if_russian}}2. ЗАРАБОТНАЯ ПЛАТА И ПОРЯДОК ОПЛАТЫ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>2.1.</strong>
+                {{#if_uzbek}}
+                Xodimga oylik ish haqi <strong>{{monthly_salary}}</strong> so'mni tashkil etadi.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Работнику устанавливается ежемесячная заработная плата в размере <strong>{{monthly_salary}}</strong> сум.
+                {{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.2.</strong>
+                {{#if_uzbek}}
+                Ish tartibi: <strong>{{work_schedule}}</strong>.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                График работы: <strong>{{work_schedule}}</strong>.
+                {{/if_russian}}
+            </p>
+            {{#if vacation_days}}
+            <p class="article-content">
+                <strong>2.3.</strong>
+                {{#if_uzbek}}
+                Yillik ta'til: <strong>{{vacation_days}}</strong> kalendar kunlari.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Ежегодный отпуск: <strong>{{vacation_days}}</strong> календарных дней.
+                {{/if_russian}}
+            </p>
+            {{/if}}
+        </section>
+
+        <!-- AI-Generated Section: Duties -->
+        {{#if ai_section_duties}}
+        <section class="article">
+            {{{ai_section_duties}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Rights -->
+        {{#if ai_section_rights}}
+        <section class="article">
+            {{{ai_section_rights}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Working Conditions -->
+        {{#if ai_section_working_conditions}}
+        <section class="article">
+            {{{ai_section_working_conditions}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Liability -->
+        {{#if ai_section_liability}}
+        <section class="article">
+            {{{ai_section_liability}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Termination -->
+        {{#if ai_section_termination}}
+        <section class="article">
+            {{{ai_section_termination}}}
+        </section>
+        {{/if}}
+
+        <!-- AI-Generated Section: Final Provisions -->
+        {{#if ai_section_final}}
+        <section class="article">
+            {{{ai_section_final}}}
+        </section>
+        {{/if}}
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}TOMONLARNING REKVIZITLARI VA IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ СТОРОН{{/if_russian}}
+            </h2>
+
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>
+                        {{#if_uzbek}}Ish beruvchi:{{/if_uzbek}}
+                        {{#if_russian}}Работодатель:{{/if_russian}}
+                    </h3>
+                    <p>{{employer_name}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{employer_address}}</p>
+                    {{#if employer_inn}}
+                    <p>{{#if_uzbek}}INN:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{employer_inn}}</p>
+                    {{/if}}
+                    <p>{{#if_uzbek}}Direktor:{{/if_uzbek}}{{#if_russian}}Директор:{{/if_russian}} {{employer_director}}</p>
+                    <div class="signature-line">
+                        <p>___________________ / {{employer_director}} /</p>
+                    </div>
+                </div>
+
+                <div class="signature-block">
+                    <h3>
+                        {{#if_uzbek}}Xodim:{{/if_uzbek}}
+                        {{#if_russian}}Работник:{{/if_russian}}
+                    </h3>
+                    <p>{{employee_name}}</p>
+                    <p>{{#if_uzbek}}Pasport:{{/if_uzbek}}{{#if_russian}}Паспорт:{{/if_russian}} {{employee_passport}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{employee_address}}</p>
+                    <div class="signature-line">
+                        <p>___________________ / {{employee_name}} /</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}
+                🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.
+                {{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

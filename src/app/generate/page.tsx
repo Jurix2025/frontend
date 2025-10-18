@@ -7,13 +7,15 @@ import { TemplatePreview } from '@/components/TemplatePreview';
 import { AISectionEditor } from '@/components/AISectionEditor';
 import { loadTemplate, DocumentTemplate } from '@/lib/templateLoader';
 
-type DocumentType = 'lease' | 'nda' | 'contract' | 'will' | 'petition' | null;
+type DocumentType = 'lease' | 'employment' | 'application' | 'complaint' | null;
 type Language = 'uzbek' | 'russian';
 
 // Map UI document types to template IDs
 const DOCUMENT_TYPE_TO_TEMPLATE: Record<string, string> = {
   'lease': 'ijara_shartnomasi',
-  // Add more mappings as templates become available
+  'employment': 'mehnat_shartnomasi',
+  'application': 'ariza',
+  'complaint': 'shikoyat',
 };
 
 const documentTypes = [
@@ -25,32 +27,25 @@ const documentTypes = [
     gradient: 'from-blue-500 to-cyan-600',
   },
   {
-    id: 'nda' as DocumentType,
-    title: 'Non-Disclosure Agreement',
-    description: 'Protect confidential information with comprehensive NDAs',
-    icon: '🔒',
-    gradient: 'from-purple-500 to-pink-600',
-  },
-  {
-    id: 'contract' as DocumentType,
-    title: 'Service Contract',
-    description: 'General contracts for services, employment, or agreements',
-    icon: '📝',
+    id: 'employment' as DocumentType,
+    title: 'Employment Contract',
+    description: 'Labor contracts defining work terms, salary, and responsibilities',
+    icon: '💼',
     gradient: 'from-indigo-500 to-purple-600',
   },
   {
-    id: 'will' as DocumentType,
-    title: 'Last Will & Testament',
-    description: 'Declare how assets should be distributed and appoint executors',
-    icon: '⚖️',
-    gradient: 'from-orange-500 to-red-600',
+    id: 'application' as DocumentType,
+    title: 'Application/Petition',
+    description: 'Formal requests and petitions to organizations or authorities',
+    icon: '📄',
+    gradient: 'from-green-500 to-emerald-600',
   },
   {
-    id: 'petition' as DocumentType,
-    title: 'Court Petition',
-    description: 'Applications and petitions for court proceedings',
-    icon: '🏛️',
-    gradient: 'from-green-500 to-emerald-600',
+    id: 'complaint' as DocumentType,
+    title: 'Complaint',
+    description: 'Formal complaints about violations or grievances',
+    icon: '⚠️',
+    gradient: 'from-orange-500 to-red-600',
   },
 ];
 
