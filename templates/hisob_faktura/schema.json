@@ -1,0 +1,26 @@
+{
+  "name": "Hisob-faktura",
+  "name_en": "Invoice",
+  "category": "tax_financial",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "invoice_number", "label": {"uzbek": "Hisob-faktura raqami", "russian": "Номер счета-фактуры"}, "type": "text", "required": true},
+    {"id": "invoice_date", "label": {"uzbek": "Sana", "russian": "Дата"}, "type": "date", "required": true},
+    {"id": "seller_name", "label": {"uzbek": "Sotuvchi nomi", "russian": "Наименование продавца"}, "type": "text", "required": true},
+    {"id": "seller_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "seller_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "seller_bank", "label": {"uzbek": "Bank", "russian": "Банк"}, "type": "text", "required": true},
+    {"id": "seller_account", "label": {"uzbek": "Hisob raqami", "russian": "Расчетный счет"}, "type": "text", "required": true},
+    {"id": "buyer_name", "label": {"uzbek": "Xaridor nomi", "russian": "Наименование покупателя"}, "type": "text", "required": true},
+    {"id": "buyer_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "buyer_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "items_description", "label": {"uzbek": "Tovarlar/Xizmatlar tavsifi", "russian": "Описание товаров/услуг"}, "type": "textarea", "required": true},
+    {"id": "quantity", "label": {"uzbek": "Miqdori", "russian": "Количество"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "unit_price", "label": {"uzbek": "Birlik narxi (so'm)", "russian": "Цена за единицу (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "subtotal", "label": {"uzbek": "Jami (QQS siz) (so'm)", "russian": "Всего (без НДС) (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "vat_rate", "label": {"uzbek": "QQS stavkasi (%)", "russian": "Ставка НДС (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "vat_amount", "label": {"uzbek": "QQS summasi (so'm)", "russian": "Сумма НДС (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "total_amount", "label": {"uzbek": "Jami to'lov (QQS bilan) (so'm)", "russian": "Всего к оплате (с НДС) (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "payment_terms", "label": {"uzbek": "To'lov shartlari", "russian": "Условия оплаты"}, "type": "text", "required": false}
+  ]
+}

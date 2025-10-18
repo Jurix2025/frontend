@@ -1,0 +1,20 @@
+{
+  "name": "Ko'chmas mulk guvohnomasi",
+  "name_en": "Real Estate Certificate",
+  "category": "property",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "owner_name", "label": {"uzbek": "Mulk egasi F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование владельца"}, "type": "text", "required": true},
+    {"id": "owner_passport", "label": {"uzbek": "Pasport/STIR", "russian": "Паспорт/ИНН"}, "type": "text", "required": true},
+    {"id": "owner_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "property_type", "label": {"uzbek": "Mulk turi", "russian": "Тип недвижимости"}, "type": "select", "required": true, "options": [{"value": "apartment", "label": {"uzbek": "Kvartira", "russian": "Квартира"}}, {"value": "house", "label": {"uzbek": "Uy", "russian": "Дом"}}, {"value": "land", "label": {"uzbek": "Yer uchastkasi", "russian": "Земельный участок"}}, {"value": "commercial", "label": {"uzbek": "Tijorat maydoni", "russian": "Коммерческое помещение"}}]},
+    {"id": "property_address", "label": {"uzbek": "Mulk manzili", "russian": "Адрес недвижимости"}, "type": "text", "required": true},
+    {"id": "cadastral_number", "label": {"uzbek": "Kadastr raqami", "russian": "Кадастровый номер"}, "type": "text", "required": true},
+    {"id": "total_area", "label": {"uzbek": "Umumiy maydoni (kv.m)", "russian": "Общая площадь (кв.м)"}, "type": "number", "required": true, "validation": {"min": 1}},
+    {"id": "floor", "label": {"uzbek": "Qavat (agar tegishli bo'lsa)", "russian": "Этаж (если применимо)"}, "type": "number", "required": false},
+    {"id": "rooms_count", "label": {"uzbek": "Xonalar soni", "russian": "Количество комнат"}, "type": "number", "required": false},
+    {"id": "acquisition_basis", "label": {"uzbek": "Egalik asosi", "russian": "Основание приобретения"}, "type": "select", "required": true, "options": [{"value": "purchase", "label": {"uzbek": "Sotib olish", "russian": "Покупка"}}, {"value": "inheritance", "label": {"uzbek": "Meros", "russian": "Наследство"}}, {"value": "gift", "label": {"uzbek": "Sovg'a", "russian": "Дарение"}}, {"value": "construction", "label": {"uzbek": "Qurilish", "russian": "Строительство"}}]},
+    {"id": "registration_date", "label": {"uzbek": "Ro'yxatdan o'tkazilgan sana", "russian": "Дата регистрации"}, "type": "date", "required": true},
+    {"id": "certificate_number", "label": {"uzbek": "Guvohnoma raqami", "russian": "Номер свидетельства"}, "type": "text", "required": true}
+  ]
+}

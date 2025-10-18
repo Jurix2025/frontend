@@ -1,0 +1,19 @@
+{
+  "name": "Ma'lumotnoma",
+  "name_en": "Reference Letter / Certificate",
+  "category": "administrative",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "issuing_organization", "label": {"uzbek": "Beruvchi tashkilot", "russian": "Выдающая организация"}, "type": "text", "required": true},
+    {"id": "organization_address", "label": {"uzbek": "Tashkilot manzili", "russian": "Адрес организации"}, "type": "text", "required": true},
+    {"id": "reference_type", "label": {"uzbek": "Ma'lumotnoma turi", "russian": "Тип справки"}, "type": "select", "required": true, "options": [{"value": "employment", "label": {"uzbek": "Ish joyi haqida", "russian": "О месте работы"}}, {"value": "salary", "label": {"uzbek": "Maosh haqida", "russian": "О заработной плате"}}, {"value": "residence", "label": {"uzbek": "Yashash joyi haqida", "russian": "О месте жительства"}}, {"value": "study", "label": {"uzbek": "O'qish haqida", "russian": "Об обучении"}}, {"value": "other", "label": {"uzbek": "Boshqa", "russian": "Прочее"}}]},
+    {"id": "recipient_name", "label": {"uzbek": "Kimga berilgan F.I.Sh.", "russian": "Ф.И.О. получателя"}, "type": "text", "required": true},
+    {"id": "recipient_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "recipient_position", "label": {"uzbek": "Lavozim (agar tegishli bo'lsa)", "russian": "Должность (если применимо)"}, "type": "text", "required": false},
+    {"id": "reference_content", "label": {"uzbek": "Ma'lumotnoma matni", "russian": "Содержание справки"}, "type": "textarea", "required": true},
+    {"id": "purpose", "label": {"uzbek": "Taqdim etish maqsadi", "russian": "Цель предоставления"}, "type": "text", "required": true},
+    {"id": "issue_date", "label": {"uzbek": "Berilgan sana", "russian": "Дата выдачи"}, "type": "date", "required": true},
+    {"id": "issuer_name", "label": {"uzbek": "Imzolagan shaxs F.I.Sh.", "russian": "Ф.И.О. подписавшего"}, "type": "text", "required": true},
+    {"id": "issuer_position", "label": {"uzbek": "Lavozim", "russian": "Должность"}, "type": "text", "required": true}
+  ]
+}

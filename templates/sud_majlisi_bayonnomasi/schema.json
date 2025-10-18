@@ -1,0 +1,25 @@
+{
+  "name": "Sud majlisi bayonnomasi",
+  "name_en": "Court Session Minutes",
+  "category": "court_documents",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "court_name", "label": {"uzbek": "Sud nomi", "russian": "Наименование суда"}, "type": "text", "required": true},
+    {"id": "case_number", "label": {"uzbek": "Ish raqami", "russian": "Номер дела"}, "type": "text", "required": true},
+    {"id": "session_date", "label": {"uzbek": "Majlis sanasi", "russian": "Дата заседания"}, "type": "date", "required": true},
+    {"id": "session_time", "label": {"uzbek": "Majlis vaqti", "russian": "Время заседания"}, "type": "text", "required": true},
+    {"id": "session_location", "label": {"uzbek": "Majlis joyi", "russian": "Место заседания"}, "type": "text", "required": true},
+    {"id": "judge_name", "label": {"uzbek": "Sudya F.I.Sh.", "russian": "Ф.И.О. судьи"}, "type": "text", "required": true},
+    {"id": "secretary_name", "label": {"uzbek": "Kotib F.I.Sh.", "russian": "Ф.И.О. секретаря"}, "type": "text", "required": true},
+    {"id": "prosecutor_name", "label": {"uzbek": "Prokuror F.I.Sh. (agar mavjud bo'lsa)", "russian": "Ф.И.О. прокурора (если присутствует)"}, "type": "text", "required": false},
+    {"id": "plaintiff_present", "label": {"uzbek": "Da'vogar qatnashdimi?", "russian": "Истец присутствовал?"}, "type": "boolean", "required": true},
+    {"id": "defendant_present", "label": {"uzbek": "Javobgar qatnashdimi?", "russian": "Ответчик присутствовал?"}, "type": "boolean", "required": true},
+    {"id": "case_subject", "label": {"uzbek": "Ish predmeti", "russian": "Предмет дела"}, "type": "text", "required": true},
+    {"id": "session_proceedings", "label": {"uzbek": "Majlis jarayoni", "russian": "Ход заседания"}, "type": "textarea", "required": true},
+    {"id": "testimonies", "label": {"uzbek": "Ko'rsatmalar", "russian": "Показания"}, "type": "textarea", "required": false},
+    {"id": "evidence_presented", "label": {"uzbek": "Taqdim etilgan dalillar", "russian": "Представленные доказательства"}, "type": "textarea", "required": false},
+    {"id": "motions_filed", "label": {"uzbek": "Arizalar", "russian": "Ходатайства"}, "type": "textarea", "required": false},
+    {"id": "decisions_made", "label": {"uzbek": "Qabul qilingan qarorlar", "russian": "Принятые решения"}, "type": "textarea", "required": true},
+    {"id": "next_session_date", "label": {"uzbek": "Keyingi majlis sanasi", "russian": "Дата следующего заседания"}, "type": "date", "required": false}
+  ]
+}

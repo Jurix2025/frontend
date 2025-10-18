@@ -1,0 +1,22 @@
+{
+  "name": "Yetkazib berish shartnomasi",
+  "name_en": "Supply Contract",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "supplier_name", "label": {"uzbek": "Yetkazib beruvchi nomi", "russian": "Наименование поставщика"}, "type": "text", "required": true},
+    {"id": "supplier_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "supplier_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "buyer_name", "label": {"uzbek": "Xaridor nomi", "russian": "Наименование покупателя"}, "type": "text", "required": true},
+    {"id": "buyer_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "buyer_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "product_name", "label": {"uzbek": "Mahsulot nomi", "russian": "Наименование товара"}, "type": "text", "required": true},
+    {"id": "product_quantity", "label": {"uzbek": "Miqdori", "russian": "Количество"}, "type": "number", "required": true, "validation": {"min": 1}},
+    {"id": "product_unit", "label": {"uzbek": "O'lchov birligi", "russian": "Единица измерения"}, "type": "text", "required": true},
+    {"id": "unit_price", "label": {"uzbek": "Birlik narxi (so'm)", "russian": "Цена за единицу (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "total_amount", "label": {"uzbek": "Jami summa (so'm)", "russian": "Общая сумма (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "delivery_date", "label": {"uzbek": "Yetkazib berish sanasi", "russian": "Дата поставки"}, "type": "date", "required": true},
+    {"id": "delivery_address", "label": {"uzbek": "Yetkazib berish manzili", "russian": "Адрес доставки"}, "type": "text", "required": true},
+    {"id": "quality_standards", "label": {"uzbek": "Sifat standartlari", "russian": "Стандарты качества"}, "type": "textarea", "required": false}
+  ]
+}

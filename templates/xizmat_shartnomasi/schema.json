@@ -1,0 +1,20 @@
+{
+  "name": "Xizmat ko'rsatish shartnomasi",
+  "name_en": "Service Agreement",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "provider_name", "label": {"uzbek": "Xizmat ko'rsatuvchi nomi", "russian": "Наименование исполнителя"}, "type": "text", "required": true},
+    {"id": "provider_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "provider_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "client_name", "label": {"uzbek": "Mijoz nomi", "russian": "Наименование заказчика"}, "type": "text", "required": true},
+    {"id": "client_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "client_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "service_description", "label": {"uzbek": "Xizmat tavsifi", "russian": "Описание услуг"}, "type": "textarea", "required": true},
+    {"id": "service_amount", "label": {"uzbek": "Xizmat narxi (so'm)", "russian": "Стоимость услуг (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "start_date", "label": {"uzbek": "Boshlanish sanasi", "russian": "Дата начала"}, "type": "date", "required": true},
+    {"id": "completion_date", "label": {"uzbek": "Tugash sanasi", "russian": "Дата завершения"}, "type": "date", "required": true},
+    {"id": "payment_terms", "label": {"uzbek": "To'lov shartlari", "russian": "Условия оплаты"}, "type": "textarea", "required": true},
+    {"id": "warranty_period", "label": {"uzbek": "Kafolat muddati (oy)", "russian": "Гарантийный срок (мес.)"}, "type": "number", "required": false, "validation": {"min": 0}}
+  ]
+}

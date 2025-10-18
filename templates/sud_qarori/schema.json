@@ -1,0 +1,21 @@
+{
+  "name": "Sud qarori",
+  "name_en": "Court Decision / Judgment",
+  "category": "court_documents",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "court_name", "label": {"uzbek": "Sud nomi", "russian": "Наименование суда"}, "type": "text", "required": true},
+    {"id": "case_number", "label": {"uzbek": "Ish raqami", "russian": "Номер дела"}, "type": "text", "required": true},
+    {"id": "judge_name", "label": {"uzbek": "Sudya F.I.Sh.", "russian": "Ф.И.О. судьи"}, "type": "text", "required": true},
+    {"id": "hearing_date", "label": {"uzbek": "Majlis sanasi", "russian": "Дата заседания"}, "type": "date", "required": true},
+    {"id": "plaintiff_name", "label": {"uzbek": "Da'vogar", "russian": "Истец"}, "type": "text", "required": true},
+    {"id": "defendant_name", "label": {"uzbek": "Javobgar", "russian": "Ответчик"}, "type": "text", "required": true},
+    {"id": "case_subject", "label": {"uzbek": "Ish predmeti", "russian": "Предмет дела"}, "type": "text", "required": true},
+    {"id": "case_circumstances", "label": {"uzbek": "Ishning holatlari", "russian": "Обстоятельства дела"}, "type": "textarea", "required": true},
+    {"id": "evidence_examined", "label": {"uzbek": "Ko'rib chiqilgan dalillar", "russian": "Рассмотренные доказательства"}, "type": "textarea", "required": true},
+    {"id": "legal_analysis", "label": {"uzbek": "Huquqiy tahlil", "russian": "Правовой анализ"}, "type": "textarea", "required": true},
+    {"id": "decision", "label": {"uzbek": "Qaror", "russian": "Решение"}, "type": "textarea", "required": true},
+    {"id": "decision_date", "label": {"uzbek": "Qaror sanasi", "russian": "Дата решения"}, "type": "date", "required": true},
+    {"id": "appeal_procedure", "label": {"uzbek": "Apellyatsiya tartibi", "russian": "Порядок обжалования"}, "type": "textarea", "required": true}
+  ]
+}

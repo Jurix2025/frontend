@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}JAVOB ARIZASI{{/if_uzbek}}{{#if_russian}}ОТЗЫВ НА ИСКО ВОЕ ЗАЯВЛЕНИЕ{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <div style="text-align: right; margin-bottom: 20px;">
+                <p><strong>{{court_name}}</strong></p>
+                <p style="margin-top: 20px;">{{#if_uzbek}}Javobgar:{{/if_uzbek}}{{#if_russian}}Ответчик:{{/if_russian}} {{defendant_name}}</p>
+                <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{defendant_address}}</p>
+                <p style="margin-top: 10px;">{{#if_uzbek}}Ish raqami:{{/if_uzbek}}{{#if_russian}}Номер дела:{{/if_russian}} {{case_number}}</p>
+                <p>{{#if_uzbek}}Da'vogar:{{/if_uzbek}}{{#if_russian}}Истец:{{/if_russian}} {{plaintiff_name}}</p>
+            </div>
+            <h1 class="document-title" style="text-align: center;">
+                {{#if_uzbek}}JAVOB ARIZASI{{/if_uzbek}}
+                {{#if_russian}}ОТЗЫВ НА ИСКОВОЕ ЗАЯВЛЕНИЕ{{/if_russian}}
+            </h1>
+        </header>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Da'vo mazmuni:{{/if_uzbek}}{{#if_russian}}Содержание иска:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{claim_summary}}</p>
+        </section>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Javobgarning pozitsiyasi:{{/if_uzbek}}{{#if_russian}}Позиция ответчика:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">
+                {{#if (eq response_position 'reject_fully')}}
+                    {{#if_uzbek}}Da'voni to'liq rad etaman{{/if_uzbek}}{{#if_russian}}Полностью отклоняю иск{{/if_russian}}
+                {{/if}}
+                {{#if (eq response_position 'reject_partially')}}
+                    {{#if_uzbek}}Da'voni qisman rad etaman{{/if_uzbek}}{{#if_russian}}Частично отклоняю иск{{/if_russian}}
+                {{/if}}
+                {{#if (eq response_position 'accept_fully')}}
+                    {{#if_uzbek}}Da'voni to'liq tan olaman{{/if_uzbek}}{{#if_russian}}Полностью признаю иск{{/if_russian}}
+                {{/if}}
+            </p>
+        </section>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}E'tirozlar va dalillar:{{/if_uzbek}}{{#if_russian}}Возражения и доказательства:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{objections}}</p>
+        </section>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Qarshi dalillar:{{/if_uzbek}}{{#if_russian}}Контраргументы:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{counter_arguments}}</p>
+        </section>
+
+        {{#if counter_evidence}}
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Qarshi dalillar ro'yxati:{{/if_uzbek}}{{#if_russian}}Перечень контрдоказательств:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{counter_evidence}}</p>
+        </section>
+        {{/if}}
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Qonuniy havolalar:{{/if_uzbek}}{{#if_russian}}Ссылки на закон:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{legal_references}}</p>
+        </section>
+
+        <section class="article">
+            <p class="article-content" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                <strong>{{#if_uzbek}}ILTIMOS QILAMAN:{{/if_uzbek}}{{#if_russian}}ПРОШУ:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{petition}}</p>
+        </section>
+
+        <section class="signatures" style="margin-top: 50px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <p>{{#if_uzbek}}Javobgar:{{/if_uzbek}}{{#if_russian}}Ответчик:{{/if_russian}}</p>
+                    <p>{{defendant_name}}</p>
+                </div>
+                <div style="text-align: right;">
+                    <p>___________________</p>
+                    <p style="font-size: 10pt;">{{#if_uzbek}}(imzo){{/if_uzbek}}{{#if_russian}}(подпись){{/if_russian}}</p>
+                </div>
+            </div>
+            <p style="margin-top: 20px;">{{filing_date}}</p>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

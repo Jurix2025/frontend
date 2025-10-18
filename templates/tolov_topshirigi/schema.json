@@ -1,0 +1,25 @@
+{
+  "name": "To'lov topshirig'i",
+  "name_en": "Payment Order",
+  "category": "tax_financial",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "payment_number", "label": {"uzbek": "To'lov topshirig'i raqami", "russian": "Номер платежного поручения"}, "type": "text", "required": true},
+    {"id": "payment_date", "label": {"uzbek": "Sana", "russian": "Дата"}, "type": "date", "required": true},
+    {"id": "payer_name", "label": {"uzbek": "To'lovchi nomi", "russian": "Наименование плательщика"}, "type": "text", "required": true},
+    {"id": "payer_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "payer_account", "label": {"uzbek": "Hisob raqami", "russian": "Расчетный счет"}, "type": "text", "required": true},
+    {"id": "payer_bank", "label": {"uzbek": "Bank nomi", "russian": "Наименование банка"}, "type": "text", "required": true},
+    {"id": "payer_mfo", "label": {"uzbek": "MFO", "russian": "МФО"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{5}$"}},
+    {"id": "recipient_name", "label": {"uzbek": "Oluvchi nomi", "russian": "Наименование получателя"}, "type": "text", "required": true},
+    {"id": "recipient_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "recipient_account", "label": {"uzbek": "Hisob raqami", "russian": "Расчетный счет"}, "type": "text", "required": true},
+    {"id": "recipient_bank", "label": {"uzbek": "Bank nomi", "russian": "Наименование банка"}, "type": "text", "required": true},
+    {"id": "recipient_mfo", "label": {"uzbek": "MFO", "russian": "МФО"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{5}$"}},
+    {"id": "payment_purpose", "label": {"uzbek": "To'lov maqsadi", "russian": "Назначение платежа"}, "type": "textarea", "required": true},
+    {"id": "payment_amount", "label": {"uzbek": "To'lov summasi (so'm)", "russian": "Сумма платежа (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "payment_type", "label": {"uzbek": "To'lov turi", "russian": "Вид платежа"}, "type": "select", "required": true, "options": [{"value": "urgent", "label": {"uzbek": "Tezkor", "russian": "Срочный"}}, {"value": "regular", "label": {"uzbek": "Oddiy", "russian": "Обычный"}}, {"value": "tax", "label": {"uzbek": "Soliq to'lovi", "russian": "Налоговый платеж"}}]},
+    {"id": "reference_document", "label": {"uzbek": "Asos hujjat (shartnoma, hisob-faktura raqami)", "russian": "Основание (договор, счет-фактура)"}, "type": "text", "required": false},
+    {"id": "vat_amount", "label": {"uzbek": "Shu jumladan QQS (so'm)", "russian": "В том числе НДС (сум)"}, "type": "number", "required": false, "validation": {"min": 0}}
+  ]
+}

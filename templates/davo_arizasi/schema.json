@@ -1,0 +1,24 @@
+{
+  "name": "Da'vo arizasi",
+  "name_en": "Lawsuit / Petition",
+  "category": "court_documents",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "court_name", "label": {"uzbek": "Sud nomi", "russian": "Наименование суда"}, "type": "text", "required": true},
+    {"id": "court_address", "label": {"uzbek": "Sud manzili", "russian": "Адрес суда"}, "type": "text", "required": true},
+    {"id": "plaintiff_name", "label": {"uzbek": "Da'vogar F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование истца"}, "type": "text", "required": true},
+    {"id": "plaintiff_address", "label": {"uzbek": "Da'vogar manzili", "russian": "Адрес истца"}, "type": "text", "required": true},
+    {"id": "plaintiff_phone", "label": {"uzbek": "Telefon raqami", "russian": "Телефон"}, "type": "text", "required": false},
+    {"id": "defendant_name", "label": {"uzbek": "Javobgar F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование ответчика"}, "type": "text", "required": true},
+    {"id": "defendant_address", "label": {"uzbek": "Javobgar manzili", "russian": "Адрес ответчика"}, "type": "text", "required": true},
+    {"id": "claim_subject", "label": {"uzbek": "Da'vo predmeti", "russian": "Предмет иска"}, "type": "text", "required": true},
+    {"id": "claim_basis", "label": {"uzbek": "Da'vo asoslari", "russian": "Основания иска"}, "type": "textarea", "required": true},
+    {"id": "circumstances", "label": {"uzbek": "Holatlar va faktlar", "russian": "Обстоятельства и факты"}, "type": "textarea", "required": true},
+    {"id": "claim_amount", "label": {"uzbek": "Da'vo summasi (so'm)", "russian": "Сумма иска (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "evidence_list", "label": {"uzbek": "Dalillar ro'yxati", "russian": "Перечень доказательств"}, "type": "textarea", "required": true},
+    {"id": "legal_basis", "label": {"uzbek": "Qonuniy asos (qonunlar, moddalar)", "russian": "Правовая основа (законы, статьи)"}, "type": "textarea", "required": true},
+    {"id": "petition", "label": {"uzbek": "Iltimos (nima so'ralyapti)", "russian": "Прошение (что просится)"}, "type": "textarea", "required": true},
+    {"id": "attachments", "label": {"uzbek": "Ilovalar", "russian": "Приложения"}, "type": "textarea", "required": false},
+    {"id": "filing_date", "label": {"uzbek": "Ariza sanasi", "russian": "Дата подачи"}, "type": "date", "required": true}
+  ]
+}

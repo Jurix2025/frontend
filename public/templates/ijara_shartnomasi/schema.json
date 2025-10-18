@@ -1,0 +1,196 @@
+{
+  "name": "Ijara shartnomasi",
+  "name_en": "Lease Agreement",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {
+      "id": "contract_type",
+      "label": {
+        "uzbek": "Shartnoma turi",
+        "russian": "Тип договора"
+      },
+      "type": "select",
+      "required": true,
+      "options": [
+        {
+          "value": "residential",
+          "label": {
+            "uzbek": "Turar joy",
+            "russian": "Жилое помещение"
+          }
+        },
+        {
+          "value": "commercial",
+          "label": {
+            "uzbek": "Tijorat maydoni",
+            "russian": "Коммерческое помещение"
+          }
+        }
+      ]
+    },
+    {
+      "id": "landlord_name",
+      "label": {
+        "uzbek": "Ijaraga beruvchining F.I.Sh.",
+        "russian": "Ф.И.О. арендодателя"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 200
+      }
+    },
+    {
+      "id": "landlord_passport",
+      "label": {
+        "uzbek": "Ijaraga beruvchining pasport seriyasi va raqami",
+        "russian": "Серия и номер паспорта арендодателя"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^[A-Z]{2}[0-9]{7}$"
+      }
+    },
+    {
+      "id": "landlord_address",
+      "label": {
+        "uzbek": "Ijaraga beruvchining manzili",
+        "russian": "Адрес арендодателя"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "tenant_name",
+      "label": {
+        "uzbek": "Ijarachining F.I.Sh.",
+        "russian": "Ф.И.О. арендатора"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "minLength": 2,
+        "maxLength": 200
+      }
+    },
+    {
+      "id": "tenant_passport",
+      "label": {
+        "uzbek": "Ijarachining pasport seriyasi va raqami",
+        "russian": "Серия и номер паспорта арендатора"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^[A-Z]{2}[0-9]{7}$"
+      }
+    },
+    {
+      "id": "tenant_address",
+      "label": {
+        "uzbek": "Ijarachining manzili",
+        "russian": "Адрес арендатора"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "property_address",
+      "label": {
+        "uzbek": "Ijara ob'ektining manzili",
+        "russian": "Адрес объекта аренды"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "property_area",
+      "label": {
+        "uzbek": "Umumiy maydoni (kv.m)",
+        "russian": "Общая площадь (кв.м)"
+      },
+      "type": "number",
+      "required": true,
+      "validation": {
+        "min": 1,
+        "max": 10000
+      }
+    },
+    {
+      "id": "monthly_rent",
+      "label": {
+        "uzbek": "Oylik ijara haqi (so'm)",
+        "russian": "Ежемесячная арендная плата (сум)"
+      },
+      "type": "number",
+      "required": true,
+      "validation": {
+        "min": 0
+      }
+    },
+    {
+      "id": "deposit_amount",
+      "label": {
+        "uzbek": "Kafolat puli (so'm)",
+        "russian": "Залоговая сумма (сум)"
+      },
+      "type": "number",
+      "required": false,
+      "validation": {
+        "min": 0
+      }
+    },
+    {
+      "id": "payment_day",
+      "label": {
+        "uzbek": "To'lov sanasi (oyning kunlari)",
+        "russian": "День оплаты (число месяца)"
+      },
+      "type": "number",
+      "required": true,
+      "validation": {
+        "min": 1,
+        "max": 31
+      }
+    },
+    {
+      "id": "start_date",
+      "label": {
+        "uzbek": "Shartnoma boshlanish sanasi",
+        "russian": "Дата начала договора"
+      },
+      "type": "date",
+      "required": true
+    },
+    {
+      "id": "end_date",
+      "label": {
+        "uzbek": "Shartnoma tugash sanasi",
+        "russian": "Дата окончания договора"
+      },
+      "type": "date",
+      "required": true
+    },
+    {
+      "id": "utilities_included",
+      "label": {
+        "uzbek": "Kommunal to'lovlar ijara haqiga kiritilganmi?",
+        "russian": "Коммунальные услуги включены в аренду?"
+      },
+      "type": "boolean",
+      "required": true
+    },
+    {
+      "id": "additional_terms",
+      "label": {
+        "uzbek": "Qo'shimcha shartlar",
+        "russian": "Дополнительные условия"
+      },
+      "type": "textarea",
+      "required": false
+    }
+  ]
+}

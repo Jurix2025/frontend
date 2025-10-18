@@ -1,0 +1,21 @@
+{
+  "name": "Javob arizasi",
+  "name_en": "Response to Lawsuit",
+  "category": "court_documents",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "court_name", "label": {"uzbek": "Sud nomi", "russian": "Наименование суда"}, "type": "text", "required": true},
+    {"id": "case_number", "label": {"uzbek": "Ish raqami", "russian": "Номер дела"}, "type": "text", "required": true},
+    {"id": "defendant_name", "label": {"uzbek": "Javobgar F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование ответчика"}, "type": "text", "required": true},
+    {"id": "defendant_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "plaintiff_name", "label": {"uzbek": "Da'vogar nomi", "russian": "Наименование истца"}, "type": "text", "required": true},
+    {"id": "claim_summary", "label": {"uzbek": "Da'vo qisqacha mazmuni", "russian": "Краткое содержание иска"}, "type": "textarea", "required": true},
+    {"id": "response_position", "label": {"uzbek": "Javobgarning pozitsiyasi", "russian": "Позиция ответчика"}, "type": "select", "required": true, "options": [{"value": "reject_fully", "label": {"uzbek": "To'liq rad etish", "russian": "Полный отказ"}}, {"value": "reject_partially", "label": {"uzbek": "Qisman rad etish", "russian": "Частичный отказ"}}, {"value": "accept_fully", "label": {"uzbek": "To'liq tan olish", "russian": "Полное признание"}}]},
+    {"id": "objections", "label": {"uzbek": "E'tirozlar va dalillar", "russian": "Возражения и доказательства"}, "type": "textarea", "required": true},
+    {"id": "counter_arguments", "label": {"uzbek": "Qarshi dalillar", "russian": "Контраргументы"}, "type": "textarea", "required": true},
+    {"id": "counter_evidence", "label": {"uzbek": "Qarshi dalillar ro'yxati", "russian": "Перечень контрдоказательств"}, "type": "textarea", "required": false},
+    {"id": "legal_references", "label": {"uzbek": "Qonuniy havolalar", "russian": "Ссылки на закон"}, "type": "textarea", "required": true},
+    {"id": "petition", "label": {"uzbek": "Iltimos", "russian": "Прошение"}, "type": "textarea", "required": true},
+    {"id": "filing_date", "label": {"uzbek": "Ariza sanasi", "russian": "Дата подачи"}, "type": "date", "required": true}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Ishdan bo'shatish buyrug'i",
+  "name_en": "Dismissal Order",
+  "category": "corporate",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "company_name", "label": {"uzbek": "Tashkilot nomi", "russian": "Наименование организации"}, "type": "text", "required": true},
+    {"id": "order_number", "label": {"uzbek": "Buyruq raqami", "russian": "Номер приказа"}, "type": "text", "required": true},
+    {"id": "order_date", "label": {"uzbek": "Buyruq sanasi", "russian": "Дата приказа"}, "type": "date", "required": true},
+    {"id": "employee_name", "label": {"uzbek": "Xodimning F.I.Sh.", "russian": "Ф.И.О. работника"}, "type": "text", "required": true},
+    {"id": "position", "label": {"uzbek": "Lavozim", "russian": "Должность"}, "type": "text", "required": true},
+    {"id": "department", "label": {"uzbek": "Bo'lim", "russian": "Отдел"}, "type": "text", "required": false},
+    {"id": "dismissal_reason", "label": {"uzbek": "Ishdan bo'shatish sababi", "russian": "Причина увольнения"}, "type": "select", "required": true, "options": [{"value": "resignation", "label": {"uzbek": "O'z xohishi bilan", "russian": "По собственному желанию"}}, {"value": "agreement", "label": {"uzbek": "Kelishuv bilan", "russian": "По соглашению сторон"}}, {"value": "misconduct", "label": {"uzbek": "Qonun buzish", "russian": "За нарушение"}}, {"value": "reduction", "label": {"uzbek": "Qisqartirish", "russian": "Сокращение штата"}}, {"value": "expiration", "label": {"uzbek": "Shartnoma tugashi", "russian": "Истечение срока договора"}}]},
+    {"id": "dismissal_date", "label": {"uzbek": "Ishdan bo'shatish sanasi", "russian": "Дата увольнения"}, "type": "date", "required": true},
+    {"id": "legal_basis", "label": {"uzbek": "Huquqiy asos (qonun moddasi)", "russian": "Правовое основание (статья закона)"}, "type": "text", "required": true},
+    {"id": "final_settlement", "label": {"uzbek": "Yakuniy hisob-kitob (so'm)", "russian": "Окончательный расчет (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "unused_vacation_days", "label": {"uzbek": "Foydalanilmagan ta'til kunlari", "russian": "Неиспользованные дни отпуска"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "director_name", "label": {"uzbek": "Direktor F.I.Sh.", "russian": "Ф.И.О. директора"}, "type": "text", "required": true}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Ishonchnoma",
+  "name_en": "Power of Attorney",
+  "category": "administrative",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "principal_name", "label": {"uzbek": "Ishonch beruvchi F.I.Sh.", "russian": "Ф.И.О. доверителя"}, "type": "text", "required": true},
+    {"id": "principal_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "principal_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "attorney_name", "label": {"uzbek": "Ishonchli shaxs F.I.Sh.", "russian": "Ф.И.О. доверенного лица"}, "type": "text", "required": true},
+    {"id": "attorney_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "attorney_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "powers_scope", "label": {"uzbek": "Vakolatlar ko'lami", "russian": "Объем полномочий"}, "type": "select", "required": true, "options": [{"value": "general", "label": {"uzbek": "Umumiy", "russian": "Общая"}}, {"value": "special", "label": {"uzbek": "Maxsus", "russian": "Специальная"}}, {"value": "one_time", "label": {"uzbek": "Bir martalik", "russian": "Разовая"}}]},
+    {"id": "powers_description", "label": {"uzbek": "Vakolatlar tavsifi", "russian": "Описание полномочий"}, "type": "textarea", "required": true},
+    {"id": "validity_term", "label": {"uzbek": "Amal qilish muddati", "russian": "Срок действия"}, "type": "select", "required": true, "options": [{"value": "1_year", "label": {"uzbek": "1 yil", "russian": "1 год"}}, {"value": "3_years", "label": {"uzbek": "3 yil", "russian": "3 года"}}, {"value": "custom", "label": {"uzbek": "Boshqa", "russian": "Другой"}}]},
+    {"id": "expiry_date", "label": {"uzbek": "Amal qilish tugash sanasi", "russian": "Дата окончания срока"}, "type": "date", "required": false},
+    {"id": "transfer_rights", "label": {"uzbek": "Qayta ishonchnoma berish huquqi bormi?", "russian": "Право передоверия?"}, "type": "boolean", "required": true},
+    {"id": "issue_date", "label": {"uzbek": "Berilgan sana", "russian": "Дата выдачи"}, "type": "date", "required": true},
+    {"id": "notary_certified", "label": {"uzbek": "Notarial tasdiqlangan", "russian": "Нотариально заверено"}, "type": "boolean", "required": true}
+  ]
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}YETKAZIB BERISH SHARTNOMASI{{/if_uzbek}}{{#if_russian}}ДОГОВОР ПОСТАВКИ{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}YETKAZIB BERISH SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}ДОГОВОР ПОСТАВКИ{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{delivery_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{delivery_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">{{#if_uzbek}}Toshkent shahri{{/if_uzbek}}{{#if_russian}}г. Ташкент{{/if_russian}}</p>
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Yetkazib beruvchi» deb ataluvchi <strong>{{supplier_name}}</strong>,
+                STIR: <strong>{{supplier_inn}}</strong>, manzil: <strong>{{supplier_address}}</strong>,
+                bir tomondan va keyingi o'rinlarda «Xaridor» deb ataluvchi <strong>{{buyer_name}}</strong>,
+                STIR: <strong>{{buyer_inn}}</strong>, manzil: <strong>{{buyer_address}}</strong>,
+                ikkinchi tomondan, ushbu shartnomani quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                С одной стороны <strong>{{supplier_name}}</strong>, ИНН: <strong>{{supplier_inn}}</strong>,
+                адрес: <strong>{{supplier_address}}</strong>, именуемый в дальнейшем «Поставщик»,
+                и с другой стороны <strong>{{buyer_name}}</strong>, ИНН: <strong>{{buyer_inn}}</strong>,
+                адрес: <strong>{{buyer_address}}</strong>, именуемый в дальнейшем «Покупатель»,
+                заключили настоящий договор о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong> {{#if_uzbek}}Yetkazib beruvchi Xaridorga quyidagi mahsulotni yetkazib berishni o'z zimmasiga oladi:{{/if_uzbek}}
+                {{#if_russian}}Поставщик обязуется поставить Покупателю следующий товар:{{/if_russian}}
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Mahsulot nomi:{{/if_uzbek}}{{#if_russian}}Наименование товара:{{/if_russian}} <strong>{{product_name}}</strong>
+            </p>
+            <p class="article-content">
+                <strong>1.2.</strong> {{#if_uzbek}}Miqdori: <strong>{{product_quantity}} {{product_unit}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Количество: <strong>{{product_quantity}} {{product_unit}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.3.</strong> {{#if_uzbek}}Birlik narxi: <strong>{{unit_price}}</strong> so'm.{{/if_uzbek}}
+                {{#if_russian}}Цена за единицу: <strong>{{unit_price}}</strong> сум.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.4.</strong> {{#if_uzbek}}Jami shartnoma summasi: <strong>{{total_amount}}</strong> so'm.{{/if_uzbek}}
+                {{#if_russian}}Общая сумма договора: <strong>{{total_amount}}</strong> сум.{{/if_russian}}
+            </p>
+            {{#if quality_standards}}
+            <p class="article-content">
+                <strong>1.5.</strong> {{#if_uzbek}}Sifat standartlari:{{/if_uzbek}}{{#if_russian}}Стандарты качества:{{/if_russian}} {{quality_standards}}
+            </p>
+            {{/if}}
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. YETKAZIB BERISH SHARTLARI{{/if_uzbek}}
+                {{#if_russian}}2. УСЛОВИЯ ПОСТАВКИ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>2.1.</strong> {{#if_uzbek}}Yetkazib berish sanasi: <strong>{{delivery_date}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Дата поставки: <strong>{{delivery_date}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.2.</strong> {{#if_uzbek}}Yetkazib berish manzili: <strong>{{delivery_address}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Адрес доставки: <strong>{{delivery_address}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.3.</strong> {{#if_uzbek}}Mahsulotni qabul qilish va tekshirish Xaridor tomonidan yetkazib berish sanasidan boshlab 3 ish kuni ichida amalga oshiriladi.{{/if_uzbek}}
+                {{#if_russian}}Приемка и проверка товара осуществляется Покупателем в течение 3 рабочих дней с даты поставки.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. TO'LOV TARTIBI{{/if_uzbek}}
+                {{#if_russian}}3. ПОРЯДОК ОПЛАТЫ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Xaridor mahsulot yetkazib berilgandan so'ng 5 ish kuni ichida to'lovni amalga oshiradi.{{/if_uzbek}}
+                {{#if_russian}}Покупатель осуществляет оплату в течение 5 рабочих дней после поставки товара.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>3.2.</strong> {{#if_uzbek}}To'lov naqd yoki bank o'tkazmasi orqali amalga oshiriladi.{{/if_uzbek}}
+                {{#if_russian}}Оплата производится наличными или банковским переводом.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. TOMONLARNING HUQUQ VA MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}4. ПРАВА И ОБЯЗАННОСТИ СТОРОН{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong> {{#if_uzbek}}Yetkazib beruvchi sifatli mahsulot va o'z vaqtida yetkazib berishni kafolatlaydi.{{/if_uzbek}}
+                {{#if_russian}}Поставщик гарантирует качественный товар и своевременную поставку.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>4.2.</strong> {{#if_uzbek}}Xaridor mahsulotni qabul qilish va to'lovni o'z vaqtida amalga oshirishni ta'minlaydi.{{/if_uzbek}}
+                {{#if_russian}}Покупатель обеспечивает приемку товара и своевременную оплату.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>4.3.</strong> {{#if_uzbek}}Mahsulot sifati shartnomada belgilangan standartlarga javob berishi shart.{{/if_uzbek}}
+                {{#if_russian}}Качество товара должно соответствовать стандартам, указанным в договоре.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}5. MAS'ULIYAT{{/if_uzbek}}
+                {{#if_russian}}5. ОТВЕТСТВЕННОСТЬ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>5.1.</strong> {{#if_uzbek}}Shartnoma majburiyatlarini buzgan tomon O'zbekiston Respublikasi qonunchiligi bo'yicha javobgarlikka tortiladi.{{/if_uzbek}}
+                {{#if_russian}}Сторона, нарушившая договорные обязательства, несет ответственность в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>5.2.</strong> {{#if_uzbek}}Yetkazib berish muddatini buzgan taqdirda, Yetkazib beruvchi har bir kechiktirilgan kun uchun shartnoma summasining 0.1% miqdorida jarima to'laydi.{{/if_uzbek}}
+                {{#if_russian}}В случае нарушения срока поставки Поставщик уплачивает штраф в размере 0.1% от суммы договора за каждый день просрочки.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}6. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}6. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>6.1.</strong> {{#if_uzbek}}Shartnoma 2 nusxada tuzildi, har bir tomon uchun bittadan.{{/if_uzbek}}
+                {{#if_russian}}Договор составлен в 2 экземплярах, по одному для каждой стороны.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>6.2.</strong> {{#if_uzbek}}Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.{{/if_uzbek}}
+                {{#if_russian}}Все вопросы, не предусмотренные настоящим договором, разрешаются в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}TOMONLARNING REKVIZITLARI VA IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ СТОРОН{{/if_russian}}
+            </h2>
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Yetkazib beruvchi:{{/if_uzbek}}{{#if_russian}}Поставщик:{{/if_russian}}</h3>
+                    <p>{{supplier_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{supplier_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{supplier_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{supplier_name}} /</p></div>
+                </div>
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Xaridor:{{/if_uzbek}}{{#if_russian}}Покупатель:{{/if_russian}}</h3>
+                    <p>{{buyer_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{buyer_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{buyer_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{buyer_name}} /</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

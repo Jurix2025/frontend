@@ -1,0 +1,20 @@
+{
+  "name": "Ishga qabul qilish buyrug'i",
+  "name_en": "Employment Order",
+  "category": "corporate",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "company_name", "label": {"uzbek": "Tashkilot nomi", "russian": "Наименование организации"}, "type": "text", "required": true},
+    {"id": "order_number", "label": {"uzbek": "Buyruq raqami", "russian": "Номер приказа"}, "type": "text", "required": true},
+    {"id": "order_date", "label": {"uzbek": "Buyruq sanasi", "russian": "Дата приказа"}, "type": "date", "required": true},
+    {"id": "employee_name", "label": {"uzbek": "Xodimning F.I.Sh.", "russian": "Ф.И.О. работника"}, "type": "text", "required": true},
+    {"id": "position", "label": {"uzbek": "Lavozim", "russian": "Должность"}, "type": "text", "required": true},
+    {"id": "department", "label": {"uzbek": "Bo'lim", "russian": "Отдел"}, "type": "text", "required": false},
+    {"id": "salary", "label": {"uzbek": "Maosh (so'm)", "russian": "Оклад (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "start_date", "label": {"uzbek": "Ishga kirish sanasi", "russian": "Дата приема на работу"}, "type": "date", "required": true},
+    {"id": "probation_period", "label": {"uzbek": "Sinov muddati (oy)", "russian": "Испытательный срок (мес.)"}, "type": "number", "required": false, "validation": {"min": 0, "max": 3}},
+    {"id": "contract_type", "label": {"uzbek": "Shartnoma turi", "russian": "Тип договора"}, "type": "select", "required": true, "options": [{"value": "indefinite", "label": {"uzbek": "Muddatsiz", "russian": "Бессрочный"}}, {"value": "fixed_term", "label": {"uzbek": "Muddatli", "russian": "Срочный"}}]},
+    {"id": "basis", "label": {"uzbek": "Asos", "russian": "Основание"}, "type": "text", "required": false},
+    {"id": "director_name", "label": {"uzbek": "Direktor F.I.Sh.", "russian": "Ф.И.О. директора"}, "type": "text", "required": true}
+  ]
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}DA'VO ARIZASI{{/if_uzbek}}{{#if_russian}}ИСКОВОЕ ЗАЯВЛЕНИЕ{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <div style="text-align: right; margin-bottom: 20px;">
+                <p><strong>{{court_name}}</strong></p>
+                <p>{{court_address}}</p>
+                <p style="margin-top: 20px;">{{#if_uzbek}}Da'vogar:{{/if_uzbek}}{{#if_russian}}Истец:{{/if_russian}} {{plaintiff_name}}</p>
+                <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{plaintiff_address}}</p>
+                {{#if plaintiff_phone}}<p>{{#if_uzbek}}Tel:{{/if_uzbek}}{{#if_russian}}Тел:{{/if_russian}} {{plaintiff_phone}}</p>{{/if}}
+                <p style="margin-top: 10px;">{{#if_uzbek}}Javobgar:{{/if_uzbek}}{{#if_russian}}Ответчик:{{/if_russian}} {{defendant_name}}</p>
+                <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{defendant_address}}</p>
+                {{#if claim_amount}}
+                <p style="margin-top: 10px;">{{#if_uzbek}}Da'vo summasi:{{/if_uzbek}}{{#if_russian}}Цена иска:{{/if_russian}} {{claim_amount}} {{#if_uzbek}}so'm{{/if_uzbek}}{{#if_russian}}сум{{/if_russian}}</p>
+                {{/if}}
+            </div>
+            <h1 class="document-title" style="text-align: center;">
+                {{#if_uzbek}}DA'VO ARIZASI{{/if_uzbek}}
+                {{#if_russian}}ИСКОВОЕ ЗАЯВЛЕНИЕ{{/if_russian}}
+            </h1>
+            <p style="text-align: center; margin-bottom: 30px;">
+                {{#if_uzbek}}{{claim_subject}} to'g'risida{{/if_uzbek}}
+                {{#if_russian}}о {{claim_subject}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Holatlar va faktlar:{{/if_uzbek}}{{#if_russian}}Обстоятельства и факты:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{circumstances}}</p>
+        </section>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Da'vo asoslari:{{/if_uzbek}}{{#if_russian}}Основания иска:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{claim_basis}}</p>
+        </section>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Qonuniy asos:{{/if_uzbek}}{{#if_russian}}Правовая основа:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{legal_basis}}</p>
+        </section>
+
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Dalillar:{{/if_uzbek}}{{#if_russian}}Доказательства:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{evidence_list}}</p>
+        </section>
+
+        <section class="article">
+            <p class="article-content">
+                {{#if_uzbek}}Yuqorida bayon etilganlarni hisobga olgan holda, O'zbekiston Respublikasi Fuqarolik-protsessual kodeksiga asosan,{{/if_uzbek}}
+                {{#if_russian}}На основании изложенного и руководствуясь Гражданским процессуальным кодексом Республики Узбекистан,{{/if_russian}}
+            </p>
+            <p class="article-content" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                <strong>{{#if_uzbek}}ILTIMOS QILAMAN:{{/if_uzbek}}{{#if_russian}}ПРОШУ:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{petition}}</p>
+        </section>
+
+        {{#if attachments}}
+        <section class="article">
+            <p class="article-content">
+                <strong>{{#if_uzbek}}Ilovalar:{{/if_uzbek}}{{#if_russian}}Приложения:{{/if_russian}}</strong>
+            </p>
+            <p class="article-content">{{attachments}}</p>
+        </section>
+        {{/if}}
+
+        <section class="signatures" style="margin-top: 50px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                    <p>{{#if_uzbek}}Da'vogar:{{/if_uzbek}}{{#if_russian}}Истец:{{/if_russian}}</p>
+                    <p>{{plaintiff_name}}</p>
+                </div>
+                <div style="text-align: right;">
+                    <p>___________________</p>
+                    <p style="font-size: 10pt;">{{#if_uzbek}}(imzo){{/if_uzbek}}{{#if_russian}}(подпись){{/if_russian}}</p>
+                </div>
+            </div>
+            <p style="margin-top: 20px;">{{filing_date}}</p>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

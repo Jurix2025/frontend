@@ -1,0 +1,18 @@
+{
+  "name": "Direktor buyrug'i",
+  "name_en": "Director's Order",
+  "category": "corporate",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "company_name", "label": {"uzbek": "Tashkilot nomi", "russian": "Наименование организации"}, "type": "text", "required": true},
+    {"id": "order_number", "label": {"uzbek": "Buyruq raqami", "russian": "Номер приказа"}, "type": "text", "required": true},
+    {"id": "order_date", "label": {"uzbek": "Buyruq sanasi", "russian": "Дата приказа"}, "type": "date", "required": true},
+    {"id": "order_subject", "label": {"uzbek": "Buyruq mavzusi", "russian": "Тема приказа"}, "type": "text", "required": true},
+    {"id": "order_type", "label": {"uzbek": "Buyruq turi", "russian": "Тип приказа"}, "type": "select", "required": true, "options": [{"value": "administrative", "label": {"uzbek": "Ma'muriy", "russian": "Административный"}}, {"value": "financial", "label": {"uzbek": "Moliyaviy", "russian": "Финансовый"}}, {"value": "personnel", "label": {"uzbek": "Kadrlar bo'yicha", "russian": "Кадровый"}}, {"value": "organizational", "label": {"uzbek": "Tashkiliy", "russian": "Организационный"}}]},
+    {"id": "basis", "label": {"uzbek": "Asos (qonun, hujjat)", "russian": "Основание (закон, документ)"}, "type": "textarea", "required": false},
+    {"id": "order_content", "label": {"uzbek": "Buyruq matni", "russian": "Текст приказа"}, "type": "textarea", "required": true},
+    {"id": "responsible_person", "label": {"uzbek": "Mas'ul shaxs", "russian": "Ответственное лицо"}, "type": "text", "required": false},
+    {"id": "execution_deadline", "label": {"uzbek": "Bajarish muddati", "russian": "Срок исполнения"}, "type": "date", "required": false},
+    {"id": "director_name", "label": {"uzbek": "Direktor F.I.Sh.", "russian": "Ф.И.О. директора"}, "type": "text", "required": true}
+  ]
+}

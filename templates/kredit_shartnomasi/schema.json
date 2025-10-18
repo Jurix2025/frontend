@@ -1,0 +1,22 @@
+{
+  "name": "Kredit shartnomasi",
+  "name_en": "Loan Agreement",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "lender_name", "label": {"uzbek": "Kreditor nomi", "russian": "Наименование кредитора"}, "type": "text", "required": true},
+    {"id": "lender_license", "label": {"uzbek": "Litsenziya raqami", "russian": "Номер лицензии"}, "type": "text", "required": false},
+    {"id": "lender_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "borrower_name", "label": {"uzbek": "Qarz oluvchi F.I.Sh.", "russian": "Ф.И.О. заемщика"}, "type": "text", "required": true},
+    {"id": "borrower_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "borrower_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "loan_amount", "label": {"uzbek": "Kredit summasi (so'm)", "russian": "Сумма кредита (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "interest_rate", "label": {"uzbek": "Foiz stavkasi (%)", "russian": "Процентная ставка (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "loan_term", "label": {"uzbek": "Kredit muddati (oy)", "russian": "Срок кредита (мес.)"}, "type": "number", "required": true, "validation": {"min": 1}},
+    {"id": "issue_date", "label": {"uzbek": "Berish sanasi", "russian": "Дата выдачи"}, "type": "date", "required": true},
+    {"id": "repayment_date", "label": {"uzbek": "Qaytarish sanasi", "russian": "Дата возврата"}, "type": "date", "required": true},
+    {"id": "payment_schedule", "label": {"uzbek": "To'lov grafigi", "russian": "График платежей"}, "type": "select", "required": true, "options": [{"value": "monthly", "label": {"uzbek": "Oylik", "russian": "Ежемесячно"}}, {"value": "quarterly", "label": {"uzbek": "Choraklik", "russian": "Ежеквартально"}}, {"value": "annual", "label": {"uzbek": "Yillik", "russian": "Ежегодно"}}]},
+    {"id": "collateral", "label": {"uzbek": "Garov (agar mavjud bo'lsa)", "russian": "Залог (если имеется)"}, "type": "textarea", "required": false},
+    {"id": "loan_purpose", "label": {"uzbek": "Kredit maqsadi", "russian": "Цель кредита"}, "type": "textarea", "required": true}
+  ]
+}

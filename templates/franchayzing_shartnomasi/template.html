@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}FRANCHAYZING SHARTNOMASI{{/if_uzbek}}{{#if_russian}}ДОГОВОР ФРАНЧАЙЗИНГА{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}FRANCHAYZING SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}ДОГОВОР ФРАНЧАЙЗИНГА (КОММЕРЧЕСКОЙ КОНЦЕССИИ){{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{start_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{start_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">{{#if_uzbek}}Toshkent shahri{{/if_uzbek}}{{#if_russian}}г. Ташкент{{/if_russian}}</p>
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Franchayzer» deb ataluvchi <strong>{{franchisor_name}}</strong>,
+                STIR: <strong>{{franchisor_inn}}</strong>, manzil: <strong>{{franchisor_address}}</strong>,
+                bir tomondan va keyingi o'rinlarda «Franchayzi» deb ataluvchi <strong>{{franchisee_name}}</strong>,
+                STIR: <strong>{{franchisee_inn}}</strong>, manzil: <strong>{{franchisee_address}}</strong>,
+                ikkinchi tomondan, ushbu franchayzing shartnomasini quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                С одной стороны <strong>{{franchisor_name}}</strong>, ИНН: <strong>{{franchisor_inn}}</strong>,
+                адрес: <strong>{{franchisor_address}}</strong>, именуемый в дальнейшем «Франчайзер»,
+                и с другой стороны <strong>{{franchisee_name}}</strong>, ИНН: <strong>{{franchisee_inn}}</strong>,
+                адрес: <strong>{{franchisee_address}}</strong>, именуемый в дальнейшем «Франчайзи»,
+                заключили настоящий договор франчайзинга о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong> {{#if_uzbek}}Franchayzer Franchayzi'ga o'zining tijorat belgisi, brend va biznes modelidan foydalanish huquqini beradi.{{/if_uzbek}}
+                {{#if_russian}}Франчайзер предоставляет Франчайзи право использования своего товарного знака, бренда и бизнес-модели.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Brend nomi:{{/if_uzbek}}{{#if_russian}}Название бренда:{{/if_russian}} <strong>{{brand_name}}</strong>
+            </p>
+            <p class="article-content">
+                <strong>1.2.</strong> {{#if_uzbek}}Franchayzi'ga beriladigan hudud: <strong>{{territory}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Территория, предоставляемая Франчайзи: <strong>{{territory}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.3.</strong> {{#if_uzbek}}Shartnoma muddati: <strong>{{contract_term}}</strong> yil.{{/if_uzbek}}
+                {{#if_russian}}Срок действия договора: <strong>{{contract_term}}</strong> лет.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. MOLIYAVIY SHARTLAR{{/if_uzbek}}
+                {{#if_russian}}2. ФИНАНСОВЫЕ УСЛОВИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>2.1.</strong> {{#if_uzbek}}Boshlang'ich franchayzing to'lovi: <strong>{{initial_fee}}</strong> so'm.{{/if_uzbek}}
+                {{#if_russian}}Первоначальный паушальный взнос: <strong>{{initial_fee}}</strong> сум.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.2.</strong> {{#if_uzbek}}Royalti stavkasi: sotuvdan olingan daromadning <strong>{{royalty_rate}}%</strong>.{{/if_uzbek}}
+                {{#if_russian}}Ставка роялти: <strong>{{royalty_rate}}%</strong> от полученной выручки.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.3.</strong> {{#if_uzbek}}Royalti to'lash davri:{{/if_uzbek}}{{#if_russian}}Периодичность выплаты роялти:{{/if_russian}}
+                {{#if (eq royalty_period 'monthly')}}
+                    {{#if_uzbek}}har oyning 5-kuniga qadar{{/if_uzbek}}{{#if_russian}}до 5 числа каждого месяца{{/if_russian}}
+                {{/if}}
+                {{#if (eq royalty_period 'quarterly')}}
+                    {{#if_uzbek}}har chorakning oxirgi kunidan keyin 10 kun ichida{{/if_uzbek}}{{#if_russian}}в течение 10 дней после окончания квартала{{/if_russian}}
+                {{/if}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. FRANCHAYZER MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}3. ОБЯЗАННОСТИ ФРАНЧАЙЗЕРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Franchayzer quyidagi xizmatlarni taqdim etishni o'z zimmasiga oladi:{{/if_uzbek}}
+                {{#if_russian}}Франчайзер обязуется предоставить следующие услуги:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>{{#if_uzbek}}Tijorat belgisi va brend nomlashidan foydalanish huquqi;{{/if_uzbek}}{{#if_russian}}Право использования товарного знака и фирменного наименования;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Biznes modelidan foydalanish bo'yicha yo'riqnoma;{{/if_uzbek}}{{#if_russian}}Руководство по использованию бизнес-модели;{{/if_russian}}</li>
+                {{#if training_provided}}
+                <li>{{#if_uzbek}}Xodimlarni o'qitish va tayyorlash;{{/if_uzbek}}{{#if_russian}}Обучение и подготовка персонала;{{/if_russian}}</li>
+                {{/if}}
+                {{#if marketing_support}}
+                <li>{{#if_uzbek}}Marketing va reklama yordami;{{/if_uzbek}}{{#if_russian}}Маркетинговая и рекламная поддержка;{{/if_russian}}</li>
+                {{/if}}
+                <li>{{#if_uzbek}}Texnik yordam va maslahat.{{/if_uzbek}}{{#if_russian}}Техническая помощь и консультации.{{/if_russian}}</li>
+            </ul>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. FRANCHAYZI MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}4. ОБЯЗАННОСТИ ФРАНЧАЙЗИ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong> {{#if_uzbek}}Franchayzi quyidagi majburiyatlarni oladi:{{/if_uzbek}}
+                {{#if_russian}}Франчайзи принимает на себя следующие обязательства:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>{{#if_uzbek}}Franchayzer tomonidan belgilangan standartlarga rioya qilish;{{/if_uzbek}}{{#if_russian}}Соблюдение стандартов, установленных Франчайзером;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Royalti to'lovlarini o'z vaqtida amalga oshirish;{{/if_uzbek}}{{#if_russian}}Своевременное осуществление платежей роялти;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Brend imidjini saqlash va rivojlantirish;{{/if_uzbek}}{{#if_russian}}Поддержание и развитие имиджа бренда;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Moliyaviy hisobotlarni muntazam taqdim etish;{{/if_uzbek}}{{#if_russian}}Регулярное предоставление финансовых отчетов;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Tijorat sirlarini saqlash.{{/if_uzbek}}{{#if_russian}}Сохранение коммерческой тайны.{{/if_russian}}</li>
+            </ul>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}5. INTELLEKTUAL MULK HUQUQLARI{{/if_uzbek}}
+                {{#if_russian}}5. ПРАВА ИНТЕЛЛЕКТУАЛЬНОЙ СОБСТВЕННОСТИ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>5.1.</strong> {{#if_uzbek}}Tijorat belgisi, brend va barcha intellektual mulk huquqlari Franchayzerga tegishli.{{/if_uzbek}}
+                {{#if_russian}}Товарный знак, бренд и все права интеллектуальной собственности принадлежат Франчайзеру.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>5.2.</strong> {{#if_uzbek}}Franchayzi faqat ushbu shartnoma doirasida va belgilangan hududda ushbu huquqlardan foydalanish huquqiga ega.{{/if_uzbek}}
+                {{#if_russian}}Франчайзи имеет право использовать эти права только в рамках настоящего договора и на указанной территории.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}6. SHARTNOMANI BEKOR QILISH{{/if_uzbek}}
+                {{#if_russian}}6. РАСТОРЖЕНИЕ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>6.1.</strong> {{#if_uzbek}}Shartnoma tomonlarning o'zaro kelishuvi yoki qonunda belgilangan asoslarga ko'ra bekor qilinishi mumkin.{{/if_uzbek}}
+                {{#if_russian}}Договор может быть расторгнут по взаимному согласию сторон или по основаниям, предусмотренным законом.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>6.2.</strong> {{#if_uzbek}}Shartnoma tugagandan so'ng Franchayzi tijorat belgisi va brend nomidan foydalanishni to'xtatadi.{{/if_uzbek}}
+                {{#if_russian}}После прекращения договора Франчайзи прекращает использование товарного знака и фирменного наименования.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}7. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}7. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>7.1.</strong> {{#if_uzbek}}Shartnoma 2 nusxada tuzildi, har bir tomon uchun bittadan.{{/if_uzbek}}
+                {{#if_russian}}Договор составлен в 2 экземплярах, по одному для каждой стороны.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>7.2.</strong> {{#if_uzbek}}Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.{{/if_uzbek}}
+                {{#if_russian}}Все вопросы, не урегулированные настоящим договором, разрешаются в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}TOMONLARNING REKVIZITLARI VA IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ СТОРОН{{/if_russian}}
+            </h2>
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Franchayzer:{{/if_uzbek}}{{#if_russian}}Франчайзер:{{/if_russian}}</h3>
+                    <p>{{franchisor_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{franchisor_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{franchisor_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{franchisor_name}} /</p></div>
+                </div>
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Franchayzi:{{/if_uzbek}}{{#if_russian}}Франчайзи:{{/if_russian}}</h3>
+                    <p>{{franchisee_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{franchisee_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{franchisee_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{franchisee_name}} /</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

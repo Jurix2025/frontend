@@ -1,0 +1,19 @@
+{
+  "name": "Yer uchastkasi shartnomasi",
+  "name_en": "Land Plot Agreement",
+  "category": "property",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "grantor_name", "label": {"uzbek": "Beruvchi tomon (davlat organi/shaxs)", "russian": "Предоставляющая сторона (госорган/лицо)"}, "type": "text", "required": true},
+    {"id": "grantee_name", "label": {"uzbek": "Oluvchi tomon F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование получателя"}, "type": "text", "required": true},
+    {"id": "grantee_passport", "label": {"uzbek": "Pasport/STIR", "russian": "Паспорт/ИНН"}, "type": "text", "required": true},
+    {"id": "land_location", "label": {"uzbek": "Yer uchastkasi joylashuvi", "russian": "Местонахождение земельного участка"}, "type": "text", "required": true},
+    {"id": "cadastral_number", "label": {"uzbek": "Kadastr raqami", "russian": "Кадастровый номер"}, "type": "text", "required": true},
+    {"id": "land_area", "label": {"uzbek": "Maydoni (gektar yoki kv.m)", "russian": "Площадь (га или кв.м)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "land_purpose", "label": {"uzbek": "Maqsadi", "russian": "Целевое назначение"}, "type": "select", "required": true, "options": [{"value": "agriculture", "label": {"uzbek": "Qishloq xo'jalik", "russian": "Сельское хозяйство"}}, {"value": "residential", "label": {"uzbek": "Turar joy qurilish", "russian": "Жилищное строительство"}}, {"value": "commercial", "label": {"uzbek": "Tijorat maqsadlari", "russian": "Коммерческие цели"}}, {"value": "industrial", "label": {"uzbek": "Sanoat", "russian": "Промышленность"}}]},
+    {"id": "term_type", "label": {"uzbek": "Foydalanish muddati", "russian": "Срок пользования"}, "type": "select", "required": true, "options": [{"value": "permanent", "label": {"uzbek": "Doimiy", "russian": "Постоянное"}}, {"value": "temporary", "label": {"uzbek": "Vaqtinchalik", "russian": "Временное"}}]},
+    {"id": "term_years", "label": {"uzbek": "Muddat (yil, vaqtinchalik uchun)", "russian": "Срок (лет, для временного)"}, "type": "number", "required": false, "validation": {"min": 1}},
+    {"id": "annual_fee", "label": {"uzbek": "Yillik to'lov (so'm)", "russian": "Ежегодная плата (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "agreement_date", "label": {"uzbek": "Shartnoma sanasi", "russian": "Дата договора"}, "type": "date", "required": true}
+  ]
+}

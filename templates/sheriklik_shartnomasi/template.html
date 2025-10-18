@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}SHERIKLIK SHARTNOMASI{{/if_uzbek}}{{#if_russian}}ДОГОВОР О ПАРТНЕРСТВЕ{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}SHERIKLIK SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}ДОГОВОР О ПАРТНЕРСТВЕ{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{start_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{start_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">{{#if_uzbek}}Toshkent shahri{{/if_uzbek}}{{#if_russian}}г. Ташкент{{/if_russian}}</p>
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Birinchi sherik» deb ataluvchi <strong>{{partner1_name}}</strong>
+                va keyingi o'rinlarda «Ikkinchi sherik» deb ataluvchi <strong>{{partner2_name}}</strong>,
+                ushbu sheriklik shartnomasini quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                <strong>{{partner1_name}}</strong>, именуемый в дальнейшем «Первый партнер»,
+                и <strong>{{partner2_name}}</strong>, именуемый в дальнейшем «Второй партнер»,
+                заключили настоящий договор о партнерстве о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong> {{#if_uzbek}}Sheriklar quyidagi biznesni birgalikda yuritish to'g'risida kelishuvga erishdilar:{{/if_uzbek}}
+                {{#if_russian}}Партнеры договорились о совместном ведении следующего бизнеса:{{/if_russian}}
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Biznes nomi:{{/if_uzbek}}{{#if_russian}}Название бизнеса:{{/if_russian}} <strong>{{business_name}}</strong>
+            </p>
+            <p class="article-content">
+                <strong>1.2.</strong> {{#if_uzbek}}Faoliyat turi:{{/if_uzbek}}{{#if_russian}}Вид деятельности:{{/if_russian}}
+            </p>
+            <p class="article-content">{{business_activity}}</p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. SHERIKLAR HISSALARI VA KAPITAL{{/if_uzbek}}
+                {{#if_russian}}2. ВКЛАДЫ И КАПИТАЛ ПАРТНЕРОВ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>2.1.</strong> {{#if_uzbek}}Umumiy kapital summasi: <strong>{{total_capital}}</strong> so'm.{{/if_uzbek}}
+                {{#if_russian}}Общая сумма капитала: <strong>{{total_capital}}</strong> сум.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.2.</strong> {{#if_uzbek}}Birinchi sherikning hissasi:{{/if_uzbek}}{{#if_russian}}Вклад Первого партнера:{{/if_russian}}
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Summa:{{/if_uzbek}}{{#if_russian}}Сумма:{{/if_russian}} <strong>{{partner1_contribution}}</strong> {{#if_uzbek}}so'm{{/if_uzbek}}{{#if_russian}}сум{{/if_russian}}<br>
+                {{#if_uzbek}}Ulush:{{/if_uzbek}}{{#if_russian}}Доля:{{/if_russian}} <strong>{{partner1_share}}%</strong>
+            </p>
+            <p class="article-content">
+                <strong>2.3.</strong> {{#if_uzbek}}Ikkinchi sherikning hissasi:{{/if_uzbek}}{{#if_russian}}Вклад Второго партнера:{{/if_russian}}
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Summa:{{/if_uzbek}}{{#if_russian}}Сумма:{{/if_russian}} <strong>{{partner2_contribution}}</strong> {{#if_uzbek}}so'm{{/if_uzbek}}{{#if_russian}}сум{{/if_russian}}<br>
+                {{#if_uzbek}}Ulush:{{/if_uzbek}}{{#if_russian}}Доля:{{/if_russian}} <strong>{{partner2_share}}%</strong>
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. FOYDA VA ZARAR TAQSIMOTI{{/if_uzbek}}
+                {{#if_russian}}3. РАСПРЕДЕЛЕНИЕ ПРИБЫЛИ И УБЫТКОВ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Foyda va zarar quyidagi tartibda taqsimlanadi:{{/if_uzbek}}
+                {{#if_russian}}Прибыль и убытки распределяются следующим образом:{{/if_russian}}
+            </p>
+            <p class="article-content">{{profit_distribution}}</p>
+            <p class="article-content">
+                <strong>3.2.</strong> {{#if_uzbek}}Foyda taqsimoti yil oxirida hisobot asosida amalga oshiriladi.{{/if_uzbek}}
+                {{#if_russian}}Распределение прибыли осуществляется по итогам года на основании отчета.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. BOSHQARUV VA QAROR QABUL QILISH{{/if_uzbek}}
+                {{#if_russian}}4. УПРАВЛЕНИЕ И ПРИНЯТИЕ РЕШЕНИЙ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong> {{#if_uzbek}}Qaror qabul qilish tartibi:{{/if_uzbek}}
+                {{#if_russian}}Порядок принятия решений:{{/if_russian}}
+            </p>
+            <p class="article-content">{{decision_making}}</p>
+            <p class="article-content">
+                <strong>4.2.</strong> {{#if_uzbek}}Har bir sherik biznes boshqaruvida faol ishtirok etish huquqiga ega.{{/if_uzbek}}
+                {{#if_russian}}Каждый партнер имеет право на активное участие в управлении бизнесом.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}5. SHERIKLAR HUQUQ VA MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}5. ПРАВА И ОБЯЗАННОСТИ ПАРТНЕРОВ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>5.1.</strong> {{#if_uzbek}}Sheriklar quyidagi huquqlarga ega:{{/if_uzbek}}
+                {{#if_russian}}Партнеры имеют следующие права:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>{{#if_uzbek}}Biznes boshqaruvida ishtirok etish;{{/if_uzbek}}{{#if_russian}}Участие в управлении бизнесом;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Moliyaviy ma'lumotlarni olish;{{/if_uzbek}}{{#if_russian}}Получение финансовой информации;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Foyda olish.{{/if_uzbek}}{{#if_russian}}Получение прибыли.{{/if_russian}}</li>
+            </ul>
+            <p class="article-content">
+                <strong>5.2.</strong> {{#if_uzbek}}Sheriklar quyidagi majburiyatlarga ega:{{/if_uzbek}}
+                {{#if_russian}}Партнеры несут следующие обязанности:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>{{#if_uzbek}}O'z hissalarini to'liq to'lash;{{/if_uzbek}}{{#if_russian}}Полностью внести свои вклады;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Biznes manfaatlarini himoya qilish;{{/if_uzbek}}{{#if_russian}}Защищать интересы бизнеса;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Birgalikda qaror qabul qilish.{{/if_uzbek}}{{#if_russian}}Принимать решения совместно.{{/if_russian}}</li>
+            </ul>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}6. SHARTNOMANI BEKOR QILISH{{/if_uzbek}}
+                {{#if_russian}}6. РАСТОРЖЕНИЕ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>6.1.</strong> {{#if_uzbek}}Shartnoma tomonlarning o'zaro kelishuvi bilan bekor qilinishi mumkin.{{/if_uzbek}}
+                {{#if_russian}}Договор может быть расторгнут по взаимному согласию сторон.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>6.2.</strong> {{#if_uzbek}}Shartnomani bir tomonlama bekor qilish uchun ikkinchi sherikka oldindan 30 kun muddatda xabarnoma berilishi shart.{{/if_uzbek}}
+                {{#if_russian}}Для одностороннего расторжения договора необходимо уведомить другого партнера за 30 дней.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}7. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}7. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>7.1.</strong> {{#if_uzbek}}Shartnoma 2 nusxada tuzildi, har bir sherik uchun bittadan.{{/if_uzbek}}
+                {{#if_russian}}Договор составлен в 2 экземплярах, по одному для каждого партнера.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>7.2.</strong> {{#if_uzbek}}Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.{{/if_uzbek}}
+                {{#if_russian}}Все вопросы, не урегулированные настоящим договором, разрешаются в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}SHERIKLAR IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}ПОДПИСИ ПАРТНЕРОВ{{/if_russian}}
+            </h2>
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Birinchi sherik:{{/if_uzbek}}{{#if_russian}}Первый партнер:{{/if_russian}}</h3>
+                    <p>{{partner1_name}}</p>
+                    <p>{{#if_uzbek}}Hissa:{{/if_uzbek}}{{#if_russian}}Вклад:{{/if_russian}} {{partner1_contribution}} {{#if_uzbek}}so'm{{/if_uzbek}}{{#if_russian}}сум{{/if_russian}} ({{partner1_share}}%)</p>
+                    <div class="signature-line"><p>___________________ / {{partner1_name}} /</p></div>
+                </div>
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Ikkinchi sherik:{{/if_uzbek}}{{#if_russian}}Второй партнер:{{/if_russian}}</h3>
+                    <p>{{partner2_name}}</p>
+                    <p>{{#if_uzbek}}Hissa:{{/if_uzbek}}{{#if_russian}}Вклад:{{/if_russian}} {{partner2_contribution}} {{#if_uzbek}}so'm{{/if_uzbek}}{{#if_russian}}сум{{/if_russian}} ({{partner2_share}}%)</p>
+                    <div class="signature-line"><p>___________________ / {{partner2_name}} /</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

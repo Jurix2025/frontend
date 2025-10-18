@@ -1,0 +1,20 @@
+{
+  "name": "Sheriklik shartnomasi",
+  "name_en": "Partnership Agreement",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "partner1_name", "label": {"uzbek": "1-sherik F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование 1-го партнера"}, "type": "text", "required": true},
+    {"id": "partner1_contribution", "label": {"uzbek": "Hissasi (so'm)", "russian": "Доля вклада (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "partner1_share", "label": {"uzbek": "Ulush (%)", "russian": "Доля (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "partner2_name", "label": {"uzbek": "2-sherik F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование 2-го партнера"}, "type": "text", "required": true},
+    {"id": "partner2_contribution", "label": {"uzbek": "Hissasi (so'm)", "russian": "Доля вклада (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "partner2_share", "label": {"uzbek": "Ulush (%)", "russian": "Доля (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "business_name", "label": {"uzbek": "Biznes nomi", "russian": "Название бизнеса"}, "type": "text", "required": true},
+    {"id": "business_activity", "label": {"uzbek": "Faoliyat turi", "russian": "Вид деятельности"}, "type": "textarea", "required": true},
+    {"id": "total_capital", "label": {"uzbek": "Umumiy kapital (so'm)", "russian": "Общий капитал (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "profit_distribution", "label": {"uzbek": "Foyda taqsimoti", "russian": "Распределение прибыли"}, "type": "textarea", "required": true},
+    {"id": "decision_making", "label": {"uzbek": "Qaror qabul qilish tartibi", "russian": "Порядок принятия решений"}, "type": "textarea", "required": true},
+    {"id": "start_date", "label": {"uzbek": "Boshlanish sanasi", "russian": "Дата начала"}, "type": "date", "required": true}
+  ]
+}

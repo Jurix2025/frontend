@@ -1,13 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { PDFPreview } from '@/components/PDFPreview';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import { PDFTemplate } from '@/components/PDFTemplate';
+import { DynamicForm } from '@/components/DynamicForm';
+import { TemplatePreview } from '@/components/TemplatePreview';
+import { loadTemplate, DocumentTemplate } from '@/lib/templateLoader';
 
 type DocumentType = 'lease' | 'nda' | 'contract' | 'will' | 'petition' | null;
 type Language = 'uzbek' | 'russian';
+
+// Map UI document types to template IDs
+const DOCUMENT_TYPE_TO_TEMPLATE: Record<string, string> = {
+  'lease': 'ijara_shartnomasi',
+  // Add more mappings as templates become available
+};
 
 const documentTypes = [
   {
@@ -50,292 +56,111 @@ const documentTypes = [
 export default function GeneratePage() {
   const [selectedDoc, setSelectedDoc] = useState<DocumentType>(null);
   const [language, setLanguage] = useState<Language>('uzbek');
-  const [formData, setFormData] = useState<Record<string, string>>({});
+  const [formData, setFormData] = useState<Record<string, string | boolean>>({});
+  const [template, setTemplate] = useState<DocumentTemplate | null>(null);
+  const [isLoadingTemplate, setIsLoadingTemplate] = useState(false);
+
+  // Load template when document type is selected
+  useEffect(() => {
+    if (selectedDoc) {
+      const templateId = DOCUMENT_TYPE_TO_TEMPLATE[selectedDoc];
+
+      if (templateId) {
+        setIsLoadingTemplate(true);
+        loadTemplate(templateId)
+          .then(setTemplate)
+          .catch((error) => {
+            console.error('Failed to load template:', error);
+            alert('Failed to load template. Please try again.');
+          })
+          .finally(() => setIsLoadingTemplate(false));
+      } else {
+        // No template available for this document type yet
+        setTemplate(null);
+      }
+    } else {
+      setTemplate(null);
+      setFormData({});
+    }
+  }, [selectedDoc]);
+
+  const handleFieldChange = (fieldId: string, value: string | boolean) => {
+    setFormData((prev) => ({
+      ...prev,
+      [fieldId]: value,
+    }));
+  };
 
   const renderForm = () => {
     if (!selectedDoc) return null;
 
-    const commonFields = (
-      <div className="space-y-6">
-        <div>
-          <label className="block text-white font-semibold mb-2">Document Language</label>
-          <div className="flex gap-4">
-            <button
-              type="button"
-              onClick={() => setLanguage('uzbek')}
-              className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all ${
-                language === 'uzbek'
-                  ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
-              }`}
-            >
-              🇺🇿 Uzbek
-            </button>
-            <button
-              type="button"
-              onClick={() => setLanguage('russian')}
-              className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all ${
-                language === 'russian'
-                  ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
-                  : 'bg-white/10 text-gray-300 hover:bg-white/20'
-              }`}
-            >
-              🇷🇺 Russian
-            </button>
-          </div>
+    // Language selector - always shown
+    const languageSelector = (
+      <div className="mb-6">
+        <label className="block text-white font-semibold mb-2">Document Language</label>
+        <div className="flex gap-4">
+          <button
+            type="button"
+            onClick={() => setLanguage('uzbek')}
+            className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all ${
+              language === 'uzbek'
+                ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
+                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+            }`}
+          >
+            🇺🇿 Uzbek
+          </button>
+          <button
+            type="button"
+            onClick={() => setLanguage('russian')}
+            className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all ${
+              language === 'russian'
+                ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg'
+                : 'bg-white/10 text-gray-300 hover:bg-white/20'
+            }`}
+          >
+            🇷🇺 Russian
+          </button>
         </div>
       </div>
     );
 
-    switch (selectedDoc) {
-      case 'lease':
-        return (
-          <div className="space-y-6">
-            {commonFields}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-semibold mb-2">Landlord Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter landlord name"
-                  onChange={(e) => setFormData({ ...formData, landlord: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-white font-semibold mb-2">Tenant Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter tenant name"
-                  onChange={(e) => setFormData({ ...formData, tenant: e.target.value })}
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Property Address</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Enter property address"
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-              />
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-semibold mb-2">Monthly Rent (UZS)</label>
-                <input
-                  type="number"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter monthly rent"
-                  onChange={(e) => setFormData({ ...formData, rent: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-white font-semibold mb-2">Lease Duration</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="e.g., 1 year"
-                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                />
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'nda':
-        return (
-          <div className="space-y-6">
-            {commonFields}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-semibold mb-2">Party One</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter first party name"
-                  onChange={(e) => setFormData({ ...formData, party1: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-white font-semibold mb-2">Party Two</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter second party name"
-                  onChange={(e) => setFormData({ ...formData, party2: e.target.value })}
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Purpose of Disclosure</label>
-              <textarea
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Describe the purpose"
-                rows={3}
-                onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Confidentiality Duration</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="e.g., 3 years"
-                onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-              />
-            </div>
-          </div>
-        );
-
-      case 'contract':
-        return (
-          <div className="space-y-6">
-            {commonFields}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-semibold mb-2">Party One</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter first party name"
-                  onChange={(e) => setFormData({ ...formData, party1: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-white font-semibold mb-2">Party Two</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter second party name"
-                  onChange={(e) => setFormData({ ...formData, party2: e.target.value })}
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Scope of Work/Services</label>
-              <textarea
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Describe the services or work"
-                rows={4}
-                onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-              />
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-semibold mb-2">Payment Amount (UZS)</label>
-                <input
-                  type="number"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Enter payment amount"
-                  onChange={(e) => setFormData({ ...formData, payment: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-white font-semibold mb-2">Contract Duration</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="e.g., 6 months"
-                  onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                />
-              </div>
-            </div>
-          </div>
-        );
-
-      case 'will':
-        return (
-          <div className="space-y-6">
-            {commonFields}
-            <div>
-              <label className="block text-white font-semibold mb-2">Testator Name (Your Name)</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Enter your full name"
-                onChange={(e) => setFormData({ ...formData, testator: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Executor Name</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Person to execute the will"
-                onChange={(e) => setFormData({ ...formData, executor: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Assets & Bequests</label>
-              <textarea
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Describe assets and how they should be distributed"
-                rows={5}
-                onChange={(e) => setFormData({ ...formData, bequests: e.target.value })}
-              />
-            </div>
-          </div>
-        );
-
-      case 'petition':
-        return (
-          <div className="space-y-6">
-            {commonFields}
-            <div>
-              <label className="block text-white font-semibold mb-2">Court Name</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="e.g., Tashkent City Court"
-                onChange={(e) => setFormData({ ...formData, court: e.target.value })}
-              />
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Petition Type</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="e.g., Divorce, Civil Claim, etc."
-                onChange={(e) => setFormData({ ...formData, petitionType: e.target.value })}
-              />
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-white font-semibold mb-2">Petitioner Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Your name"
-                  onChange={(e) => setFormData({ ...formData, petitioner: e.target.value })}
-                />
-              </div>
-              <div>
-                <label className="block text-white font-semibold mb-2">Respondent Name</label>
-                <input
-                  type="text"
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  placeholder="Other party name"
-                  onChange={(e) => setFormData({ ...formData, respondent: e.target.value })}
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-white font-semibold mb-2">Grounds for Petition</label>
-              <textarea
-                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                placeholder="Explain the grounds for your petition"
-                rows={5}
-                onChange={(e) => setFormData({ ...formData, grounds: e.target.value })}
-              />
-            </div>
-          </div>
-        );
-
-      default:
-        return null;
+    // If template is loaded, use DynamicForm
+    if (template) {
+      return (
+        <div className="space-y-6">
+          {languageSelector}
+          <DynamicForm
+            fields={template.schema.fields}
+            language={language}
+            formData={formData}
+            onFieldChange={handleFieldChange}
+          />
+        </div>
+      );
     }
+
+    // If template is loading, show loading state
+    if (isLoadingTemplate) {
+      return (
+        <div className="space-y-6">
+          {languageSelector}
+          <div className="text-center py-12 text-gray-300">
+            Loading template...
+          </div>
+        </div>
+      );
+    }
+
+    // If no template available, show message
+    return (
+      <div className="space-y-6">
+        {languageSelector}
+        <div className="text-center py-12 text-gray-300">
+          Template not yet available for this document type.
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -425,34 +250,29 @@ export default function GeneratePage() {
                 </div>
               </div>
 
-              {/* Split View: PDF Preview (Left) + Form (Right) */}
+              {/* Split View: Template Preview (Left) + Form (Right) */}
               <div className="grid lg:grid-cols-2 gap-6 mb-6">
-                {/* Left: PDF Preview */}
+                {/* Left: Template Preview */}
                 <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <h3 className="text-xl font-bold text-white">Live Preview</h3>
-                    {Object.values(formData).some(v => v && v.trim() !== '') && (
-                      <PDFDownloadLink
-                        document={
-                          <PDFTemplate
-                            documentType={selectedDoc || ''}
-                            language={language}
-                            formData={formData}
-                          />
-                        }
-                        fileName={`${selectedDoc}_${new Date().toISOString().split('T')[0]}.pdf`}
-                        className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all text-sm"
-                      >
-                        {({ loading }) => (loading ? 'Preparing...' : 'Download PDF')}
-                      </PDFDownloadLink>
-                    )}
                   </div>
                   <div className="bg-gray-50 rounded-lg" style={{ height: '800px' }}>
-                    <PDFPreview
-                      documentType={selectedDoc || ''}
-                      language={language}
-                      formData={formData}
-                    />
+                    {template ? (
+                      <TemplatePreview
+                        templateHtml={template.templateHtml}
+                        formData={formData}
+                        language={language}
+                      />
+                    ) : isLoadingTemplate ? (
+                      <div className="flex items-center justify-center h-full text-gray-500">
+                        Loading template...
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-gray-500">
+                        Template not available
+                      </div>
+                    )}
                   </div>
                 </div>
 

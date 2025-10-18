@@ -1,0 +1,21 @@
+{
+  "name": "Ijaraga berish shartnomasi (ko'chmas mulk)",
+  "name_en": "Rental Agreement (Real Estate)",
+  "category": "property",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "lessor_name", "label": {"uzbek": "Ijaraga beruvchi F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование арендодателя"}, "type": "text", "required": true},
+    {"id": "lessor_passport", "label": {"uzbek": "Pasport/STIR", "russian": "Паспорт/ИНН"}, "type": "text", "required": true},
+    {"id": "lessee_name", "label": {"uzbek": "Ijarachi F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование арендатора"}, "type": "text", "required": true},
+    {"id": "lessee_passport", "label": {"uzbek": "Pasport/STIR", "russian": "Паспорт/ИНН"}, "type": "text", "required": true},
+    {"id": "property_address", "label": {"uzbek": "Mulk manzili", "russian": "Адрес недвижимости"}, "type": "text", "required": true},
+    {"id": "property_description", "label": {"uzbek": "Mulk tavsifi", "russian": "Описание недвижимости"}, "type": "textarea", "required": true},
+    {"id": "property_area", "label": {"uzbek": "Maydoni (kv.m)", "russian": "Площадь (кв.м)"}, "type": "number", "required": true, "validation": {"min": 1}},
+    {"id": "monthly_rent", "label": {"uzbek": "Oylik ijara haqi (so'm)", "russian": "Ежемесячная арендная плата (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "deposit", "label": {"uzbek": "Kafolat puli (so'm)", "russian": "Залоговая сумма (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "utilities_included", "label": {"uzbek": "Kommunal to'lovlar kiritilganmi?", "russian": "Коммунальные услуги включены?"}, "type": "boolean", "required": true},
+    {"id": "start_date", "label": {"uzbek": "Boshlanish sanasi", "russian": "Дата начала"}, "type": "date", "required": true},
+    {"id": "end_date", "label": {"uzbek": "Tugash sanasi", "russian": "Дата окончания"}, "type": "date", "required": true},
+    {"id": "special_conditions", "label": {"uzbek": "Maxsus shartlar", "russian": "Особые условия"}, "type": "textarea", "required": false}
+  ]
+}

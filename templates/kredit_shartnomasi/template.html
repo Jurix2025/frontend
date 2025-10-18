@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}KREDIT SHARTNOMASI{{/if_uzbek}}{{#if_russian}}КРЕДИТНЫЙ ДОГОВОР{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}KREDIT SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}КРЕДИТНЫЙ ДОГОВОР{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{issue_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{issue_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">{{#if_uzbek}}Toshkent shahri{{/if_uzbek}}{{#if_russian}}г. Ташкент{{/if_russian}}</p>
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Kreditor» deb ataluvchi <strong>{{lender_name}}</strong>,
+                {{#if lender_license}}Litsenziya: <strong>{{lender_license}}</strong>,{{/if}}
+                manzil: <strong>{{lender_address}}</strong>, bir tomondan va
+                keyingi o'rinlarda «Qarz oluvchi» deb ataluvchi <strong>{{borrower_name}}</strong>,
+                pasport: <strong>{{borrower_passport}}</strong>, manzil: <strong>{{borrower_address}}</strong>,
+                ikkinchi tomondan, ushbu kredit shartnomasini quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                С одной стороны <strong>{{lender_name}}</strong>,
+                {{#if lender_license}}Лицензия: <strong>{{lender_license}}</strong>,{{/if}}
+                адрес: <strong>{{lender_address}}</strong>, именуемый в дальнейшем «Кредитор»,
+                и с другой стороны <strong>{{borrower_name}}</strong>, паспорт: <strong>{{borrower_passport}}</strong>,
+                адрес: <strong>{{borrower_address}}</strong>, именуемый в дальнейшем «Заемщик»,
+                заключили настоящий кредитный договор о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong> {{#if_uzbek}}Kreditor Qarz oluvchiga quyidagi miqdorda kredit berishni o'z zimmasiga oladi:{{/if_uzbek}}
+                {{#if_russian}}Кредитор обязуется предоставить Заемщику кредит в следующем размере:{{/if_russian}}
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Kredit summasi:{{/if_uzbek}}{{#if_russian}}Сумма кредита:{{/if_russian}} <strong>{{loan_amount}}</strong> {{#if_uzbek}}so'm{{/if_uzbek}}{{#if_russian}}сум{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.2.</strong> {{#if_uzbek}}Kredit maqsadi:{{/if_uzbek}}{{#if_russian}}Цель кредита:{{/if_russian}} {{loan_purpose}}
+            </p>
+            <p class="article-content">
+                <strong>1.3.</strong> {{#if_uzbek}}Foiz stavkasi: <strong>{{interest_rate}}%</strong> yillik.{{/if_uzbek}}
+                {{#if_russian}}Процентная ставка: <strong>{{interest_rate}}%</strong> годовых.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.4.</strong> {{#if_uzbek}}Kredit muddati: <strong>{{loan_term}}</strong> oy.{{/if_uzbek}}
+                {{#if_russian}}Срок кредита: <strong>{{loan_term}}</strong> мес.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. KREDITNI BERISH VA QAYTARISH TARTIBI{{/if_uzbek}}
+                {{#if_russian}}2. ПОРЯДОК ВЫДАЧИ И ВОЗВРАТА КРЕДИТА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>2.1.</strong> {{#if_uzbek}}Kredit berish sanasi: <strong>{{issue_date}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Дата выдачи кредита: <strong>{{issue_date}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.2.</strong> {{#if_uzbek}}Kreditni qaytarish sanasi: <strong>{{repayment_date}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Дата возврата кредита: <strong>{{repayment_date}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.3.</strong> {{#if_uzbek}}To'lov grafigi:{{/if_uzbek}}{{#if_russian}}График платежей:{{/if_russian}}
+                {{#if (eq payment_schedule 'monthly')}}
+                    {{#if_uzbek}}oylik{{/if_uzbek}}{{#if_russian}}ежемесячно{{/if_russian}}
+                {{/if}}
+                {{#if (eq payment_schedule 'quarterly')}}
+                    {{#if_uzbek}}choraklik{{/if_uzbek}}{{#if_russian}}ежеквартально{{/if_russian}}
+                {{/if}}
+                {{#if (eq payment_schedule 'annual')}}
+                    {{#if_uzbek}}yillik{{/if_uzbek}}{{#if_russian}}ежегодно{{/if_russian}}
+                {{/if}}
+            </p>
+            <p class="article-content">
+                <strong>2.4.</strong> {{#if_uzbek}}Qarz oluvchi kreditni va foizlarni grafik bo'yicha qaytarish majburiyatini oladi.{{/if_uzbek}}
+                {{#if_russian}}Заемщик обязуется возвращать кредит и проценты согласно графику.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. GAROV{{/if_uzbek}}
+                {{#if_russian}}3. ЗАЛОГ{{/if_russian}}
+            </h2>
+            {{#if collateral}}
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Kredit quyidagi garov bilan ta'minlanadi:{{/if_uzbek}}
+                {{#if_russian}}Кредит обеспечивается следующим залогом:{{/if_russian}}
+            </p>
+            <p class="article-content">{{collateral}}</p>
+            {{else}}
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Ushbu shartnoma bo'yicha garov talab qilinmaydi.{{/if_uzbek}}
+                {{#if_russian}}По настоящему договору залог не требуется.{{/if_russian}}
+            </p>
+            {{/if}}
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. TOMONLARNING HUQUQ VA MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}4. ПРАВА И ОБЯЗАННОСТИ СТОРОН{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong> {{#if_uzbek}}Kreditor belgilangan muddatda kreditni berishni ta'minlaydi.{{/if_uzbek}}
+                {{#if_russian}}Кредитор обеспечивает выдачу кредита в установленный срок.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>4.2.</strong> {{#if_uzbek}}Qarz oluvchi kreditni faqat belgilangan maqsadda ishlatishni va to'lovlarni o'z vaqtida amalga oshirishni kafolatlaydi.{{/if_uzbek}}
+                {{#if_russian}}Заемщик гарантирует использование кредита только по назначению и своевременное осуществление платежей.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>4.3.</strong> {{#if_uzbek}}Qarz oluvchi Kreditorning so'rovi bo'yicha kredit maqsadli ishlatilganligini tasdiqlovchi hujjatlarni taqdim etadi.{{/if_uzbek}}
+                {{#if_russian}}Заемщик по требованию Кредитора предоставляет документы, подтверждающие целевое использование кредита.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}5. MAS'ULIYAT{{/if_uzbek}}
+                {{#if_russian}}5. ОТВЕТСТВЕННОСТЬ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>5.1.</strong> {{#if_uzbek}}To'lovlarni kechiktirgan taqdirda, Qarz oluvchi har bir kechiktirilgan kun uchun qarz summasining 0.5% miqdorida jarima to'laydi.{{/if_uzbek}}
+                {{#if_russian}}В случае просрочки платежей Заемщик уплачивает штраф в размере 0.5% от суммы задолженности за каждый день просрочки.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>5.2.</strong> {{#if_uzbek}}Shartnoma shartlarini jiddiy buzgan taqdirda, Kreditor shartnomani bir tomonlama bekor qilish va qarzning to'liq summasini undirish huquqiga ega.{{/if_uzbek}}
+                {{#if_russian}}При существенном нарушении условий договора Кредитор имеет право на односторонний отказ от договора и взыскание полной суммы долга.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}6. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}6. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>6.1.</strong> {{#if_uzbek}}Shartnoma 2 nusxada tuzildi, har bir tomon uchun bittadan.{{/if_uzbek}}
+                {{#if_russian}}Договор составлен в 2 экземплярах, по одному для каждой стороны.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>6.2.</strong> {{#if_uzbek}}Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.{{/if_uzbek}}
+                {{#if_russian}}Все вопросы, не урегулированные настоящим договором, разрешаются в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}TOMONLARNING REKVIZITLARI VA IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ СТОРОН{{/if_russian}}
+            </h2>
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Kreditor:{{/if_uzbek}}{{#if_russian}}Кредитор:{{/if_russian}}</h3>
+                    <p>{{lender_name}}</p>
+                    {{#if lender_license}}<p>{{#if_uzbek}}Litsenziya:{{/if_uzbek}}{{#if_russian}}Лицензия:{{/if_russian}} {{lender_license}}</p>{{/if}}
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{lender_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{lender_name}} /</p></div>
+                </div>
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Qarz oluvchi:{{/if_uzbek}}{{#if_russian}}Заемщик:{{/if_russian}}</h3>
+                    <p>{{borrower_name}}</p>
+                    <p>{{#if_uzbek}}Pasport:{{/if_uzbek}}{{#if_russian}}Паспорт:{{/if_russian}} {{borrower_passport}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{borrower_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{borrower_name}} /</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

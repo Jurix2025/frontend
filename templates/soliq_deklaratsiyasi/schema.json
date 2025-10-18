@@ -1,0 +1,22 @@
+{
+  "name": "Soliq deklaratsiyasi",
+  "name_en": "Tax Declaration",
+  "category": "tax_financial",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "taxpayer_name", "label": {"uzbek": "Soliq to'lovchining F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование налогоплательщика"}, "type": "text", "required": true},
+    {"id": "taxpayer_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "taxpayer_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "tax_period", "label": {"uzbek": "Soliq davri", "russian": "Налоговый период"}, "type": "select", "required": true, "options": [{"value": "Q1", "label": {"uzbek": "1-chorak", "russian": "1 квартал"}}, {"value": "Q2", "label": {"uzbek": "2-chorak", "russian": "2 квартал"}}, {"value": "Q3", "label": {"uzbek": "3-chorak", "russian": "3 квартал"}}, {"value": "Q4", "label": {"uzbek": "4-chorak", "russian": "4 квартал"}}, {"value": "annual", "label": {"uzbek": "Yillik", "russian": "Годовой"}}]},
+    {"id": "tax_year", "label": {"uzbek": "Yil", "russian": "Год"}, "type": "number", "required": true, "validation": {"min": 2000, "max": 2100}},
+    {"id": "total_income", "label": {"uzbek": "Jami daromad (so'm)", "russian": "Общий доход (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "deductible_expenses", "label": {"uzbek": "Chegirma xarajatlar (so'm)", "russian": "Вычитаемые расходы (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "taxable_income", "label": {"uzbek": "Soliqqa tortil daromad (so'm)", "russian": "Налогооблагаемый доход (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "tax_rate", "label": {"uzbek": "Soliq stavkasi (%)", "russian": "Налоговая ставка (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "tax_amount", "label": {"uzbek": "Soliq summasi (so'm)", "russian": "Сумма налога (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "tax_paid", "label": {"uzbek": "To'langan soliq (so'm)", "russian": "Уплаченный налог (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "tax_payable", "label": {"uzbek": "To'lanishi kerak bo'lgan soliq (so'm)", "russian": "Налог к уплате (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "submission_date", "label": {"uzbek": "Taqdim etilgan sana", "russian": "Дата подачи"}, "type": "date", "required": true},
+    {"id": "accountant_name", "label": {"uzbek": "Buxgalter F.I.Sh.", "russian": "Ф.И.О. бухгалтера"}, "type": "text", "required": false}
+  ]
+}

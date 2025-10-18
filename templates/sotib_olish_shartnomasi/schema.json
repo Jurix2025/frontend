@@ -1,0 +1,21 @@
+{
+  "name": "Sotib olish-sotish shartnomasi",
+  "name_en": "Sale-Purchase Agreement",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "seller_name", "label": {"uzbek": "Sotuvchi F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование продавца"}, "type": "text", "required": true},
+    {"id": "seller_passport", "label": {"uzbek": "Pasport/STIR", "russian": "Паспорт/ИНН"}, "type": "text", "required": true},
+    {"id": "seller_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "buyer_name", "label": {"uzbek": "Xaridor F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование покупателя"}, "type": "text", "required": true},
+    {"id": "buyer_passport", "label": {"uzbek": "Pasport/STIR", "russian": "Паспорт/ИНН"}, "type": "text", "required": true},
+    {"id": "buyer_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "property_type", "label": {"uzbek": "Mulk turi", "russian": "Тип имущества"}, "type": "select", "required": true, "options": [{"value": "real_estate", "label": {"uzbek": "Ko'chmas mulk", "russian": "Недвижимость"}}, {"value": "vehicle", "label": {"uzbek": "Transport vositasi", "russian": "Транспортное средство"}}, {"value": "other", "label": {"uzbek": "Boshqa", "russian": "Прочее"}}]},
+    {"id": "property_description", "label": {"uzbek": "Mulk tavsifi", "russian": "Описание имущества"}, "type": "textarea", "required": true},
+    {"id": "property_address", "label": {"uzbek": "Mulk manzili/Joylashuvi", "russian": "Адрес/Местонахождение имущества"}, "type": "text", "required": false},
+    {"id": "sale_price", "label": {"uzbek": "Sotish narxi (so'm)", "russian": "Цена продажи (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "payment_method", "label": {"uzbek": "To'lov usuli", "russian": "Способ оплаты"}, "type": "select", "required": true, "options": [{"value": "cash", "label": {"uzbek": "Naqd", "russian": "Наличный"}}, {"value": "transfer", "label": {"uzbek": "O'tkazma", "russian": "Перевод"}}, {"value": "installment", "label": {"uzbek": "Bo'lib-bo'lib", "russian": "В рассрочку"}}]},
+    {"id": "transfer_date", "label": {"uzbek": "Topshirish sanasi", "russian": "Дата передачи"}, "type": "date", "required": true},
+    {"id": "registration_required", "label": {"uzbek": "Davlat ro'yxatidan o'tkazish talab qilinadimi?", "russian": "Требуется государственная регистрация?"}, "type": "boolean", "required": true}
+  ]
+}

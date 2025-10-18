@@ -1,0 +1,20 @@
+{
+  "name": "Ishtirokchilar yig'ilishi bayonnomasi",
+  "name_en": "Shareholders Meeting Minutes",
+  "category": "corporate",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "company_name", "label": {"uzbek": "Tashkilot nomi", "russian": "Наименование организации"}, "type": "text", "required": true},
+    {"id": "meeting_date", "label": {"uzbek": "Yig'ilish sanasi", "russian": "Дата собрания"}, "type": "date", "required": true},
+    {"id": "meeting_location", "label": {"uzbek": "Yig'ilish joyi", "russian": "Место собрания"}, "type": "text", "required": true},
+    {"id": "chairman_name", "label": {"uzbek": "Rais F.I.Sh.", "russian": "Ф.И.О. председателя"}, "type": "text", "required": true},
+    {"id": "secretary_name", "label": {"uzbek": "Kotib F.I.Sh.", "russian": "Ф.И.О. секретаря"}, "type": "text", "required": true},
+    {"id": "participants_present", "label": {"uzbek": "Qatnashchilar ro'yxati", "russian": "Список участников"}, "type": "textarea", "required": true},
+    {"id": "total_shares", "label": {"uzbek": "Umumiy hissalar (%)", "russian": "Всего долей (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "quorum_present", "label": {"uzbek": "Kvorum bormi?", "russian": "Кворум присутствует?"}, "type": "boolean", "required": true},
+    {"id": "agenda", "label": {"uzbek": "Kun tartibi", "russian": "Повестка дня"}, "type": "textarea", "required": true},
+    {"id": "discussions", "label": {"uzbek": "Muhokamalar", "russian": "Обсуждения"}, "type": "textarea", "required": true},
+    {"id": "decisions", "label": {"uzbek": "Qabul qilingan qarorlar", "russian": "Принятые решения"}, "type": "textarea", "required": true},
+    {"id": "voting_results", "label": {"uzbek": "Ovoz berish natijalari", "russian": "Результаты голосования"}, "type": "textarea", "required": true}
+  ]
+}

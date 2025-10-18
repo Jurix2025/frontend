@@ -1,0 +1,25 @@
+{
+  "name": "Pudrat shartnomasi",
+  "name_en": "Construction Contract",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "contractor_name", "label": {"uzbek": "Pudratchi nomi", "russian": "Наименование подрядчика"}, "type": "text", "required": true},
+    {"id": "contractor_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "contractor_license", "label": {"uzbek": "Litsenziya raqami", "russian": "Номер лицензии"}, "type": "text", "required": true},
+    {"id": "contractor_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "customer_name", "label": {"uzbek": "Buyurtmachi nomi", "russian": "Наименование заказчика"}, "type": "text", "required": true},
+    {"id": "customer_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "customer_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "construction_object", "label": {"uzbek": "Qurilish ob'ekti", "russian": "Объект строительства"}, "type": "text", "required": true},
+    {"id": "construction_address", "label": {"uzbek": "Qurilish manzili", "russian": "Адрес строительства"}, "type": "text", "required": true},
+    {"id": "construction_area", "label": {"uzbek": "Qurilish maydoni (kv.m)", "russian": "Площадь строительства (кв.м)"}, "type": "number", "required": true, "validation": {"min": 1}},
+    {"id": "work_scope", "label": {"uzbek": "Ishlar hajmi va tavsifi", "russian": "Объем и описание работ"}, "type": "textarea", "required": true},
+    {"id": "contract_price", "label": {"uzbek": "Shartnoma qiymati (so'm)", "russian": "Стоимость договора (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "start_date", "label": {"uzbek": "Ishlarni boshlash sanasi", "russian": "Дата начала работ"}, "type": "date", "required": true},
+    {"id": "completion_date", "label": {"uzbek": "Ishlarni tugallash sanasi", "russian": "Дата завершения работ"}, "type": "date", "required": true},
+    {"id": "payment_schedule", "label": {"uzbek": "To'lov grafigi", "russian": "График платежей"}, "type": "textarea", "required": true},
+    {"id": "quality_standards", "label": {"uzbek": "Sifat standartlari", "russian": "Стандарты качества"}, "type": "textarea", "required": true},
+    {"id": "warranty_period", "label": {"uzbek": "Kafolat muddati (yil)", "russian": "Гарантийный срок (лет)"}, "type": "number", "required": true, "validation": {"min": 1}}
+  ]
+}

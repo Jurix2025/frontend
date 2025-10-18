@@ -1,0 +1,20 @@
+{
+  "name": "Ta'sis shartnomasi",
+  "name_en": "Founding Agreement",
+  "category": "corporate",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "company_name", "label": {"uzbek": "Tashkil etiladigan tashkilot nomi", "russian": "Наименование создаваемой организации"}, "type": "text", "required": true},
+    {"id": "founder1_name", "label": {"uzbek": "1-ta'sischi F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование 1-го учредителя"}, "type": "text", "required": true},
+    {"id": "founder1_contribution", "label": {"uzbek": "Hissasi (so'm)", "russian": "Вклад (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "founder1_share", "label": {"uzbek": "Ulush (%)", "russian": "Доля (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "founder2_name", "label": {"uzbek": "2-ta'sischi F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование 2-го учредителя"}, "type": "text", "required": false},
+    {"id": "founder2_contribution", "label": {"uzbek": "Hissasi (so'm)", "russian": "Вклад (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "founder2_share", "label": {"uzbek": "Ulush (%)", "russian": "Доля (%)"}, "type": "number", "required": false, "validation": {"min": 0, "max": 100}},
+    {"id": "company_address", "label": {"uzbek": "Tashkilot manzili", "russian": "Адрес организации"}, "type": "text", "required": true},
+    {"id": "charter_capital", "label": {"uzbek": "Ustav kapitali (so'm)", "russian": "Уставный капитал (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "business_purpose", "label": {"uzbek": "Faoliyat maqsadi", "russian": "Цель деятельности"}, "type": "textarea", "required": true},
+    {"id": "management_structure", "label": {"uzbek": "Boshqaruv tuzilmasi", "russian": "Структура управления"}, "type": "textarea", "required": true},
+    {"id": "signing_date", "label": {"uzbek": "Imzolangan sana", "russian": "Дата подписания"}, "type": "date", "required": true}
+  ]
+}

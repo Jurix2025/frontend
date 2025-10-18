@@ -1,0 +1,18 @@
+{
+  "name": "Ishonch shartnomasi",
+  "name_en": "Trust Agreement / Power of Attorney",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "principal_name", "label": {"uzbek": "Ishonch beruvchi F.I.Sh.", "russian": "Ф.И.О. доверителя"}, "type": "text", "required": true},
+    {"id": "principal_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "principal_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "attorney_name", "label": {"uzbek": "Ishonchli shaxs F.I.Sh.", "russian": "Ф.И.О. доверенного лица"}, "type": "text", "required": true},
+    {"id": "attorney_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "attorney_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "powers_granted", "label": {"uzbek": "Beriladigan vakolatlar", "russian": "Предоставляемые полномочия"}, "type": "textarea", "required": true},
+    {"id": "validity_period", "label": {"uzbek": "Amal qilish muddati (yil)", "russian": "Срок действия (лет)"}, "type": "number", "required": true, "validation": {"min": 1, "max": 3}},
+    {"id": "issue_date", "label": {"uzbek": "Berilgan sana", "russian": "Дата выдачи"}, "type": "date", "required": true},
+    {"id": "notary_required", "label": {"uzbek": "Notarial tasdiqlash talab qilinadimi?", "russian": "Требуется нотариальное заверение?"}, "type": "boolean", "required": true}
+  ]
+}

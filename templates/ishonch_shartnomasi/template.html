@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}ISHONCHNOMA{{/if_uzbek}}{{#if_russian}}ДОВЕРЕННОСТЬ{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}ISHONCHNOMA{{/if_uzbek}}
+                {{#if_russian}}ДОВЕРЕННОСТЬ{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{issue_date}} sanada berilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{issue_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">{{#if_uzbek}}Toshkent shahri{{/if_uzbek}}{{#if_russian}}г. Ташкент{{/if_russian}}</p>
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Men, <strong>{{principal_name}}</strong>, pasport: <strong>{{principal_passport}}</strong>,
+                manzil: <strong>{{principal_address}}</strong>, ushbu ishonchnoma orqali
+                <strong>{{attorney_name}}</strong>, pasport: <strong>{{attorney_passport}}</strong>,
+                manzil: <strong>{{attorney_address}}</strong>, shaxsini o'zimning ishonchli vakili etib tayinlayman
+                va unga quyidagi vakolatlarni beraman:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Я, <strong>{{principal_name}}</strong>, паспорт: <strong>{{principal_passport}}</strong>,
+                адрес: <strong>{{principal_address}}</strong>, настоящей доверенностью уполномочиваю
+                <strong>{{attorney_name}}</strong>, паспорт: <strong>{{attorney_passport}}</strong>,
+                адрес: <strong>{{attorney_address}}</strong>, быть моим доверенным лицом
+                и предоставляю следующие полномочия:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. BERILADIGAN VAKOLATLAR{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДОСТАВЛЯЕМЫЕ ПОЛНОМОЧИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong> {{#if_uzbek}}Ishonchli shaxs quyidagi vakolatlarga ega:{{/if_uzbek}}
+                {{#if_russian}}Доверенное лицо имеет следующие полномочия:{{/if_russian}}
+            </p>
+            <p class="article-content">{{powers_granted}}</p>
+            <p class="article-content">
+                <strong>1.2.</strong> {{#if_uzbek}}Ishonchli shaxs yuqorida ko'rsatilgan vakolatlarni bajarish uchun barcha zarur huquqiy harakatlarga ega.{{/if_uzbek}}
+                {{#if_russian}}Доверенное лицо имеет право совершать все необходимые юридические действия для выполнения указанных полномочий.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. AMAL QILISH MUDDATI{{/if_uzbek}}
+                {{#if_russian}}2. СРОК ДЕЙСТВИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>2.1.</strong> {{#if_uzbek}}Ushbu ishonchnoma <strong>{{issue_date}}</strong> sanadan boshlab amal qiladi.{{/if_uzbek}}
+                {{#if_russian}}Настоящая доверенность действует с <strong>{{issue_date}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.2.</strong> {{#if_uzbek}}Ishonchnoma amal qilish muddati: <strong>{{validity_period}}</strong> yil.{{/if_uzbek}}
+                {{#if_russian}}Срок действия доверенности: <strong>{{validity_period}}</strong> лет.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.3.</strong> {{#if_uzbek}}Ishonch beruvchi ushbu ishonchnomani istalgan vaqt bekor qilish huquqiga ega.{{/if_uzbek}}
+                {{#if_russian}}Доверитель имеет право отозвать настоящую доверенность в любое время.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. QO'SHIMCHA SHARTLAR{{/if_uzbek}}
+                {{#if_russian}}3. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Ishonchli shaxs o'z vakolatlarini boshqa shaxsga bera olmaydi (qayta ishonchnoma berish taqiqlanadi).{{/if_uzbek}}
+                {{#if_russian}}Доверенное лицо не вправе передавать свои полномочия другому лицу (передоверие запрещено).{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>3.2.</strong> {{#if_uzbek}}Ishonchli shaxs o'z vakolatlari doirasida amalga oshirgan harakatlar uchun Ishonch beruvchi to'liq javobgar hisoblanadi.{{/if_uzbek}}
+                {{#if_russian}}Доверитель несет полную ответственность за действия, совершенные Доверенным лицом в рамках предоставленных полномочий.{{/if_russian}}
+            </p>
+            {{#if notary_required}}
+            <p class="article-content">
+                <strong>3.3.</strong> {{#if_uzbek}}Ushbu ishonchnoma notarial tasdiqlanishi shart.{{/if_uzbek}}
+                {{#if_russian}}Настоящая доверенность подлежит нотариальному удостоверению.{{/if_russian}}
+            </p>
+            {{/if}}
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}4. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong> {{#if_uzbek}}Ushbu ishonchnoma O'zbekiston Respublikasi qonunchiligiga muvofiq tuzilgan.{{/if_uzbek}}
+                {{#if_russian}}Настоящая доверенность составлена в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>4.2.</strong> {{#if_uzbek}}Ishonchnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi Fuqarolik kodeksiga muvofiq hal etiladi.{{/if_uzbek}}
+                {{#if_russian}}Все вопросы, не урегулированные настоящей доверенностью, разрешаются в соответствии с Гражданским кодексом Республики Узбекистан.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}REKVIZITLAR VA IMZOLAR{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ{{/if_russian}}
+            </h2>
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Ishonch beruvchi:{{/if_uzbek}}{{#if_russian}}Доверитель:{{/if_russian}}</h3>
+                    <p>{{principal_name}}</p>
+                    <p>{{#if_uzbek}}Pasport:{{/if_uzbek}}{{#if_russian}}Паспорт:{{/if_russian}} {{principal_passport}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{principal_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{principal_name}} /</p></div>
+                </div>
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Ishonchli shaxs:{{/if_uzbek}}{{#if_russian}}Доверенное лицо:{{/if_russian}}</h3>
+                    <p>{{attorney_name}}</p>
+                    <p>{{#if_uzbek}}Pasport:{{/if_uzbek}}{{#if_russian}}Паспорт:{{/if_russian}} {{attorney_passport}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{attorney_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{attorney_name}} /</p></div>
+                </div>
+            </div>
+        </section>
+
+        {{#if notary_required}}
+        <section class="article">
+            <div style="margin-top: 40px; padding: 20px; border: 1px solid #333;">
+                <h3 style="text-align: center; margin-bottom: 20px;">
+                    {{#if_uzbek}}NOTARIUS TASDIG'I{{/if_uzbek}}
+                    {{#if_russian}}НОТАРИАЛЬНОЕ УДОСТОВЕРЕНИЕ{{/if_russian}}
+                </h3>
+                <p>{{#if_uzbek}}Notarius:{{/if_uzbek}}{{#if_russian}}Нотариус:{{/if_russian}} _____________________________</p>
+                <p>{{#if_uzbek}}Ro'yxatga olish raqami:{{/if_uzbek}}{{#if_russian}}Регистрационный номер:{{/if_russian}} _____________________________</p>
+                <p>{{#if_uzbek}}Sana:{{/if_uzbek}}{{#if_russian}}Дата:{{/if_russian}} _____________________________</p>
+                <p>M.O. _____________________________</p>
+            </div>
+        </section>
+        {{/if}}
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

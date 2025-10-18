@@ -1,0 +1,23 @@
+{
+  "name": "Franchayzing shartnomasi",
+  "name_en": "Franchise Agreement",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "franchisor_name", "label": {"uzbek": "Franchayzer nomi", "russian": "Наименование франчайзера"}, "type": "text", "required": true},
+    {"id": "franchisor_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "franchisor_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "franchisee_name", "label": {"uzbek": "Franchayzi nomi", "russian": "Наименование франчайзи"}, "type": "text", "required": true},
+    {"id": "franchisee_inn", "label": {"uzbek": "STIR", "russian": "ИНН"}, "type": "text", "required": true, "validation": {"pattern": "^[0-9]{9}$"}},
+    {"id": "franchisee_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "brand_name", "label": {"uzbek": "Brend nomi", "russian": "Название бренда"}, "type": "text", "required": true},
+    {"id": "territory", "label": {"uzbek": "Hudud", "russian": "Территория"}, "type": "text", "required": true},
+    {"id": "initial_fee", "label": {"uzbek": "Boshlang'ich to'lov (so'm)", "russian": "Первоначальный взнос (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "royalty_rate", "label": {"uzbek": "Royalti stavkasi (%)", "russian": "Ставка роялти (%)"}, "type": "number", "required": true, "validation": {"min": 0, "max": 100}},
+    {"id": "royalty_period", "label": {"uzbek": "Royalti to'lash davri", "russian": "Периодичность роялти"}, "type": "select", "required": true, "options": [{"value": "monthly", "label": {"uzbek": "Oylik", "russian": "Ежемесячно"}}, {"value": "quarterly", "label": {"uzbek": "Choraklik", "russian": "Ежеквартально"}}]},
+    {"id": "contract_term", "label": {"uzbek": "Shartnoma muddati (yil)", "russian": "Срок договора (лет)"}, "type": "number", "required": true, "validation": {"min": 1}},
+    {"id": "start_date", "label": {"uzbek": "Boshlanish sanasi", "russian": "Дата начала"}, "type": "date", "required": true},
+    {"id": "training_provided", "label": {"uzbek": "O'qitish taqdim etiladimi?", "russian": "Предоставляется обучение?"}, "type": "boolean", "required": true},
+    {"id": "marketing_support", "label": {"uzbek": "Marketing yordami taqdim etiladimi?", "russian": "Предоставляется маркетинговая поддержка?"}, "type": "boolean", "required": true}
+  ]
+}

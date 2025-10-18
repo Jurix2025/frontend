@@ -1,0 +1,19 @@
+{
+  "name": "Notarial tasdiqlangan hujjat",
+  "name_en": "Notarized Document",
+  "category": "administrative",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "document_type", "label": {"uzbek": "Hujjat turi", "russian": "Тип документа"}, "type": "text", "required": true},
+    {"id": "applicant_name", "label": {"uzbek": "Ariza beruvchi F.I.Sh.", "russian": "Ф.И.О. заявителя"}, "type": "text", "required": true},
+    {"id": "applicant_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "applicant_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "document_subject", "label": {"uzbek": "Hujjat mavzusi", "russian": "Предмет документа"}, "type": "textarea", "required": true},
+    {"id": "notary_name", "label": {"uzbek": "Notarius F.I.Sh.", "russian": "Ф.И.О. нотариуса"}, "type": "text", "required": true},
+    {"id": "notary_license", "label": {"uzbek": "Litsenziya raqami", "russian": "Номер лицензии"}, "type": "text", "required": true},
+    {"id": "notary_office", "label": {"uzbek": "Notariat manzili", "russian": "Адрес нотариата"}, "type": "text", "required": true},
+    {"id": "registration_number", "label": {"uzbek": "Ro'yxat raqami", "russian": "Регистрационный номер"}, "type": "text", "required": true},
+    {"id": "notarization_date", "label": {"uzbek": "Tasdiqlangan sana", "russian": "Дата нотариального удостоверения"}, "type": "date", "required": true},
+    {"id": "notary_fee", "label": {"uzbek": "Notarial to'lov (so'm)", "russian": "Нотариальный тариф (сум)"}, "type": "number", "required": false, "validation": {"min": 0}}
+  ]
+}

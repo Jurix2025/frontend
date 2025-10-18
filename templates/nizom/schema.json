@@ -1,0 +1,20 @@
+{
+  "name": "Nizom",
+  "name_en": "Charter / Articles of Association",
+  "category": "corporate",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "company_name", "label": {"uzbek": "Tashkilot to'liq nomi", "russian": "Полное наименование организации"}, "type": "text", "required": true},
+    {"id": "company_short_name", "label": {"uzbek": "Qisqa nomi", "russian": "Краткое наименование"}, "type": "text", "required": false},
+    {"id": "company_type", "label": {"uzbek": "Tashkiliy-huquqiy shakl", "russian": "Организационно-правовая форма"}, "type": "select", "required": true, "options": [{"value": "ООО", "label": {"uzbek": "MChJ (ООО)", "russian": "ООО"}}, {"value": "AJ", "label": {"uzbek": "АJ (АО)", "russian": "АО"}}, {"value": "XK", "label": {"uzbek": "XK (ИП)", "russian": "ИП"}}]},
+    {"id": "company_address", "label": {"uzbek": "Yuridik manzil", "russian": "Юридический адрес"}, "type": "text", "required": true},
+    {"id": "founders", "label": {"uzbek": "Ta'sischilar", "russian": "Учредители"}, "type": "textarea", "required": true},
+    {"id": "charter_capital", "label": {"uzbek": "Ustav kapitali (so'm)", "russian": "Уставный капитал (сум)"}, "type": "number", "required": true, "validation": {"min": 0}},
+    {"id": "main_activity", "label": {"uzbek": "Asosiy faoliyat turi", "russian": "Основной вид деятельности"}, "type": "textarea", "required": true},
+    {"id": "additional_activities", "label": {"uzbek": "Qo'shimcha faoliyat turlari", "russian": "Дополнительные виды деятельности"}, "type": "textarea", "required": false},
+    {"id": "director_powers", "label": {"uzbek": "Rahbarning vakolatlari", "russian": "Полномочия руководителя"}, "type": "textarea", "required": true},
+    {"id": "general_meeting_rules", "label": {"uzbek": "Umumiy yig'ilish qoidalari", "russian": "Правила общего собрания"}, "type": "textarea", "required": true},
+    {"id": "profit_distribution", "label": {"uzbek": "Foyda taqsimoti tartibi", "russian": "Порядок распределения прибыли"}, "type": "textarea", "required": true},
+    {"id": "adoption_date", "label": {"uzbek": "Qabul qilingan sana", "russian": "Дата принятия"}, "type": "date", "required": true}
+  ]
+}

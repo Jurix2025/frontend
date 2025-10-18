@@ -1,0 +1,191 @@
+/* Legal Document Styles - Uzbekistan Format */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+}
+
+.document {
+    max-width: 210mm; /* A4 width */
+    margin: 0 auto;
+    padding: 20mm;
+    background: white;
+}
+
+/* Header Styles */
+.document-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 15px;
+}
+
+.document-title {
+    font-size: 18pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.document-subtitle {
+    font-size: 12pt;
+    margin-top: 10px;
+}
+
+/* Parties Section */
+.parties {
+    margin-bottom: 25px;
+}
+
+.location {
+    text-align: right;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.intro-text {
+    text-align: justify;
+    text-indent: 40px;
+    margin-bottom: 15px;
+}
+
+/* Article Sections */
+.article {
+    margin-bottom: 25px;
+    page-break-inside: avoid;
+}
+
+.article-title {
+    font-size: 13pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.article-content {
+    text-align: justify;
+    margin-bottom: 12px;
+    text-indent: 0;
+    padding-left: 20px;
+}
+
+.article-content strong {
+    font-weight: bold;
+}
+
+/* Lists */
+.obligations-list {
+    margin-left: 60px;
+    margin-bottom: 15px;
+}
+
+.obligations-list li {
+    margin-bottom: 8px;
+    text-align: justify;
+    list-style-type: disc;
+}
+
+/* Signatures Section */
+.signatures {
+    margin-top: 40px;
+    page-break-inside: avoid;
+}
+
+.signatures-title {
+    font-size: 13pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.signature-blocks {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.signature-block {
+    flex: 1;
+    border: 1px solid #333;
+    padding: 20px;
+    min-height: 150px;
+}
+
+.signature-block h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+
+.signature-block p {
+    margin-bottom: 8px;
+    font-size: 11pt;
+}
+
+.signature-line {
+    margin-top: 30px;
+    border-top: 1px solid #000;
+    padding-top: 5px;
+}
+
+.signature-line p {
+    text-align: center;
+    font-size: 10pt;
+}
+
+/* Footer */
+.document-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.ai-notice {
+    font-size: 9pt;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+    padding: 10px;
+    background: #f9f9f9;
+    border-left: 3px solid #4A90E2;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .document {
+        margin: 0;
+        padding: 15mm;
+        max-width: 100%;
+    }
+
+    .article {
+        page-break-inside: avoid;
+    }
+
+    .signatures {
+        page-break-before: auto;
+    }
+}
+
+/* Page breaks for long documents */
+@page {
+    size: A4;
+    margin: 15mm;
+}

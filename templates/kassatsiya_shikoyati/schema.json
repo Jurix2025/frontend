@@ -1,0 +1,20 @@
+{
+  "name": "Kassatsiya shikoyati",
+  "name_en": "Cassation Appeal",
+  "category": "court_documents",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "cassation_court", "label": {"uzbek": "Kassatsiya sudi nomi", "russian": "Наименование кассационного суда"}, "type": "text", "required": true},
+    {"id": "appellant_name", "label": {"uzbek": "Apellyatsiya qiluvchi F.I.Sh./Nomi", "russian": "Ф.И.О./Наименование апеллянта"}, "type": "text", "required": true},
+    {"id": "appellant_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "lower_court", "label": {"uzbek": "Pastki sud nomi", "russian": "Наименование нижестоящего суда"}, "type": "text", "required": true},
+    {"id": "case_number", "label": {"uzbek": "Ish raqami", "russian": "Номер дела"}, "type": "text", "required": true},
+    {"id": "appealed_decision_date", "label": {"uzbek": "Apellyatsiya qilinadigan qaror sanasi", "russian": "Дата обжалуемого решения"}, "type": "date", "required": true},
+    {"id": "decision_summary", "label": {"uzbek": "Qaror qisqacha mazmuni", "russian": "Краткое содержание решения"}, "type": "textarea", "required": true},
+    {"id": "cassation_grounds", "label": {"uzbek": "Kassatsiya asoslari", "russian": "Основания кассации"}, "type": "textarea", "required": true},
+    {"id": "procedural_violations", "label": {"uzbek": "Protsessual qonun buzilishlari", "russian": "Нарушения процессуального закона"}, "type": "textarea", "required": true},
+    {"id": "substantive_violations", "label": {"uzbek": "Moddiy qonun buzilishlari", "russian": "Нарушения материального закона"}, "type": "textarea", "required": true},
+    {"id": "petition", "label": {"uzbek": "Iltimos", "russian": "Прошение"}, "type": "textarea", "required": true},
+    {"id": "filing_date", "label": {"uzbek": "Shikoyat sanasi", "russian": "Дата подачи жалобы"}, "type": "date", "required": true}
+  ]
+}

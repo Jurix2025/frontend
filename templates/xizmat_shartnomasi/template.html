@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}XIZMAT KO'RSATISH SHARTNOMASI{{/if_uzbek}}{{#if_russian}}ДОГОВОР ОКАЗАНИЯ УСЛУГ{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}XIZMAT KO'RSATISH SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}ДОГОВОР ОКАЗАНИЯ УСЛУГ{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{start_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{start_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">{{#if_uzbek}}Toshkent shahri{{/if_uzbek}}{{#if_russian}}г. Ташкент{{/if_russian}}</p>
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Xizmat ko'rsatuvchi» deb ataluvchi <strong>{{provider_name}}</strong>,
+                STIR: <strong>{{provider_inn}}</strong>, manzil: <strong>{{provider_address}}</strong>,
+                bir tomondan va keyingi o'rinlarda «Mijoz» deb ataluvchi <strong>{{client_name}}</strong>,
+                STIR: <strong>{{client_inn}}</strong>, manzil: <strong>{{client_address}}</strong>,
+                ikkinchi tomondan, ushbu shartnomani quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                С одной стороны <strong>{{provider_name}}</strong>, ИНН: <strong>{{provider_inn}}</strong>,
+                адрес: <strong>{{provider_address}}</strong>, именуемый в дальнейшем «Исполнитель»,
+                и с другой стороны <strong>{{client_name}}</strong>, ИНН: <strong>{{client_inn}}</strong>,
+                адрес: <strong>{{client_address}}</strong>, именуемый в дальнейшем «Заказчик»,
+                заключили настоящий договор о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong> {{#if_uzbek}}Xizmat ko'rsatuvchi Mijozga quyidagi xizmatlarni ko'rsatishni o'z zimmasiga oladi:{{/if_uzbek}}
+                {{#if_russian}}Исполнитель обязуется оказать Заказчику следующие услуги:{{/if_russian}}
+            </p>
+            <p class="article-content">{{service_description}}</p>
+            <p class="article-content">
+                <strong>1.2.</strong> {{#if_uzbek}}Xizmat narxi: <strong>{{service_amount}}</strong> so'm.{{/if_uzbek}}
+                {{#if_russian}}Стоимость услуг: <strong>{{service_amount}}</strong> сум.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.3.</strong> {{#if_uzbek}}Bajarish muddati: {{start_date}} dan {{completion_date}} gacha.{{/if_uzbek}}
+                {{#if_russian}}Срок выполнения: с {{start_date}} по {{completion_date}}.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. TO'LOV TARTIBI{{/if_uzbek}}
+                {{#if_russian}}2. ПОРЯДОК ОПЛАТЫ{{/if_russian}}
+            </h2>
+            <p class="article-content">{{payment_terms}}</p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. TOMONLARNING HUQUQ VA MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}3. ПРАВА И ОБЯЗАННОСТИ СТОРОН{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Xizmat ko'rsatuvchi sifatli va o'z vaqtida xizmat ko'rsatishni kafolatlaydi.{{/if_uzbek}}
+                {{#if_russian}}Исполнитель гарантирует качественное и своевременное оказание услуг.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>3.2.</strong> {{#if_uzbek}}Mijoz xizmatlar uchun to'liq va o'z vaqtida to'lashni ta'minlaydi.{{/if_uzbek}}
+                {{#if_russian}}Заказчик обеспечивает полную и своевременную оплату услуг.{{/if_russian}}
+            </p>
+            {{#if warranty_period}}
+            <p class="article-content">
+                <strong>3.3.</strong> {{#if_uzbek}}Kafolat muddati: {{warranty_period}} oy.{{/if_uzbek}}
+                {{#if_russian}}Гарантийный срок: {{warranty_period}} мес.{{/if_russian}}
+            </p>
+            {{/if}}
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}4. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong> {{#if_uzbek}}Shartnoma 2 nusxada tuzildi.{{/if_uzbek}}
+                {{#if_russian}}Договор составлен в 2 экземплярах.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>4.2.</strong> {{#if_uzbek}}Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.{{/if_uzbek}}
+                {{#if_russian}}Все вопросы разрешаются в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}TOMONLARNING REKVIZITLARI VA IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ СТОРОН{{/if_russian}}
+            </h2>
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Xizmat ko'rsatuvchi:{{/if_uzbek}}{{#if_russian}}Исполнитель:{{/if_russian}}</h3>
+                    <p>{{provider_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{provider_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{provider_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{provider_name}} /</p></div>
+                </div>
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Mijoz:{{/if_uzbek}}{{#if_russian}}Заказчик:{{/if_russian}}</h3>
+                    <p>{{client_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{client_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{client_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{client_name}} /</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

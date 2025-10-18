@@ -1,0 +1,20 @@
+{
+  "name": "Ariza",
+  "name_en": "Application / Request",
+  "category": "administrative",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "recipient_organization", "label": {"uzbek": "Kimga (tashkilot/shaxs)", "russian": "Кому (организация/лицо)"}, "type": "text", "required": true},
+    {"id": "recipient_position", "label": {"uzbek": "Lavozim", "russian": "Должность"}, "type": "text", "required": false},
+    {"id": "applicant_name", "label": {"uzbek": "Kimdan (ariza beruvchi F.I.Sh.)", "russian": "От кого (Ф.И.О. заявителя)"}, "type": "text", "required": true},
+    {"id": "applicant_address", "label": {"uzbek": "Manzil", "russian": "Адрес"}, "type": "text", "required": true},
+    {"id": "applicant_phone", "label": {"uzbek": "Telefon", "russian": "Телефон"}, "type": "text", "required": false},
+    {"id": "application_type", "label": {"uzbek": "Ariza turi", "russian": "Тип заявления"}, "type": "select", "required": true, "options": [{"value": "request", "label": {"uzbek": "Iltimost", "russian": "Просьба"}}, {"value": "complaint", "label": {"uzbek": "Shikoyat", "russian": "Жалоба"}}, {"value": "statement", "label": {"uzbek": "Bayonot", "russian": "Заявление"}}, {"value": "notification", "label": {"uzbek": "Xabarnoma", "russian": "Уведомление"}}]},
+    {"id": "subject", "label": {"uzbek": "Mavzu", "russian": "Тема"}, "type": "text", "required": true},
+    {"id": "application_text", "label": {"uzbek": "Ariza matni", "russian": "Текст заявления"}, "type": "textarea", "required": true},
+    {"id": "request", "label": {"uzbek": "Iltimos/So'rov", "russian": "Просьба/Запрос"}, "type": "textarea", "required": true},
+    {"id": "legal_basis", "label": {"uzbek": "Huquqiy asos (agar mavjud bo'lsa)", "russian": "Правовое основание (если есть)"}, "type": "text", "required": false},
+    {"id": "attachments", "label": {"uzbek": "Ilovalar", "russian": "Приложения"}, "type": "textarea", "required": false},
+    {"id": "application_date", "label": {"uzbek": "Ariza sanasi", "russian": "Дата заявления"}, "type": "date", "required": true}
+  ]
+}

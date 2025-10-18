@@ -1,0 +1,20 @@
+{
+  "name": "Meros hujjati",
+  "name_en": "Inheritance Document",
+  "category": "property",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {"id": "deceased_name", "label": {"uzbek": "Marhum F.I.Sh.", "russian": "Ф.И.О. умершего"}, "type": "text", "required": true},
+    {"id": "death_date", "label": {"uzbek": "Vafot etgan sana", "russian": "Дата смерти"}, "type": "date", "required": true},
+    {"id": "death_certificate", "label": {"uzbek": "Vafot guvohnomasi raqami", "russian": "Номер свидетельства о смерти"}, "type": "text", "required": true},
+    {"id": "heir_name", "label": {"uzbek": "Merosxo'r F.I.Sh.", "russian": "Ф.И.О. наследника"}, "type": "text", "required": true},
+    {"id": "heir_passport", "label": {"uzbek": "Pasport", "russian": "Паспорт"}, "type": "text", "required": true, "validation": {"pattern": "^[A-Z]{2}[0-9]{7}$"}},
+    {"id": "relationship", "label": {"uzbek": "Qarindoshlik darajasi", "russian": "Степень родства"}, "type": "select", "required": true, "options": [{"value": "spouse", "label": {"uzbek": "Turmush o'rtog'i", "russian": "Супруг(а)"}}, {"value": "child", "label": {"uzbek": "Farzand", "russian": "Ребенок"}}, {"value": "parent", "label": {"uzbek": "Ota-ona", "russian": "Родитель"}}, {"value": "sibling", "label": {"uzbek": "Aka-uka/Opa-singil", "russian": "Брат/Сестра"}}, {"value": "other", "label": {"uzbek": "Boshqa", "russian": "Другое"}}]},
+    {"id": "inheritance_type", "label": {"uzbek": "Meros turi", "russian": "Тип наследства"}, "type": "select", "required": true, "options": [{"value": "by_law", "label": {"uzbek": "Qonun bo'yicha", "russian": "По закону"}}, {"value": "by_will", "label": {"uzbek": "Vasiyatnoma bo'yicha", "russian": "По завещанию"}}]},
+    {"id": "will_number", "label": {"uzbek": "Vasiyatnoma raqami (agar mavjud bo'lsa)", "russian": "Номер завещания (если есть)"}, "type": "text", "required": false},
+    {"id": "inherited_property", "label": {"uzbek": "Meros qoldirilgan mulk tavsifi", "russian": "Описание наследуемого имущества"}, "type": "textarea", "required": true},
+    {"id": "property_value", "label": {"uzbek": "Mulk qiymati (so'm)", "russian": "Стоимость имущества (сум)"}, "type": "number", "required": false, "validation": {"min": 0}},
+    {"id": "notary_name", "label": {"uzbek": "Notarius F.I.Sh.", "russian": "Ф.И.О. нотариуса"}, "type": "text", "required": false},
+    {"id": "certificate_date", "label": {"uzbek": "Guvohnoma sanasi", "russian": "Дата свидетельства"}, "type": "date", "required": true}
+  ]
+}

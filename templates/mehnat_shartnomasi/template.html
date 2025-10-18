@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{#if_uzbek}}MEHNAT SHARTNOMASI{{/if_uzbek}}{{#if_russian}}ТРУДОВОЙ ДОГОВОР{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}MEHNAT SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}ТРУДОВОЙ ДОГОВОР{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{start_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{start_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">
+                {{#if_uzbek}}Toshkent shahri{{/if_uzbek}}
+                {{#if_russian}}г. Ташкент{{/if_russian}}
+            </p>
+
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Ish beruvchi» deb ataluvchi <strong>{{employer_name}}</strong>,
+                rahbar: <strong>{{employer_director}}</strong>, STIR: <strong>{{employer_inn}}</strong>,
+                manzil: <strong>{{employer_address}}</strong>, bir tomondan va
+                keyingi o'rinlarda «Xodim» deb ataluvchi <strong>{{employee_name}}</strong>,
+                pasport: <strong>{{employee_passport}}</strong>, manzil: <strong>{{employee_address}}</strong>,
+                ikkinchi tomondan, ushbu mehnat shartnomasini quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                С одной стороны <strong>{{employer_name}}</strong>, руководитель: <strong>{{employer_director}}</strong>,
+                ИНН: <strong>{{employer_inn}}</strong>, адрес: <strong>{{employer_address}}</strong>,
+                именуемый в дальнейшем «Работодатель», и с другой стороны
+                <strong>{{employee_name}}</strong>, паспорт: <strong>{{employee_passport}}</strong>,
+                адрес: <strong>{{employee_address}}</strong>, именуемый в дальнейшем «Работник»,
+                заключили настоящий трудовой договор о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong>
+                {{#if_uzbek}}
+                Ish beruvchi Xodimni <strong>{{position}}</strong> lavozimiga ishga qabul qiladi.
+                {{#if department}}Bo'lim: <strong>{{department}}</strong>.{{/if}}
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Работодатель принимает Работника на должность <strong>{{position}}</strong>.
+                {{#if department}}Отдел: <strong>{{department}}</strong>.{{/if}}
+                {{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.2.</strong>
+                {{#if_uzbek}}
+                Shartnoma {{#if contract_type}}{{#if (eq contract_type 'indefinite')}}muddatsiz{{else}}muddatli{{/if}}{{/if}} asosda tuzilgan.
+                Ishga kirish sanasi: <strong>{{start_date}}</strong>.
+                {{#if end_date}}Shartnoma tugash sanasi: <strong>{{end_date}}</strong>.{{/if}}
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Договор заключен на {{#if contract_type}}{{#if (eq contract_type 'indefinite')}}неопределенный срок{{else}}определенный срок{{/if}}{{/if}}.
+                Дата приема на работу: <strong>{{start_date}}</strong>.
+                {{#if end_date}}Дата окончания: <strong>{{end_date}}</strong>.{{/if}}
+                {{/if_russian}}
+            </p>
+            {{#if probation_period}}
+            <p class="article-content">
+                <strong>1.3.</strong>
+                {{#if_uzbek}}
+                Sinov muddati: <strong>{{probation_period}}</strong> oy.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Испытательный срок: <strong>{{probation_period}}</strong> мес.
+                {{/if_russian}}
+            </p>
+            {{/if}}
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. XODIMNING MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}2. ОБЯЗАННОСТИ РАБОТНИКА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                {{#if_uzbek}}Xodim quyidagilarni bajarishga majbur:{{/if_uzbek}}
+                {{#if_russian}}Работник обязан:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>
+                    {{#if_uzbek}}
+                    Lavozim yo'riqnomasida belgilangan vazifalarni o'z vaqtida va sifatli bajarish;
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Своевременно и качественно выполнять обязанности, предусмотренные должностной инструкцией;
+                    {{/if_russian}}
+                </li>
+                <li>
+                    {{#if_uzbek}}
+                    Ichki mehnat tartibini va tashkilot nizomini rioya qilish;
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Соблюдать правила внутреннего трудового распорядка и устав организации;
+                    {{/if_russian}}
+                </li>
+                <li>
+                    {{#if_uzbek}}
+                    Xavfsizlik texnikasi va mehnat muhofazasi qoidalariga rioya qilish;
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Соблюдать требования по охране труда и технике безопасности;
+                    {{/if_russian}}
+                </li>
+                <li>
+                    {{#if_uzbek}}
+                    Ish beruvchining mulkini saqlash va tashkilot manfaatlarini himoya qilish.
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Бережно относиться к имуществу Работодателя и защищать интересы организации.
+                    {{/if_russian}}
+                </li>
+            </ul>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. ISH BERUVCHINING MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}3. ОБЯЗАННОСТИ РАБОТОДАТЕЛЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                {{#if_uzbek}}Ish beruvchi quyidagilarni ta'minlashga majbur:{{/if_uzbek}}
+                {{#if_russian}}Работодатель обязан:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>
+                    {{#if_uzbek}}
+                    Xodimga shartnomada ko'rsatilgan ishni ta'minlash;
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Предоставить Работнику работу, предусмотренную договором;
+                    {{/if_russian}}
+                </li>
+                <li>
+                    {{#if_uzbek}}
+                    Maoshni o'z vaqtida to'lash;
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Своевременно выплачивать заработную плату;
+                    {{/if_russian}}
+                </li>
+                <li>
+                    {{#if_uzbek}}
+                    Xavfsiz mehnat sharoitlarini yaratish;
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Обеспечить безопасные условия труда;
+                    {{/if_russian}}
+                </li>
+                <li>
+                    {{#if_uzbek}}
+                    Mehnat qonunchiligini rioya qilish.
+                    {{/if_uzbek}}
+                    {{#if_russian}}
+                    Соблюдать трудовое законодательство.
+                    {{/if_russian}}
+                </li>
+            </ul>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. ISH VAQTI VA HORDIQ{{/if_uzbek}}
+                {{#if_russian}}4. РАБОЧЕЕ ВРЕМЯ И ОТДЫХ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong>
+                {{#if_uzbek}}
+                Ish vaqti: <strong>{{working_hours}}</strong> soat/hafta.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Рабочее время: <strong>{{working_hours}}</strong> час/неделя.
+                {{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>4.2.</strong>
+                {{#if_uzbek}}
+                Yillik ta'til: <strong>{{vacation_days}}</strong> kalendar kunlari.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Ежегодный отпуск: <strong>{{vacation_days}}</strong> календарных дней.
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}5. MEHNAT HAQI{{/if_uzbek}}
+                {{#if_russian}}5. ОПЛАТА ТРУДА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>5.1.</strong>
+                {{#if_uzbek}}
+                Xodimning oylik maoshi: <strong>{{salary}}</strong> so'm.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Месячная заработная плата Работника: <strong>{{salary}}</strong> сум.
+                {{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>5.2.</strong>
+                {{#if_uzbek}}
+                Maosh har oyning 5-kunidan kechiktirmay to'lanadi.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Заработная плата выплачивается не позднее 5 числа каждого месяца.
+                {{/if_russian}}
+            </p>
+            {{#if additional_benefits}}
+            <p class="article-content">
+                <strong>5.3.</strong>
+                {{#if_uzbek}}Qo'shimcha imtiyozlar:{{/if_uzbek}}
+                {{#if_russian}}Дополнительные льготы:{{/if_russian}}
+                {{additional_benefits}}
+            </p>
+            {{/if}}
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}6. SHARTNOMANI BEKOR QILISH{{/if_uzbek}}
+                {{#if_russian}}6. РАСТОРЖЕНИЕ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>6.1.</strong>
+                {{#if_uzbek}}
+                Shartnoma O'zbekiston Respublikasi Mehnat kodeksida belgilangan tartibda bekor qilinishi mumkin.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Договор может быть расторгнут в порядке, установленном Трудовым кодексом Республики Узбекистан.
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}7. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}7. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>7.1.</strong>
+                {{#if_uzbek}}
+                Ushbu shartnoma 2 nusxada, har bir tomon uchun bittadan tuzildi.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Настоящий договор составлен в 2 экземплярах, по одному для каждой стороны.
+                {{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>7.2.</strong>
+                {{#if_uzbek}}
+                Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi mehnat qonunchiligiga muvofiq hal etiladi.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                Все вопросы, не урегулированные настоящим договором, разрешаются в соответствии с трудовым законодательством Республики Узбекистан.
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}TOMONLARNING REKVIZITLARI VA IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ СТОРОН{{/if_russian}}
+            </h2>
+
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>
+                        {{#if_uzbek}}Ish beruvchi:{{/if_uzbek}}
+                        {{#if_russian}}Работодатель:{{/if_russian}}
+                    </h3>
+                    <p>{{employer_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{employer_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{employer_address}}</p>
+                    <div class="signature-line">
+                        <p>___________________ / {{employer_director}} /</p>
+                    </div>
+                </div>
+
+                <div class="signature-block">
+                    <h3>
+                        {{#if_uzbek}}Xodim:{{/if_uzbek}}
+                        {{#if_russian}}Работник:{{/if_russian}}
+                    </h3>
+                    <p>{{employee_name}}</p>
+                    <p>{{#if_uzbek}}Pasport:{{/if_uzbek}}{{#if_russian}}Паспорт:{{/if_russian}} {{employee_passport}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{employee_address}}</p>
+                    <div class="signature-line">
+                        <p>___________________ / {{employee_name}} /</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}
+                🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.
+                {{/if_uzbek}}
+                {{#if_russian}}
+                🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.
+                {{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

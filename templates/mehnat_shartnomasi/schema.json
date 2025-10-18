@@ -1,0 +1,198 @@
+{
+  "name": "Mehnat shartnomasi",
+  "name_en": "Employment Contract",
+  "category": "contracts",
+  "languages": ["uzbek", "russian"],
+  "fields": [
+    {
+      "id": "employer_name",
+      "label": {
+        "uzbek": "Ish beruvchi tashkilot nomi",
+        "russian": "Наименование работодателя"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "employer_director",
+      "label": {
+        "uzbek": "Rahbar F.I.Sh.",
+        "russian": "Ф.И.О. руководителя"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "employer_inn",
+      "label": {
+        "uzbek": "INN (STIR)",
+        "russian": "ИНН"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^[0-9]{9}$"
+      }
+    },
+    {
+      "id": "employer_address",
+      "label": {
+        "uzbek": "Tashkilot manzili",
+        "russian": "Адрес организации"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "employee_name",
+      "label": {
+        "uzbek": "Xodimning F.I.Sh.",
+        "russian": "Ф.И.О. работника"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "employee_passport",
+      "label": {
+        "uzbek": "Pasport seriyasi va raqami",
+        "russian": "Серия и номер паспорта"
+      },
+      "type": "text",
+      "required": true,
+      "validation": {
+        "pattern": "^[A-Z]{2}[0-9]{7}$"
+      }
+    },
+    {
+      "id": "employee_address",
+      "label": {
+        "uzbek": "Xodimning manzili",
+        "russian": "Адрес работника"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "position",
+      "label": {
+        "uzbek": "Lavozim",
+        "russian": "Должность"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "id": "department",
+      "label": {
+        "uzbek": "Bo'lim",
+        "russian": "Отдел"
+      },
+      "type": "text",
+      "required": false
+    },
+    {
+      "id": "salary",
+      "label": {
+        "uzbek": "Oylik maosh (so'm)",
+        "russian": "Заработная плата (сум)"
+      },
+      "type": "number",
+      "required": true,
+      "validation": {
+        "min": 0
+      }
+    },
+    {
+      "id": "start_date",
+      "label": {
+        "uzbek": "Ishga qabul qilish sanasi",
+        "russian": "Дата приема на работу"
+      },
+      "type": "date",
+      "required": true
+    },
+    {
+      "id": "contract_type",
+      "label": {
+        "uzbek": "Shartnoma turi",
+        "russian": "Тип договора"
+      },
+      "type": "select",
+      "required": true,
+      "options": [
+        {
+          "value": "indefinite",
+          "label": {
+            "uzbek": "Muddatsiz",
+            "russian": "Бессрочный"
+          }
+        },
+        {
+          "value": "fixed_term",
+          "label": {
+            "uzbek": "Muddatli",
+            "russian": "Срочный"
+          }
+        }
+      ]
+    },
+    {
+      "id": "end_date",
+      "label": {
+        "uzbek": "Shartnoma tugash sanasi (muddatli shartnoma uchun)",
+        "russian": "Дата окончания (для срочного договора)"
+      },
+      "type": "date",
+      "required": false
+    },
+    {
+      "id": "probation_period",
+      "label": {
+        "uzbek": "Sinov muddati (oy)",
+        "russian": "Испытательный срок (мес.)"
+      },
+      "type": "number",
+      "required": false,
+      "validation": {
+        "min": 0,
+        "max": 3
+      }
+    },
+    {
+      "id": "working_hours",
+      "label": {
+        "uzbek": "Ish vaqti (soat/hafta)",
+        "russian": "Рабочее время (час/неделя)"
+      },
+      "type": "number",
+      "required": true,
+      "validation": {
+        "min": 1,
+        "max": 40
+      }
+    },
+    {
+      "id": "vacation_days",
+      "label": {
+        "uzbek": "Ta'til kunlari (yillik)",
+        "russian": "Дни отпуска (в год)"
+      },
+      "type": "number",
+      "required": true,
+      "validation": {
+        "min": 15,
+        "max": 56
+      }
+    },
+    {
+      "id": "additional_benefits",
+      "label": {
+        "uzbek": "Qo'shimcha imtiyozlar",
+        "russian": "Дополнительные льготы"
+      },
+      "type": "textarea",
+      "required": false
+    }
+  ]
+}

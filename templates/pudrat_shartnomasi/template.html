@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="{{language}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{#if_uzbek}}PUDRAT SHARTNOMASI{{/if_uzbek}}{{#if_russian}}ДОГОВОР ПОДРЯДА{{/if_russian}}</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="document">
+        <header class="document-header">
+            <h1 class="document-title">
+                {{#if_uzbek}}PUDRAT SHARTNOMASI{{/if_uzbek}}
+                {{#if_russian}}ДОГОВОР ПОДРЯДА{{/if_russian}}
+            </h1>
+            <p class="document-subtitle">
+                {{#if_uzbek}}№ ____ {{start_date}} sanada tuzilgan{{/if_uzbek}}
+                {{#if_russian}}№ ____ от {{start_date}}{{/if_russian}}
+            </p>
+        </header>
+
+        <section class="parties">
+            <p class="location">{{#if_uzbek}}Toshkent shahri{{/if_uzbek}}{{#if_russian}}г. Ташкент{{/if_russian}}</p>
+            <p class="intro-text">
+                {{#if_uzbek}}
+                Keyingi o'rinlarda «Buyurtmachi» deb ataluvchi <strong>{{customer_name}}</strong>,
+                STIR: <strong>{{customer_inn}}</strong>, manzil: <strong>{{customer_address}}</strong>,
+                bir tomondan va keyingi o'rinlarda «Pudratchi» deb ataluvchi <strong>{{contractor_name}}</strong>,
+                STIR: <strong>{{contractor_inn}}</strong>, litsenziya: <strong>{{contractor_license}}</strong>,
+                manzil: <strong>{{contractor_address}}</strong>, ikkinchi tomondan,
+                ushbu pudrat shartnomasini quyidagilar haqida tuzdilar:
+                {{/if_uzbek}}
+                {{#if_russian}}
+                С одной стороны <strong>{{customer_name}}</strong>, ИНН: <strong>{{customer_inn}}</strong>,
+                адрес: <strong>{{customer_address}}</strong>, именуемый в дальнейшем «Заказчик»,
+                и с другой стороны <strong>{{contractor_name}}</strong>, ИНН: <strong>{{contractor_inn}}</strong>,
+                лицензия: <strong>{{contractor_license}}</strong>, адрес: <strong>{{contractor_address}}</strong>,
+                именуемый в дальнейшем «Подрядчик», заключили настоящий договор подряда о нижеследующем:
+                {{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}1. SHARTNOMA PREDMETI{{/if_uzbek}}
+                {{#if_russian}}1. ПРЕДМЕТ ДОГОВОРА{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>1.1.</strong> {{#if_uzbek}}Pudratchi Buyurtmachining topshirig'i bo'yicha quyidagi qurilish ishlarini bajarishni o'z zimmasiga oladi:{{/if_uzbek}}
+                {{#if_russian}}Подрядчик обязуется по заданию Заказчика выполнить следующие строительные работы:{{/if_russian}}
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Ob'ekt:{{/if_uzbek}}{{#if_russian}}Объект:{{/if_russian}} <strong>{{construction_object}}</strong>
+            </p>
+            <p class="article-content">
+                {{#if_uzbek}}Qurilish manzili:{{/if_uzbek}}{{#if_russian}}Адрес строительства:{{/if_russian}} <strong>{{construction_address}}</strong>
+            </p>
+            <p class="article-content">
+                <strong>1.2.</strong> {{#if_uzbek}}Qurilish maydoni: <strong>{{construction_area}}</strong> kv.m.{{/if_uzbek}}
+                {{#if_russian}}Площадь строительства: <strong>{{construction_area}}</strong> кв.м.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>1.3.</strong> {{#if_uzbek}}Ishlar hajmi va tavsifi:{{/if_uzbek}}{{#if_russian}}Объем и описание работ:{{/if_russian}}
+            </p>
+            <p class="article-content">{{work_scope}}</p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}2. SHARTNOMA QIYMATI VA TO'LOV TARTIBI{{/if_uzbek}}
+                {{#if_russian}}2. СТОИМОСТЬ ДОГОВОРА И ПОРЯДОК ОПЛАТЫ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>2.1.</strong> {{#if_uzbek}}Shartnoma qiymati: <strong>{{contract_price}}</strong> so'm.{{/if_uzbek}}
+                {{#if_russian}}Стоимость договора: <strong>{{contract_price}}</strong> сум.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>2.2.</strong> {{#if_uzbek}}To'lov grafigi:{{/if_uzbek}}{{#if_russian}}График платежей:{{/if_russian}}
+            </p>
+            <p class="article-content">{{payment_schedule}}</p>
+            <p class="article-content">
+                <strong>2.3.</strong> {{#if_uzbek}}To'lov bajarilgan ishlar aktini imzolash asosida amalga oshiriladi.{{/if_uzbek}}
+                {{#if_russian}}Оплата производится на основании подписания акта выполненных работ.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}3. ISHLARNI BAJARISH MUDDATLARI{{/if_uzbek}}
+                {{#if_russian}}3. СРОКИ ВЫПОЛНЕНИЯ РАБОТ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>3.1.</strong> {{#if_uzbek}}Ishlarni boshlash sanasi: <strong>{{start_date}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Дата начала работ: <strong>{{start_date}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>3.2.</strong> {{#if_uzbek}}Ishlarni tugallash sanasi: <strong>{{completion_date}}</strong>.{{/if_uzbek}}
+                {{#if_russian}}Дата завершения работ: <strong>{{completion_date}}</strong>.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>3.3.</strong> {{#if_uzbek}}Pudratchi belgilangan muddatlarda ishlarni bajarishni kafolatlaydi.{{/if_uzbek}}
+                {{#if_russian}}Подрядчик гарантирует выполнение работ в установленные сроки.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}4. SIFAT TALABLARI{{/if_uzbek}}
+                {{#if_russian}}4. ТРЕБОВАНИЯ К КАЧЕСТВУ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>4.1.</strong> {{#if_uzbek}}Ishlar quyidagi sifat standartlariga muvofiq bajarilishi shart:{{/if_uzbek}}
+                {{#if_russian}}Работы должны выполняться в соответствии со следующими стандартами качества:{{/if_russian}}
+            </p>
+            <p class="article-content">{{quality_standards}}</p>
+            <p class="article-content">
+                <strong>4.2.</strong> {{#if_uzbek}}Pudratchi qonun hujjatlarida belgilangan qurilish me'yorlari va qoidalariga rioya qilishni ta'minlaydi.{{/if_uzbek}}
+                {{#if_russian}}Подрядчик обеспечивает соблюдение строительных норм и правил, установленных законодательством.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}5. TOMONLARNING HUQUQ VA MAJBURIYATLARI{{/if_uzbek}}
+                {{#if_russian}}5. ПРАВА И ОБЯЗАННОСТИ СТОРОН{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>5.1.</strong> {{#if_uzbek}}Pudratchi majburiyatlari:{{/if_uzbek}}{{#if_russian}}Обязанности Подрядчика:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>{{#if_uzbek}}Ishlarni sifatli va o'z vaqtida bajarish;{{/if_uzbek}}{{#if_russian}}Качественное и своевременное выполнение работ;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Xavfsizlik texnikasi qoidalariga rioya qilish;{{/if_uzbek}}{{#if_russian}}Соблюдение правил техники безопасности;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Qurilish maydonini tozalash.{{/if_uzbek}}{{#if_russian}}Уборка строительной площадки.{{/if_russian}}</li>
+            </ul>
+            <p class="article-content">
+                <strong>5.2.</strong> {{#if_uzbek}}Buyurtmachi majburiyatlari:{{/if_uzbek}}{{#if_russian}}Обязанности Заказчика:{{/if_russian}}
+            </p>
+            <ul class="obligations-list">
+                <li>{{#if_uzbek}}Qurilish maydonini taqdim etish;{{/if_uzbek}}{{#if_russian}}Предоставление строительной площадки;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Shartnoma bo'yicha to'lovlarni amalga oshirish;{{/if_uzbek}}{{#if_russian}}Осуществление платежей по договору;{{/if_russian}}</li>
+                <li>{{#if_uzbek}}Bajarilgan ishlarni qabul qilish.{{/if_uzbek}}{{#if_russian}}Приемка выполненных работ.{{/if_russian}}</li>
+            </ul>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}6. KAFOLAT{{/if_uzbek}}
+                {{#if_russian}}6. ГАРАНТИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>6.1.</strong> {{#if_uzbek}}Pudratchi bajarilgan ishlar uchun <strong>{{warranty_period}}</strong> yillik kafolat beradi.{{/if_uzbek}}
+                {{#if_russian}}Подрядчик предоставляет гарантию на выполненные работы сроком <strong>{{warranty_period}}</strong> лет.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>6.2.</strong> {{#if_uzbek}}Kafolat muddati bajarilgan ishlarni topshirish aktini imzolash sanasidan boshlanadi.{{/if_uzbek}}
+                {{#if_russian}}Гарантийный срок начинается с даты подписания акта выполненных работ.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}7. MAS'ULIYAT{{/if_uzbek}}
+                {{#if_russian}}7. ОТВЕТСТВЕННОСТЬ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>7.1.</strong> {{#if_uzbek}}Ishlarni bajarish muddatini buzgan taqdirda, Pudratchi har bir kechiktirilgan kun uchun shartnoma qiymatining 0.1% miqdorida jarima to'laydi.{{/if_uzbek}}
+                {{#if_russian}}В случае нарушения срока выполнения работ Подрядчик уплачивает штраф в размере 0.1% от стоимости договора за каждый день просрочки.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>7.2.</strong> {{#if_uzbek}}Sifatsiz ish bajarilgan taqdirda, Pudratchi o'z hisobidan kamchiliklarni bartaraf etadi.{{/if_uzbek}}
+                {{#if_russian}}В случае некачественного выполнения работ Подрядчик устраняет недостатки за свой счет.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="article">
+            <h2 class="article-title">
+                {{#if_uzbek}}8. YAKUNIY QOIDALAR{{/if_uzbek}}
+                {{#if_russian}}8. ЗАКЛЮЧИТЕЛЬНЫЕ ПОЛОЖЕНИЯ{{/if_russian}}
+            </h2>
+            <p class="article-content">
+                <strong>8.1.</strong> {{#if_uzbek}}Shartnoma 2 nusxada tuzildi, har bir tomon uchun bittadan.{{/if_uzbek}}
+                {{#if_russian}}Договор составлен в 2 экземплярах, по одному для каждой стороны.{{/if_russian}}
+            </p>
+            <p class="article-content">
+                <strong>8.2.</strong> {{#if_uzbek}}Shartnomada ko'rsatilmagan barcha masalalar O'zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi.{{/if_uzbek}}
+                {{#if_russian}}Все вопросы, не урегулированные настоящим договором, разрешаются в соответствии с законодательством Республики Узбекистан.{{/if_russian}}
+            </p>
+        </section>
+
+        <section class="signatures">
+            <h2 class="signatures-title">
+                {{#if_uzbek}}TOMONLARNING REKVIZITLARI VA IMZOLARI{{/if_uzbek}}
+                {{#if_russian}}РЕКВИЗИТЫ И ПОДПИСИ СТОРОН{{/if_russian}}
+            </h2>
+            <div class="signature-blocks">
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Buyurtmachi:{{/if_uzbek}}{{#if_russian}}Заказчик:{{/if_russian}}</h3>
+                    <p>{{customer_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{customer_inn}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{customer_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{customer_name}} /</p></div>
+                </div>
+                <div class="signature-block">
+                    <h3>{{#if_uzbek}}Pudratchi:{{/if_uzbek}}{{#if_russian}}Подрядчик:{{/if_russian}}</h3>
+                    <p>{{contractor_name}}</p>
+                    <p>{{#if_uzbek}}STIR:{{/if_uzbek}}{{#if_russian}}ИНН:{{/if_russian}} {{contractor_inn}}</p>
+                    <p>{{#if_uzbek}}Litsenziya:{{/if_uzbek}}{{#if_russian}}Лицензия:{{/if_russian}} {{contractor_license}}</p>
+                    <p>{{#if_uzbek}}Manzil:{{/if_uzbek}}{{#if_russian}}Адрес:{{/if_russian}} {{contractor_address}}</p>
+                    <div class="signature-line"><p>___________________ / {{contractor_name}} /</p></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="document-footer">
+            <p class="ai-notice">
+                {{#if_uzbek}}🤖 Ushbu hujjat sun'iy intellekt yordamida yaratilgan. Rasmiy foydalanishdan oldin huquqshunos bilan maslahatlashing.{{/if_uzbek}}
+                {{#if_russian}}🤖 Данный документ создан с помощью искусственного интеллекта. Проконсультируйтесь с юристом перед официальным использованием.{{/if_russian}}
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
