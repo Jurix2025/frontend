@@ -127,15 +127,22 @@ export default function GeneratePage() {
 
       const data = await response.json();
 
+      console.log('Received data from API:', data);
+
       // Update AI section content
       const newContent: Record<string, string> = {};
       template.schema.ai_sections.forEach((section) => {
-        if (data.sections[section.id]) {
+        console.log(`Processing section ${section.id}:`, data.sections?.[section.id]);
+        if (data.sections && data.sections[section.id]) {
           newContent[section.id] = data.sections[section.id].content;
+          console.log(`Set content for ${section.id}:`, newContent[section.id].substring(0, 100) + '...');
         }
       });
 
+      console.log('Final newContent:', newContent);
+
       setAiSectionContent(newContent);
+      console.log('AI section content updated successfully');
     } catch (error) {
       console.error('Error generating content:', error);
       alert('Failed to generate content. Please try again.');
@@ -170,7 +177,10 @@ export default function GeneratePage() {
 
       const data = await response.json();
 
-      if (data.sections[sectionId]) {
+      console.log('Regenerate response:', data);
+
+      if (data.sections && data.sections[sectionId]) {
+        console.log(`Regenerating section ${sectionId} with content:`, data.sections[sectionId].content.substring(0, 100) + '...');
         setAiSectionContent((prev) => ({
           ...prev,
           [sectionId]: data.sections[sectionId].content,
@@ -186,10 +196,12 @@ export default function GeneratePage() {
 
   // Merge AI content with form data for template preview
   const getMergedTemplateData = () => {
-    return {
+    const merged = {
       ...formData,
       ...aiSectionContent,
     };
+    console.log('Merged template data:', merged);
+    return merged;
   };
 
   const renderForm = () => {

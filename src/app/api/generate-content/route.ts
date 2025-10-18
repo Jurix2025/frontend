@@ -35,44 +35,46 @@ export async function POST(request: NextRequest) {
     }
 
     // Build the system prompt
-    const systemPrompt = `You are a legal document generator for Uzbekistan. Generate professional, legally sound content in ${language === 'uzbek' ? 'Uzbek' : 'Russian'} language.
+    const systemPrompt = `You are a professional legal document generator for Uzbekistan. Generate legally sound, professional content in ${language === 'uzbek' ? 'Uzbek' : 'Russian'} language ONLY.
 
-Document Type: ${documentType}
-Language: ${language === 'uzbek' ? 'Uzbek' : 'Russian'}
+IMPORTANT RULES:
+1. Generate content ONLY in ${language === 'uzbek' ? 'Uzbek' : 'Russian'} language
+2. Use formal legal terminology
+3. Include specific numbered clauses (e.g., 3.1, 3.2, 3.3)
+4. Be comprehensive and detailed
+5. Return ONLY valid JSON, no other text
 
-User has provided the following information:
+User's form data:
 ${Object.entries(formData)
-  .map(([key, value]) => `- ${key}: ${value}`)
+  .map(([key, value]) => `${key}: ${value}`)
   .join('\n')}
 
-Generate content for the following sections. Each section should be comprehensive, professional, and appropriate for a legal document in Uzbekistan.
-
-For each section, provide:
-1. A proper heading (use the section number provided)
-2. Multiple numbered clauses/bullet points (e.g., 3.1, 3.2, 3.3, etc.)
-3. Use formal legal language appropriate for ${language === 'uzbek' ? 'Uzbek' : 'Russian'}
-
-Return the response in JSON format with this structure:
+Return JSON in this EXACT format (use the section IDs provided in the user message):
 {
   "sections": {
-    "section_id": {
-      "heading": "Section heading in ${language === 'uzbek' ? 'Uzbek' : 'Russian'}",
-      "content": "Full HTML content for the section with proper formatting",
-      "bulletPoints": ["Point 1", "Point 2", "Point 3"]
+    "ai_section_rights_obligations": {
+      "content": "3.1. First clause text here...<br/><br/>3.2. Second clause text here...<br/><br/>3.3. Third clause..."
+    },
+    "ai_section_liability": {
+      "content": "4.1. First clause text here...<br/><br/>4.2. Second clause text here..."
     }
   }
 }
 
-Use HTML tags for formatting: <p>, <strong>, <ul>, <li>, etc.
-Ensure all content is in ${language === 'uzbek' ? 'Uzbek' : 'Russian'} language.`;
+For each clause:
+- Start with clause number (e.g., 3.1, 3.2)
+- Write 2-3 detailed sentences
+- Separate clauses with <br/><br/>
+- Use ONLY ${language === 'uzbek' ? 'Uzbek' : 'Russian'} language
+- Be specific and reference the user's data where relevant`;
 
     // Build user prompt with section details
-    const userMessage = `${userPrompt}\n\nGenerate content for these sections:\n${aiSections
+    const userMessage = `${userPrompt}\n\nGenerate content for these sections. USE THE EXACT SECTION IDs PROVIDED:\n${aiSections
       .map(
         (section) =>
-          `\nSection ${section.section_number}: ${section.label[language]}\nDescription: ${section.description[language]}\nGuidance: ${section.prompt_guidance}`
+          `\nSection ID: "${section.id}"\nSection Number: ${section.section_number}\nTitle: ${section.label[language]}\nDescription: ${section.description[language]}\nGuidance: ${section.prompt_guidance}`
       )
-      .join('\n')}`;
+      .join('\n')}\n\nIMPORTANT: In your JSON response, use the exact Section IDs I provided above (e.g., "${aiSections[0]?.id}"). Do NOT use generic IDs like "section_3".`;
 
     // Call OpenAI API
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -102,13 +104,48 @@ Ensure all content is in ${language === 'uzbek' ? 'Uzbek' : 'Russian'} language.
     }
 
     const data = await response.json();
-    const generatedContent = JSON.parse(data.choices[0].message.content);
+    const rawContent = data.choices[0].message.content;
 
-    return NextResponse.json(generatedContent);
+    console.log('OpenAI raw response:', rawContent);
+
+    const generatedContent = JSON.parse(rawContent);
+
+    console.log('Parsed content:', JSON.stringify(generatedContent, null, 2));
+
+    // Process and format the sections for the template
+    const formattedSections: Record<string, { content: string }> = {};
+
+    if (generatedContent.sections) {
+      Object.keys(generatedContent.sections).forEach((sectionId) => {
+        const section = generatedContent.sections[sectionId];
+        const aiSection = aiSections.find(s => s.id === sectionId);
+
+        if (aiSection) {
+          // Format the content with proper HTML structure
+          const sectionTitle = aiSection.label[language];
+          const sectionNumber = aiSection.section_number;
+
+          const formattedContent = `
+            <h2 class="article-title">
+              ${sectionNumber}. ${sectionTitle.toUpperCase()}
+            </h2>
+            <p class="article-content">
+              ${section.content}
+            </p>
+          `.trim();
+
+          formattedSections[sectionId] = { content: formattedContent };
+        }
+      });
+    }
+
+    console.log('Formatted sections:', JSON.stringify(formattedSections, null, 2));
+
+    return NextResponse.json({ sections: formattedSections });
   } catch (error) {
     console.error('Error generating content:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
