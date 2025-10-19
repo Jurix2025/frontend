@@ -1,10 +1,11 @@
-version: '3.8'
-
 services:
   jurix-frontend:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+        - OPENAI_API_KEY=${OPENAI_API_KEY}
     image: jurix-frontend:latest
     container_name: jurix-frontend
     ports:
@@ -12,8 +13,9 @@ services:
     environment:
       - NODE_ENV=production
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
     env_file:
-      - .env.local
+      - .env
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
