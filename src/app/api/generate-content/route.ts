@@ -25,14 +25,19 @@ export async function POST(request: NextRequest) {
     const body: GenerateContentRequest = await request.json();
     const { userPrompt, language, documentType, formData, aiSections } = body;
 
+    console.log('[API] Received request:', { language, documentType, sectionsCount: aiSections?.length });
+
     // Get OpenAI API key from environment
     const openaiApiKey = process.env.OPENAI_API_KEY;
     if (!openaiApiKey) {
+      console.error('[API] OpenAI API key not found in environment');
       return NextResponse.json(
-        { error: 'OpenAI API key not configured' },
+        { error: 'OpenAI API key not configured. Please add OPENAI_API_KEY to .env.local' },
         { status: 500 }
       );
     }
+
+    console.log('[API] OpenAI API key found, proceeding with generation');
 
     // Build the system prompt
     const systemPrompt = `You are a professional legal document generator for Uzbekistan. Generate legally sound, professional content in ${language === 'uzbek' ? 'Uzbek' : 'Russian'} language ONLY.
@@ -96,12 +101,14 @@ For each clause:
 
     if (!response.ok) {
       const error = await response.text();
-      console.error('OpenAI API error:', error);
+      console.error('[API] OpenAI API error:', response.status, error);
       return NextResponse.json(
-        { error: 'Failed to generate content from OpenAI' },
+        { error: `OpenAI API error: ${response.status} - ${error.substring(0, 200)}` },
         { status: 500 }
       );
     }
+
+    console.log('[API] OpenAI API call successful');
 
     const data = await response.json();
     const rawContent = data.choices[0].message.content;
@@ -139,11 +146,13 @@ For each clause:
       });
     }
 
-    console.log('Formatted sections:', JSON.stringify(formattedSections, null, 2));
+    console.log('[API] Formatted sections:', Object.keys(formattedSections));
+    console.log('[API] Returning successful response');
 
     return NextResponse.json({ sections: formattedSections });
   } catch (error) {
-    console.error('Error generating content:', error);
+    console.error('[API] Error generating content:', error);
+    console.error('[API] Error stack:', error instanceof Error ? error.stack : 'No stack trace');
     return NextResponse.json(
       { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }

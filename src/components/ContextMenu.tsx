@@ -89,6 +89,7 @@ export function ContextMenu({
         top: `${position.y}px`,
       }}
     >
+      {/* Only show create options for folders */}
       {isFolder && (
         <>
           <MenuItem icon="📄" label="Create Document" onClick={onCreateDocument} />

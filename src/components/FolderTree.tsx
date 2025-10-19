@@ -13,7 +13,8 @@ interface FolderTreeItemProps {
 
 function FolderTreeItem({ item, level, onContextMenu }: FolderTreeItemProps) {
   const [isExpanded, setIsExpanded] = useState(true);
-  const { getChildren, currentDocumentId, currentFolderId, setCurrentDocument, setCurrentFolder } = useWorkspaceStore();
+  const [isDragOver, setIsDragOver] = useState(false);
+  const { getChildren, currentDocumentId, currentFolderId, setCurrentDocument, setCurrentFolder, moveItem } = useWorkspaceStore();
 
   const children = item.type === 'folder' ? getChildren(item.id) : [];
   const isSelected = item.type === 'document' ? item.id === currentDocumentId : item.id === currentFolderId;
@@ -29,6 +30,68 @@ function FolderTreeItem({ item, level, onContextMenu }: FolderTreeItemProps) {
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsExpanded(!isExpanded);
+  };
+
+  // Drag and drop handlers
+  const handleDragStart = (e: React.DragEvent) => {
+    e.stopPropagation();
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('itemId', item.id);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    // Only folders can accept drops
+    if (item.type !== 'folder') return;
+
+    e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = 'move';
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.stopPropagation();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(false);
+
+    // Only folders can accept drops
+    if (item.type !== 'folder') return;
+
+    const draggedItemId = e.dataTransfer.getData('itemId');
+
+    // Don't drop on self
+    if (draggedItemId === item.id) return;
+
+    // Don't drop a parent into its own child
+    const store = useWorkspaceStore.getState();
+    const draggedItem = store.getItem(draggedItemId);
+    if (!draggedItem) return;
+
+    // Check if trying to drop a folder into its own descendant
+    if (draggedItem.type === 'folder') {
+      let currentParent = item.parentId;
+      while (currentParent) {
+        if (currentParent === draggedItemId) {
+          // Trying to drop a folder into its own child
+          return;
+        }
+        const parentItem = store.getItem(currentParent);
+        currentParent = parentItem?.parentId || null;
+      }
+    }
+
+    // Move the item
+    moveItem(draggedItemId, item.id);
+  };
+
+  const handleDragEnd = (e: React.DragEvent) => {
+    e.stopPropagation();
+    setIsDragOver(false);
   };
 
   const getIcon = () => {
@@ -70,12 +133,22 @@ function FolderTreeItem({ item, level, onContextMenu }: FolderTreeItemProps) {
   return (
     <div>
       <div
+        draggable
+        onDragStart={handleDragStart}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        onDragEnd={handleDragEnd}
         onClick={handleClick}
-        onContextMenu={(e) => onContextMenu(e, item)}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onContextMenu(e, item);
+        }}
         className={`flex items-center gap-1.5 px-2 py-1.5 cursor-pointer hover:bg-indigo-50 transition-colors ${
           isSelected ? 'bg-indigo-100 border-l-2 border-indigo-600' : ''
-        }`}
-        style={{ paddingLeft: `${level * 12 + 8}px` }}
+        } ${isDragOver ? 'bg-indigo-200 border-2 border-dashed border-indigo-600' : ''}`}
+        style={{ paddingLeft: `${level * 16 + 8}px` }}
       >
         {item.type === 'folder' && children.length > 0 && (
           <button onClick={handleToggle} className="flex-shrink-0 text-gray-500 hover:text-gray-700 transition-colors">
@@ -111,8 +184,9 @@ interface FolderTreeProps {
 }
 
 export function FolderTree({ onContextMenu }: FolderTreeProps) {
-  const { items, rootFolderId } = useWorkspaceStore();
+  const { items, rootFolderId, getChildren, moveItem } = useWorkspaceStore();
   const rootFolder = items[rootFolderId];
+  const [isDragOverRoot, setIsDragOverRoot] = useState(false);
 
   if (!rootFolder) {
     return (
@@ -122,9 +196,55 @@ export function FolderTree({ onContextMenu }: FolderTreeProps) {
     );
   }
 
+  // Get children of root folder to display directly
+  const rootChildren = getChildren(rootFolderId);
+
+  // Drag and drop handlers for root area
+  const handleRootDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = 'move';
+    setIsDragOverRoot(true);
+  };
+
+  const handleRootDragLeave = (e: React.DragEvent) => {
+    e.stopPropagation();
+    setIsDragOverRoot(false);
+  };
+
+  const handleRootDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOverRoot(false);
+
+    const draggedItemId = e.dataTransfer.getData('itemId');
+    if (!draggedItemId) return;
+
+    // Move to root folder
+    moveItem(draggedItemId, rootFolderId);
+  };
+
   return (
-    <div className="h-full overflow-y-auto bg-white">
-      <FolderTreeItem item={rootFolder} level={0} onContextMenu={onContextMenu} />
+    <div
+      className={`h-full overflow-y-auto bg-white ${isDragOverRoot ? 'bg-indigo-50' : ''}`}
+      onContextMenu={(e) => {
+        // Make empty space right-clickable to create folders/documents at root level
+        e.preventDefault();
+        onContextMenu(e, rootFolder);
+      }}
+      onDragOver={handleRootDragOver}
+      onDragLeave={handleRootDragLeave}
+      onDrop={handleRootDrop}
+    >
+      {rootChildren.length === 0 ? (
+        <div className="p-4 text-center text-gray-500">
+          <p className="text-xs">Right-click to create folders or documents</p>
+        </div>
+      ) : (
+        rootChildren.map((child) => (
+          <FolderTreeItem key={child.id} item={child} level={0} onContextMenu={onContextMenu} />
+        ))
+      )}
     </div>
   );
 }

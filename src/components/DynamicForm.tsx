@@ -21,10 +21,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'text':
         return (
           <div key={field.id} className="group">
-            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
-              <span>{label}</span>
-              {field.required && <span className="text-red-500">*</span>}
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm">
+              {label}
+              {field.required && <span className="text-red-500 ml-0.5">*</span>}
             </label>
             <input
               type="text"
@@ -43,10 +42,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'number':
         return (
           <div key={field.id} className="group">
-            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
-              <span>{label}</span>
-              {field.required && <span className="text-red-500">*</span>}
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm">
+              {label}
+              {field.required && <span className="text-red-500 ml-0.5">*</span>}
             </label>
             <input
               type="number"
@@ -64,10 +62,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'date':
         return (
           <div key={field.id} className="group">
-            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
-              <span>{label}</span>
-              {field.required && <span className="text-red-500">*</span>}
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm">
+              {label}
+              {field.required && <span className="text-red-500 ml-0.5">*</span>}
             </label>
             <input
               type="date"
@@ -82,10 +79,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'select':
         return (
           <div key={field.id} className="group">
-            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
-              <span>{label}</span>
-              {field.required && <span className="text-red-500">*</span>}
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm">
+              {label}
+              {field.required && <span className="text-red-500 ml-0.5">*</span>}
             </label>
             <select
               className={baseInputClass + " cursor-pointer"}
@@ -106,10 +102,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       case 'textarea':
         return (
           <div key={field.id} className="group">
-            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
-              <span>{label}</span>
-              {field.required && <span className="text-red-500">*</span>}
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm">
+              {label}
+              {field.required && <span className="text-red-500 ml-0.5">*</span>}
             </label>
             <textarea
               className={baseInputClass + " resize-none"}
@@ -134,9 +129,9 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
               checked={!!value}
               onChange={(e) => onFieldChange(field.id, e.target.checked)}
             />
-            <label htmlFor={field.id} className="text-gray-700 font-semibold text-sm cursor-pointer flex items-center gap-1">
-              <span>{label}</span>
-              {field.required && <span className="text-red-500">*</span>}
+            <label htmlFor={field.id} className="text-gray-700 font-semibold text-sm cursor-pointer">
+              {label}
+              {field.required && <span className="text-red-500 ml-0.5">*</span>}
             </label>
           </div>
         );

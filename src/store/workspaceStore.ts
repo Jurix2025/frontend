@@ -408,7 +408,14 @@ export const useWorkspaceStore = create<WorkspaceState>()(
 
         return folder.children
           .map((childId) => get().items[childId])
-          .filter(Boolean);
+          .filter(Boolean)
+          .sort((a, b) => {
+            // Folders first, then documents
+            if (a.type === 'folder' && b.type === 'document') return -1;
+            if (a.type === 'document' && b.type === 'folder') return 1;
+            // Within same type, sort alphabetically by name
+            return a.name.localeCompare(b.name);
+          });
       },
 
       getPath: (itemId: string) => {

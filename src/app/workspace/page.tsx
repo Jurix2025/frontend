@@ -42,7 +42,6 @@ export default function WorkspacePage() {
 
   // Panel visibility states
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [showComments, setShowComments] = useState(false);
 
   // Search state
   const [searchQuery, setSearchQuery] = useState('');
@@ -115,13 +114,16 @@ export default function WorkspacePage() {
   };
 
   const handleCreateDocument = () => {
-    setCreateInFolderId(contextMenu?.item.type === 'folder' ? contextMenu.item.id : currentFolderId);
+    // Only folders can contain documents - if context menu item is not a folder, use root
+    const parentId = contextMenu?.item.type === 'folder' ? contextMenu.item.id : useWorkspaceStore.getState().rootFolderId;
+    setCreateInFolderId(parentId);
     setIsCreateDocModalOpen(true);
   };
 
   const handleCreateFolder = () => {
     if (!contextMenu) return;
-    const parentId = contextMenu.item.type === 'folder' ? contextMenu.item.id : currentFolderId;
+    // Only folders can be parents - if context menu item is not a folder, use root
+    const parentId = contextMenu.item.type === 'folder' ? contextMenu.item.id : useWorkspaceStore.getState().rootFolderId;
     const name = prompt('Enter folder name:');
     if (name?.trim()) {
       createFolder(name.trim(), parentId);
@@ -129,7 +131,9 @@ export default function WorkspacePage() {
   };
 
   const handleUpload = () => {
-    setCreateInFolderId(contextMenu?.item.type === 'folder' ? contextMenu.item.id : currentFolderId);
+    // Only folders can contain documents - if context menu item is not a folder, use root
+    const parentId = contextMenu?.item.type === 'folder' ? contextMenu.item.id : useWorkspaceStore.getState().rootFolderId;
+    setCreateInFolderId(parentId);
     setIsUploadModalOpen(true);
   };
 
@@ -480,17 +484,9 @@ export default function WorkspacePage() {
                   {/* Document Status Bar */}
                   <DocumentStatusBar documentId={currentDocument.id} />
 
-                  {/* Breadcrumb & Controls */}
-                  <div className="bg-gradient-to-r from-white to-gray-50 border-b border-gray-200 px-4 py-2 flex items-center justify-between shadow-sm">
+                  {/* Breadcrumb */}
+                  <div className="bg-gradient-to-r from-white to-gray-50 border-b border-gray-200 px-4 py-2 shadow-sm">
                     <Breadcrumb itemId={currentDocument.id} />
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => setShowComments(!showComments)}
-                        className="px-2.5 py-1 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 text-gray-700 rounded-md font-semibold text-xs transition-all shadow-sm hover:shadow"
-                      >
-                        {showComments ? '👁️ Hide' : '👁️‍🗨️ Show'}
-                      </button>
-                    </div>
                   </div>
 
                   {/* Editor Content */}
@@ -638,7 +634,7 @@ export default function WorkspacePage() {
           <PanelResizeHandle className="w-1 bg-gray-300 hover:bg-indigo-500 transition-colors cursor-col-resize" />
 
           {/* Preview Panel */}
-          <Panel defaultSize={showComments ? 30 : 40} minSize={25}>
+          <Panel defaultSize={40} minSize={25}>
             <div className="h-full flex flex-col bg-gradient-to-br from-gray-100 to-gray-200">
               {currentDocument ? (
                 <>

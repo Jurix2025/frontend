@@ -84,8 +84,8 @@ export function DocumentStatusBar({ documentId }: DocumentStatusBarProps) {
   const progressPercentage = ((currentStatusIndex + 1) / statusFlow.length) * 100;
 
   return (
-    <div className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm overflow-visible">
+      <div className="max-w-6xl mx-auto overflow-visible">
         {/* Status Pills */}
         <div className="flex items-center gap-2 mb-3">
           {statusFlow.map((status, index) => {
@@ -112,29 +112,18 @@ export function DocumentStatusBar({ documentId }: DocumentStatusBarProps) {
                     ${isCurrent ? 'ring-2 ring-offset-2 ring-indigo-400 animate-pulse' : ''}
                   `}
                 >
-                  {/* Color indicator dot */}
-                  <span className="flex items-center gap-2">
-                    <span
-                      className={`w-2 h-2 rounded-full ${isCompleted || isCurrent ? 'bg-white' : 'bg-gray-400'}`}
-                      style={
-                        isCompleted || isCurrent
-                          ? { background: `linear-gradient(135deg, ${status.colorFrom}, ${status.colorTo})` }
-                          : {}
-                      }
-                    ></span>
-                    {status.label}
-                  </span>
+                  {status.label}
 
                   {/* Hover hint */}
                   {isNext && !canClickResolved && (
-                    <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-indigo-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-[10px] text-indigo-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
                       Click to advance →
                     </span>
                   )}
 
                   {/* Warning for unresolved */}
                   {canClickResolved && (
-                    <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-red-600 font-bold whitespace-nowrap">
+                    <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-[10px] text-red-600 font-bold whitespace-nowrap z-50">
                       ⚠️ Resolve comments
                     </span>
                   )}
