@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Files with secrets
+AZURE_DEPLOYMENT_ISSUE.md
+deploy-azure.sh
