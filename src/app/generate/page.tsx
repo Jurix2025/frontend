@@ -397,6 +397,9 @@ export default function GeneratePage() {
                   ← Document Types
                 </button>
               )}
+              <Link href="/workspace" className="text-white hover:text-purple-300 transition font-semibold">
+                Workspace
+              </Link>
               <Link href="/generate" className="text-white hover:text-purple-300 transition font-semibold">
                 Generate
               </Link>

@@ -148,6 +148,9 @@ export default function AnalyzePage() {
               <span className="text-2xl font-bold text-white">Jurix</span>
             </Link>
             <div className="flex items-center gap-6">
+              <Link href="/workspace" className="text-white hover:text-purple-300 transition font-semibold">
+                Workspace
+              </Link>
               <Link href="/generate" className="text-white hover:text-purple-300 transition font-semibold">
                 Generate
               </Link>

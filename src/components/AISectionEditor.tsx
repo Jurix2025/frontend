@@ -59,46 +59,51 @@ export function AISectionEditor({
   };
 
   return (
-    <div className="border-2 border-purple-300 rounded-xl p-6 bg-gradient-to-br from-purple-50 to-pink-50 shadow-md">
-      <div className="flex items-start justify-between mb-4">
+    <div className="border border-purple-300 rounded-lg p-3 bg-gradient-to-br from-purple-50 to-pink-50 shadow-sm hover:shadow-md transition-all">
+      <div className="flex items-start justify-between mb-2">
         <div className="flex-1">
-          <h4 className="text-xl font-bold text-gray-900 mb-2">
-            {section.section_number}. {label}
+          <h4 className="text-sm font-bold text-gray-900 mb-1 flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+            <span>{section.section_number}. {label}</span>
           </h4>
-          <p className="text-base text-gray-700 font-medium">{description}</p>
+          <p className="text-xs text-gray-600">{description}</p>
         </div>
         <button
           type="button"
           onClick={() => onRegenerate(section.id)}
           disabled={isGenerating}
-          className="ml-4 px-5 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-lg font-bold transition-all text-sm flex items-center gap-2 shadow-lg"
+          className="ml-2 px-2.5 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-400 disabled:to-gray-500 text-white rounded-md font-semibold transition-all text-xs flex items-center gap-1 shadow-sm transform hover:scale-105 disabled:scale-100"
         >
           {isGenerating ? (
             <>
               <span className="animate-spin">⟳</span>
-              Generating...
+              <span>Gen...</span>
             </>
           ) : (
             <>
-              ⟳ Regenerate
+              <span>⟳</span>
+              <span>Regen</span>
             </>
           )}
         </button>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {!content && !isGenerating && (
-          <div className="text-center py-8 text-gray-600 border-2 border-dashed border-purple-300 rounded-lg bg-white/50">
-            <p className="mb-2 font-bold text-lg">📝 No content generated yet</p>
-            <p className="text-base font-medium">
-              Click "Generate All Sections" or "Regenerate" to create content
+          <div className="text-center py-4 text-gray-600 border border-dashed border-purple-300 rounded-md bg-white/50">
+            <p className="mb-1 font-semibold text-sm">📝 Not generated yet</p>
+            <p className="text-xs">
+              Click &quot;Generate All&quot; or &quot;Regen&quot;
             </p>
           </div>
         )}
 
         {isGenerating && (
-          <div className="text-center py-8 text-gray-700 font-semibold text-lg">
-            <div className="animate-pulse">Generating content...</div>
+          <div className="text-center py-4 text-gray-700 font-semibold text-sm">
+            <div className="animate-pulse flex items-center justify-center gap-1">
+              <span className="animate-spin">⟳</span>
+              <span>Generating...</span>
+            </div>
           </div>
         )}
 
@@ -109,22 +114,22 @@ export function AISectionEditor({
                 <textarea
                   value={editableText}
                   onChange={(e) => setEditableText(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg bg-white border-2 border-gray-300 text-gray-900 font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-base"
-                  rows={12}
+                  className="w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-900 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400 resize-none"
+                  rows={8}
                   placeholder="Enter section content (plain text, line breaks preserved)"
                 />
-                <div className="flex gap-3 mt-3">
+                <div className="flex gap-2 mt-2">
                   <button
                     type="button"
                     onClick={handleSaveEdit}
-                    className="px-5 py-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-lg font-bold transition-all text-base shadow-lg"
+                    className="px-3 py-1.5 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-md font-semibold transition-all text-sm shadow-sm transform hover:scale-105"
                   >
-                    ✓ Save Changes
+                    ✓ Save
                   </button>
                   <button
                     type="button"
                     onClick={() => setIsEditing(false)}
-                    className="px-5 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-bold transition-all text-base shadow-lg"
+                    className="px-3 py-1.5 bg-gray-500 hover:bg-gray-600 text-white rounded-md font-semibold transition-all text-sm shadow-sm transform hover:scale-105"
                   >
                     Cancel
                   </button>
@@ -133,15 +138,16 @@ export function AISectionEditor({
             ) : (
               <div>
                 <div
-                  className="prose prose-lg max-w-none p-6 bg-white rounded-lg border-2 border-gray-300 shadow-sm"
+                  className="prose prose-sm max-w-none p-3 bg-white rounded-md border border-gray-300 shadow-sm text-sm leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: content }}
                 />
                 <button
                   type="button"
                   onClick={handleEditClick}
-                  className="mt-3 px-5 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-lg font-bold transition-all text-base shadow-lg"
+                  className="mt-2 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-md font-semibold transition-all text-sm shadow-sm transform hover:scale-105 flex items-center gap-1"
                 >
-                  ✏️ Edit Content
+                  <span>✏️</span>
+                  <span>Edit</span>
                 </button>
               </div>
             )}

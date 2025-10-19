@@ -1,5 +1,6 @@
 'use client';
 
+import { ReactElement } from 'react';
 import { TemplateField } from '@/lib/templateLoader';
 
 interface DynamicFormProps {
@@ -14,15 +15,16 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
     const label = field.label[language];
     const value = formData[field.id] || '';
 
-    const baseInputClass = "w-full px-4 py-3 rounded-lg bg-white border-2 border-gray-300 text-gray-900 font-medium placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500";
+    const baseInputClass = "w-full px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-900 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 transition-all hover:border-indigo-300";
 
     switch (field.type) {
       case 'text':
         return (
-          <div key={field.id}>
-            <label className="block text-gray-900 font-bold mb-2 text-base">
-              {label}
-              {field.required && <span className="text-red-600 ml-1">*</span>}
+          <div key={field.id} className="group">
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
+              <span>{label}</span>
+              {field.required && <span className="text-red-500">*</span>}
             </label>
             <input
               type="text"
@@ -40,10 +42,11 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
       case 'number':
         return (
-          <div key={field.id}>
-            <label className="block text-gray-900 font-bold mb-2 text-base">
-              {label}
-              {field.required && <span className="text-red-600 ml-1">*</span>}
+          <div key={field.id} className="group">
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
+              <span>{label}</span>
+              {field.required && <span className="text-red-500">*</span>}
             </label>
             <input
               type="number"
@@ -60,10 +63,11 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
       case 'date':
         return (
-          <div key={field.id}>
-            <label className="block text-gray-900 font-bold mb-2 text-base">
-              {label}
-              {field.required && <span className="text-red-600 ml-1">*</span>}
+          <div key={field.id} className="group">
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
+              <span>{label}</span>
+              {field.required && <span className="text-red-500">*</span>}
             </label>
             <input
               type="date"
@@ -77,13 +81,14 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
       case 'select':
         return (
-          <div key={field.id}>
-            <label className="block text-gray-900 font-bold mb-2 text-base">
-              {label}
-              {field.required && <span className="text-red-600 ml-1">*</span>}
+          <div key={field.id} className="group">
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
+              <span>{label}</span>
+              {field.required && <span className="text-red-500">*</span>}
             </label>
             <select
-              className={baseInputClass}
+              className={baseInputClass + " cursor-pointer"}
               value={value as string}
               onChange={(e) => onFieldChange(field.id, e.target.value)}
               required={field.required}
@@ -100,18 +105,19 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
       case 'textarea':
         return (
-          <div key={field.id}>
-            <label className="block text-gray-900 font-bold mb-2 text-base">
-              {label}
-              {field.required && <span className="text-red-600 ml-1">*</span>}
+          <div key={field.id} className="group">
+            <label className="block text-gray-700 font-semibold mb-1.5 text-sm flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"></span>
+              <span>{label}</span>
+              {field.required && <span className="text-red-500">*</span>}
             </label>
             <textarea
-              className={baseInputClass}
+              className={baseInputClass + " resize-none"}
               placeholder={label}
               value={value as string}
               onChange={(e) => onFieldChange(field.id, e.target.value)}
               required={field.required}
-              rows={4}
+              rows={3}
               minLength={field.validation?.minLength}
               maxLength={field.validation?.maxLength}
             />
@@ -120,17 +126,17 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
       case 'boolean':
         return (
-          <div key={field.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border border-gray-300">
+          <div key={field.id} className="flex items-center gap-2 p-2.5 bg-gradient-to-r from-gray-50 to-indigo-50 rounded-md border border-gray-200 hover:border-indigo-300 transition-all group">
             <input
               type="checkbox"
               id={field.id}
-              className="w-6 h-6 rounded border-gray-400 bg-white text-purple-600 focus:ring-2 focus:ring-purple-500"
+              className="w-4 h-4 rounded border-gray-400 bg-white text-indigo-600 focus:ring-2 focus:ring-indigo-400 cursor-pointer transition-all"
               checked={!!value}
               onChange={(e) => onFieldChange(field.id, e.target.checked)}
             />
-            <label htmlFor={field.id} className="text-gray-900 font-bold text-base">
-              {label}
-              {field.required && <span className="text-red-600 ml-1">*</span>}
+            <label htmlFor={field.id} className="text-gray-700 font-semibold text-sm cursor-pointer flex items-center gap-1">
+              <span>{label}</span>
+              {field.required && <span className="text-red-500">*</span>}
             </label>
           </div>
         );
@@ -142,7 +148,7 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
 
   // Group fields into grid layouts where appropriate
   const renderFields = () => {
-    const elements: JSX.Element[] = [];
+    const elements: (ReactElement | null)[] = [];
 
     for (let i = 0; i < fields.length; i++) {
       const field = fields[i];
@@ -155,7 +161,7 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
         (nextField.type === 'text' || nextField.type === 'number' || nextField.type === 'date')
       ) {
         elements.push(
-          <div key={`grid-${i}`} className="grid md:grid-cols-2 gap-6">
+          <div key={`grid-${i}`} className="grid md:grid-cols-2 gap-3">
             {renderField(field)}
             {renderField(nextField)}
           </div>
@@ -166,11 +172,11 @@ export function DynamicForm({ fields, language, formData, onFieldChange }: Dynam
       }
     }
 
-    return elements;
+    return elements.filter((el): el is ReactElement => el !== null);
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       {renderFields()}
     </div>
   );
