@@ -53,7 +53,11 @@
       "Bash(az webapp config appsettings list --name jurix --resource-group jurix --query \"[?contains(name, ''DOCKER'')]\" -o table)",
       "Bash(az acr update --name jurix --admin-enabled true --query \"{AdminEnabled:adminUserEnabled, LoginServer:loginServer}\" -o json)",
       "Bash(az webapp config appsettings list --name jurix --resource-group jurix --query \"[?name==''DOCKER_REGISTRY_SERVER_PASSWORD''].{Name:name, HasValue:value!=null}\" -o table)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch AZURE_DEPLOYMENT_ISSUE.md deploy-azure.sh' --prune-empty --tag-name-filter cat -- --all)",
+      "Bash(rm AZURE_DEPLOYMENT_ISSUE.md deploy-azure.sh)",
+      "Bash(git add -A)",
+      "Bash(git commit -m \"Remove files containing secrets\")"
     ],
     "deny": [],
     "ask": []
